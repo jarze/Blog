@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>commander 基本用法 | Jarze</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="github npm  安装1npm install commander --save  定义&lt;&gt;定义必需参数，[]定义可选参数 示例12345678910111213141516171819202122232425262728293031323334353637383940const program &#x3D; require(&#39;commander&#39;);program  .version(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="commander 基本用法">
+<meta property="og:url" content="https://jarze.github.io/Blog/commander/index.html">
+<meta property="og:site_name" content="Jarze">
+<meta property="og:description" content="github npm  安装1npm install commander --save  定义&lt;&gt;定义必需参数，[]定义可选参数 示例12345678910111213141516171819202122232425262728293031323334353637383940const program &#x3D; require(&#39;commander&#39;);program  .version(">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jarze.github.io/Blog/commander/commander.png">
+<meta property="article:published_time" content="2019-09-30T16:07:26.000Z">
+<meta property="article:modified_time" content="2020-06-24T04:40:52.467Z">
+<meta property="article:author" content="jarze blog ~~~">
+<meta property="article:tag" content="commander nodejs js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jarze.github.io/Blog/commander/commander.png">
+  
+    <link rel="alternate" href="/Blog/atom.xml" title="Jarze" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/Blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Jarze</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/Blog/" id="subtitle">🇨🇳🇨🇳🇨🇳</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/Blog/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jarze.github.io/Blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-commander" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Blog/commander/" class="article-date">
+  <time class="dt-published" datetime="2019-09-30T16:07:26.000Z" itemprop="datePublished">2019-09-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/Blog/categories/IT-JS/">IT JS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      commander 基本用法
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a href="https://github.com/tj/commander.js" target="_blank" rel="noopener">github</a></li>
+<li><a href="https://www.npmjs.com/package/commander" target="_blank" rel="noopener">npm</a></li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install commander --save</span><br></pre></td></tr></table></figure>
+
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><code>&lt;&gt;</code>定义必需参数，<code>[]</code>定义可选参数</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> program = <span class="built_in">require</span>(<span class="string">'commander'</span>);</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">  .version(<span class="string">'0.1.0'</span>)</span><br><span class="line">  .option(<span class="string">'-C, --chdir &lt;path&gt;'</span>, <span class="string">'change the working directory'</span>)</span><br><span class="line">  .option(<span class="string">'-c, --config &lt;path&gt;'</span>, <span class="string">'set config path. defaults to ./deploy.conf'</span>)</span><br><span class="line">  .option(<span class="string">'-T, --no-tests'</span>, <span class="string">'ignore test hook'</span>);</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">  .command(<span class="string">'setup [env]'</span>)</span><br><span class="line">  .description(<span class="string">'run setup commands for all envs'</span>)</span><br><span class="line">  .option(<span class="string">"-s, --setup_mode [mode]"</span>, <span class="string">"Which setup mode to use"</span>)</span><br><span class="line">  .action(<span class="function"><span class="keyword">function</span>(<span class="params">env, options</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> mode = options.setup_mode || <span class="string">"normal"</span>;</span><br><span class="line">    env = env || <span class="string">'all'</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setup for %s env(s) with %s mode'</span>, env, mode);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">  .command(<span class="string">'exec &lt;cmd&gt;'</span>)</span><br><span class="line">  .alias(<span class="string">'ex'</span>)</span><br><span class="line">  .description(<span class="string">'execute the given remote cmd'</span>)</span><br><span class="line">  .option(<span class="string">"-e, --exec_mode &lt;mode&gt;"</span>, <span class="string">"Which exec mode to use"</span>)</span><br><span class="line">  .action(<span class="function"><span class="keyword">function</span>(<span class="params">cmd, options</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'exec "%s" using %s mode'</span>, cmd, options.exec_mode);</span><br><span class="line">  &#125;).on(<span class="string">'--help'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">''</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Examples:'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">''</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'  $ deploy exec sequential'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'  $ deploy exec async'</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">  .command(<span class="string">'*'</span>)</span><br><span class="line">  .action(<span class="function"><span class="keyword">function</span>(<span class="params">env</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'deploying "%s"'</span>, env);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">program.parse(process.argv);</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<img src="/Blog/commander/commander.png" class="">
+
+
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="version"><a href="#version" class="headerlink" title="version"></a>version</h3><p>作用：定义命令程序的版本号</p>
+<h3 id="option"><a href="#option" class="headerlink" title="option"></a>option</h3><p>作用：定义命令的选项</p>
+<h3 id="command"><a href="#command" class="headerlink" title="command"></a>command</h3><p>作用：自定义命令</p>
+<h3 id="description"><a href="#description" class="headerlink" title="description"></a>description</h3><p>作用：命令的描述性语句</p>
+<h3 id="action"><a href="#action" class="headerlink" title="action"></a>action</h3><p>作用：定义命令的回调函数</p>
+<h3 id="parse"><a href="#parse" class="headerlink" title="parse"></a>parse</h3><p>作用：用于解析process.argv，设置options以及触发commands</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jarze.github.io/Blog/commander/" data-id="ckbsve47800025lp5gf6c85xj" data-title="commander 基本用法" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/commander-nodejs-js/" rel="tag">commander nodejs js</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Blog/package/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          package.json
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Blog/markdown/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Markdown 语法和 MWeb 写作使用说明</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/IT-JS/">IT JS</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/%E5%B7%A5%E5%85%B7%E6%9F%A5%E8%AF%A2/">工具查询</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Node-npm/" rel="tag">Node npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/commander-nodejs-js/" rel="tag">commander nodejs js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/vscode-tool/" rel="tag">vscode tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/Node-npm/" style="font-size: 10px;">Node npm</a> <a href="/Blog/tags/commander-nodejs-js/" style="font-size: 10px;">commander nodejs js</a> <a href="/Blog/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/Blog/tags/vscode-tool/" style="font-size: 10px;">vscode tool</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/09/">九月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/package/">package.json</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/commander/">commander 基本用法</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/markdown/">Markdown 语法和 MWeb 写作使用说明</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/about/">About</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 jarze blog ~~~<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/Blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/Blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
