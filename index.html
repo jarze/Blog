@@ -74,10 +74,86 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-text-overflow" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Blog/text-overflow/" class="article-date">
+  <time class="dt-published" datetime="2020-06-28T15:41:18.000Z" itemprop="datePublished">2020-06-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/Blog/categories/Front/">Front</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Blog/text-overflow/">CSS实现单行、多行文本溢出显示省略号（…）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>如果实现单行文本的溢出显示省略号同学们应该都知道用 <code>text-overflow:ellipsis</code> 属性来，当然还需要加宽度 <code>width</code> 属来兼容部分浏览。</p>
+<p><strong>实现方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">overflow: hidden;</span><br><span class="line">text-overflow:ellipsis;</span><br><span class="line">white-space: nowrap;</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果如图：</strong></p>
+<img src="/Blog/text-overflow/one-line.jpg" class="">
+
+<p>但是这个属性只支持单行文本的溢出显示省略号，如果我们要实现多行文本溢出显示省略号呢。<br>接下来重点说一说多行文本溢出显示省略号，如下。</p>
+<p><strong>实现方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">display: -webkit-box;</span><br><span class="line">-webkit-box-orient: vertical;</span><br><span class="line">-webkit-line-clamp: <span class="number">3</span>;</span><br><span class="line">overflow: hidden;</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果如图：</strong></p>
+<img src="/Blog/text-overflow/muti-line.jpg" class="">
+
+<p><strong>适用范围：</strong><br>因使用了 <code>WebKit</code> 的 <code>CSS</code> 扩展属性，该方法适用于 <code>WebKit</code> 浏览器及移动端；<br><em>注：</em></p>
+<ul>
+<li><code>-webkit-line-clamp</code> 用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的 <code>WebKit</code> 属性。常见结合属性：</li>
+<li><code>display: -webkit-box</code>; 必须结合的属性 ，将对象作为弹性伸缩盒子模型显示 。</li>
+<li><code>-webkit-box-orient</code> 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 。</li>
+</ul>
+<p><strong>实现方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">p&#123;</span><br><span class="line">	position: relative; line-height: <span class="number">20</span>px; max-height: <span class="number">40</span>px;overflow: hidden;</span><br><span class="line">	&#125;</span><br><span class="line">p::after&#123;</span><br><span class="line">	content: <span class="string">"..."</span>; position: absolute; bottom: <span class="number">0</span>; right: <span class="number">0</span>; padding-left: <span class="number">40</span>px;</span><br><span class="line">	background: -webkit-linear-gradient(left, transparent, #fff 55%);</span><br><span class="line">	background: -o-linear-gradient(right, transparent, #fff 55%);</span><br><span class="line">	background: -moz-linear-gradient(right, transparent, #fff 55%);</span><br><span class="line">	background: linear-gradient(to right, transparent, #fff 55%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果如图：</strong></p>
+<img src="/Blog/text-overflow/muti-line-2.jpg" class="">
+
+<p><strong>适用范围：</strong><br>该方法适用范围广，但文字未超出行的情况下也会出现省略号,可结合 <code>js</code> 优化该方法。<br><em>注：</em></p>
+<ul>
+<li>将 <code>height</code> 设置为 <code>line-height</code> 的整数倍，防止超出的文字露出。</li>
+<li>给 <code>p::after</code> 添加渐变背景可避免文字只显示一半。</li>
+<li>由于 <code>ie6-7</code> 不显示 <code>content</code> 内容，所以要添加标签兼容 <code>ie6-7</code>（如：<code>&lt;span&gt;…&lt;span/&gt;</code>）；兼容 ie8 需要将<code>::after</code> 替换成<code>:after</code>。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jarze.github.io/Blog/text-overflow/" data-id="ckbyt6jpw00075mqqc82c87yu" data-title="CSS实现单行、多行文本溢出显示省略号（…）" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/css/" rel="tag">css</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/Blog/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2020-06-24T06:01:52.971Z" itemprop="datePublished">2020-06-24</time>
+  <time class="dt-published" datetime="2020-06-28T08:25:41.669Z" itemprop="datePublished">2020-06-28</time>
 </a>
     
   </div>
@@ -113,7 +189,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/hello-world/" data-id="ckbsya80b00002kswcyfu3kbr" data-title="Hello World" class="article-share-link">分享</a>
+      <a data-url="https://jarze.github.io/Blog/hello-world/" data-id="ckbyt6jo400005mqq15cq2bff" data-title="Hello World" class="article-share-link">分享</a>
       
       
       
@@ -131,6 +207,10 @@
   <time class="dt-published" datetime="2020-01-03T10:00:06.000Z" itemprop="datePublished">2020-01-03</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/Blog/categories/Front/">Front</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -139,7 +219,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/Blog/package/">package.json</a>
+      <a class="p-name article-title" href="/Blog/package/">package.json 中 npm 依赖包版本前的符号的意义</a>
     </h1>
   
 
@@ -147,13 +227,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="package-json中-npm依赖包版本前的符号的意义"><a href="#package-json中-npm依赖包版本前的符号的意义" class="headerlink" title="package.json中 npm依赖包版本前的符号的意义"></a>package.json中 npm依赖包版本前的符号的意义</h1><hr>
-<p>版本的格式</p>
+        <p>版本的格式</p>
 <blockquote>
 <p><code>major.minor.patch</code></p>
 </blockquote>
 <p>主版本号.次版本号.修补版本号</p>
-<p><code>patch</code>：修复bug，兼容老版本</p>
+<p><code>patch</code>：修复 bug，兼容老版本</p>
 <p><code>minor</code>：新增功能，兼容老版本</p>
 <p><code>major</code>：新的架构调整，不兼容老版本</p>
 <hr>
@@ -161,74 +240,74 @@
 <p><code>version</code></p>
 </blockquote>
 <p>必须匹配某个版本</p>
-<p>如：1.1.2，表示必须依赖1.1.2版</p>
+<p>如：1.1.2，表示必须依赖 1.1.2 版</p>
 <blockquote>
 <p><code>&gt;version</code></p>
 </blockquote>
 <p>必须大于某个版本</p>
-<p>如：&gt;1.1.2，表示必须大于1.1.2版</p>
+<p>如：&gt;1.1.2，表示必须大于 1.1.2 版</p>
 <blockquote>
 <p><code>&gt;=version</code></p>
 </blockquote>
 <p>可大于或等于某个版本</p>
-<p>如：&gt;=1.1.2，表示可以等于1.1.2，也可以大于1.1.2版本</p>
+<p>如：&gt;=1.1.2，表示可以等于 1.1.2，也可以大于 1.1.2 版本</p>
 <blockquote>
 <p><code>&lt;version</code></p>
 </blockquote>
 <p>必须小于某个版本</p>
-<p>如：&lt;1.1.2，表示必须小于1.1.2版本</p>
+<p>如：&lt;1.1.2，表示必须小于 1.1.2 版本</p>
 <blockquote>
 <p><code>&lt;=version</code></p>
 </blockquote>
 <p>可以小于或等于某个版本</p>
-<p>如：&lt;=1.1.2，表示可以等于1.1.2，也可以小于1.1.2版本</p>
+<p>如：&lt;=1.1.2，表示可以等于 1.1.2，也可以小于 1.1.2 版本</p>
 <blockquote>
 <p><code>~version</code></p>
 </blockquote>
 <p>大概匹配某个版本</p>
-<p>如果minor版本号指定了，那么minor版本号不变，而patch版本号任意</p>
-<p>如果minor和patch版本号未指定，那么minor和patch版本号任意</p>
-<p>如：~1.1.2，表示&gt;=1.1.2 &lt;1.2.0，可以是1.1.2，1.1.3，1.1.4，…..，1.1.n </p>
+<p>如果 minor 版本号指定了，那么 minor 版本号不变，而 patch 版本号任意</p>
+<p>如果 minor 和 patch 版本号未指定，那么 minor 和 patch 版本号任意</p>
+<p>如：~1.1.2，表示&gt;=1.1.2 &lt;1.2.0，可以是 1.1.2，1.1.3，1.1.4，…..，1.1.n</p>
 <p>如：~1.1，表示&gt;=1.1.0 &lt;1.2.0，可以是同上</p>
-<p>如：~1，表示&gt;=1.0.0 &lt;2.0.0，可以是1.0.0，1.0.1，1.0.2，…..，1.0.n，1.1.n，1.2.n，…..，1.n.n</p>
+<p>如：~1，表示&gt;=1.0.0 &lt;2.0.0，可以是 1.0.0，1.0.1，1.0.2，…..，1.0.n，1.1.n，1.2.n，…..，1.n.n</p>
 <blockquote>
 <p><code>^version</code></p>
 </blockquote>
 <p>兼容某个版本</p>
-<p>版本号中最左边的非0数字的右侧可以任意</p>
+<p>版本号中最左边的非 0 数字的右侧可以任意</p>
 <p>如果缺少某个版本号，则这个版本号的位置可以任意</p>
-<p>如：^1.1.2 ，表示&gt;=1.1.2 &lt;2.0.0，可以是1.1.2，1.1.3，…..，1.1.n，1.2.n，…..，1.n.n</p>
-<p>如：^0.2.3 ，表示&gt;=0.2.3 &lt;0.3.0，可以是0.2.3，0.2.4，…..，0.2.n</p>
-<p>如：^0.0，表示 &gt;=0.0.0 &lt;0.1.0，可以是0.0.0，0.0.1，…..，0.0.n</p>
+<p>如：^1.1.2 ，表示&gt;=1.1.2 &lt;2.0.0，可以是 1.1.2，1.1.3，…..，1.1.n，1.2.n，…..，1.n.n</p>
+<p>如：^0.2.3 ，表示&gt;=0.2.3 &lt;0.3.0，可以是 0.2.3，0.2.4，…..，0.2.n</p>
+<p>如：^0.0，表示 &gt;=0.0.0 &lt;0.1.0，可以是 0.0.0，0.0.1，…..，0.0.n</p>
 <blockquote>
 <p><code>x-range</code></p>
 </blockquote>
-<p>x的位置表示任意版本</p>
-<p>如：1.2.x，表示可以1.2.0，1.2.1，…..，1.2.n</p>
+<p>x 的位置表示任意版本</p>
+<p>如：1.2.x，表示可以 1.2.0，1.2.1，…..，1.2.n</p>
 <blockquote>
 <p><code>*-range</code></p>
 </blockquote>
 <p>任意版本，””也表示任意版本</p>
-<p>如：*，表示&gt;=0.0.0的任意版本</p>
+<p>如：*，表示&gt;=0.0.0 的任意版本</p>
 <blockquote>
 <p><code>version1 - version2</code></p>
 </blockquote>
-<p>大于等于version1，小于等于version2</p>
-<p>如：1.1.2 - 1.3.1，表示包括1.1.2和1.3.1以及他们件的任意版本</p>
+<p>大于等于 version1，小于等于 version2</p>
+<p>如：1.1.2 - 1.3.1，表示包括 1.1.2 和 1.3.1 以及他们件的任意版本</p>
 <blockquote>
 <p><code>range1 || range2</code></p>
 </blockquote>
-<p>满足range1或者满足range2，可以多个范围</p>
-<p>如：&lt;1.0.0 || &gt;=2.3.1 &lt;2.4.5 || &gt;=2.5.2 &lt;3.0.0，表示满足这3个范围的版本都可以</p>
+<p>满足 range1 或者满足 range2，可以多个范围</p>
+<p>如：&lt;1.0.0 || &gt;=2.3.1 &lt;2.4.5 || &gt;=2.5.2 &lt;3.0.0，表示满足这 3 个范围的版本都可以</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/package/" data-id="ckbsya81r00062ksw5ywp1oec" data-title="package.json" class="article-share-link">分享</a>
+      <a data-url="https://jarze.github.io/Blog/package/" data-id="ckbyt6jpr00065mqq7j69hkd4" data-title="package.json 中 npm 依赖包版本前的符号的意义" class="article-share-link">分享</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Node-npm/" rel="tag">Node npm</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Node/" rel="tag">Node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/npm/" rel="tag">npm</a></li></ul>
 
     </footer>
   </div>
@@ -245,7 +324,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/Blog/categories/IT-JS/">IT JS</a>
+    <a class="article-category-link" href="/Blog/categories/Front/">Front</a>
   </div>
 
   </div>
@@ -271,26 +350,26 @@
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install commander --save</span><br></pre></td></tr></table></figure>
 
 <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><code>&lt;&gt;</code>定义必需参数，<code>[]</code>定义可选参数</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> program = <span class="built_in">require</span>(<span class="string">'commander'</span>);</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">  .version(<span class="string">'0.1.0'</span>)</span><br><span class="line">  .option(<span class="string">'-C, --chdir &lt;path&gt;'</span>, <span class="string">'change the working directory'</span>)</span><br><span class="line">  .option(<span class="string">'-c, --config &lt;path&gt;'</span>, <span class="string">'set config path. defaults to ./deploy.conf'</span>)</span><br><span class="line">  .option(<span class="string">'-T, --no-tests'</span>, <span class="string">'ignore test hook'</span>);</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">  .command(<span class="string">'setup [env]'</span>)</span><br><span class="line">  .description(<span class="string">'run setup commands for all envs'</span>)</span><br><span class="line">  .option(<span class="string">"-s, --setup_mode [mode]"</span>, <span class="string">"Which setup mode to use"</span>)</span><br><span class="line">  .action(<span class="function"><span class="keyword">function</span>(<span class="params">env, options</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> mode = options.setup_mode || <span class="string">"normal"</span>;</span><br><span class="line">    env = env || <span class="string">'all'</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setup for %s env(s) with %s mode'</span>, env, mode);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">  .command(<span class="string">'exec &lt;cmd&gt;'</span>)</span><br><span class="line">  .alias(<span class="string">'ex'</span>)</span><br><span class="line">  .description(<span class="string">'execute the given remote cmd'</span>)</span><br><span class="line">  .option(<span class="string">"-e, --exec_mode &lt;mode&gt;"</span>, <span class="string">"Which exec mode to use"</span>)</span><br><span class="line">  .action(<span class="function"><span class="keyword">function</span>(<span class="params">cmd, options</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'exec "%s" using %s mode'</span>, cmd, options.exec_mode);</span><br><span class="line">  &#125;).on(<span class="string">'--help'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">''</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Examples:'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">''</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'  $ deploy exec sequential'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'  $ deploy exec async'</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">  .command(<span class="string">'*'</span>)</span><br><span class="line">  .action(<span class="function"><span class="keyword">function</span>(<span class="params">env</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'deploying "%s"'</span>, env);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">program.parse(process.argv);</span><br></pre></td></tr></table></figure>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> program = <span class="built_in">require</span>(<span class="string">"commander"</span>);</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">  .version(<span class="string">"0.1.0"</span>)</span><br><span class="line">  .option(<span class="string">"-C, --chdir &lt;path&gt;"</span>, <span class="string">"change the working directory"</span>)</span><br><span class="line">  .option(<span class="string">"-c, --config &lt;path&gt;"</span>, <span class="string">"set config path. defaults to ./deploy.conf"</span>)</span><br><span class="line">  .option(<span class="string">"-T, --no-tests"</span>, <span class="string">"ignore test hook"</span>);</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">  .command(<span class="string">"setup [env]"</span>)</span><br><span class="line">  .description(<span class="string">"run setup commands for all envs"</span>)</span><br><span class="line">  .option(<span class="string">"-s, --setup_mode [mode]"</span>, <span class="string">"Which setup mode to use"</span>)</span><br><span class="line">  .action(<span class="function"><span class="keyword">function</span> (<span class="params">env, options</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> mode = options.setup_mode || <span class="string">"normal"</span>;</span><br><span class="line">    env = env || <span class="string">"all"</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"setup for %s env(s) with %s mode"</span>, env, mode);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">  .command(<span class="string">"exec &lt;cmd&gt;"</span>)</span><br><span class="line">  .alias(<span class="string">"ex"</span>)</span><br><span class="line">  .description(<span class="string">"execute the given remote cmd"</span>)</span><br><span class="line">  .option(<span class="string">"-e, --exec_mode &lt;mode&gt;"</span>, <span class="string">"Which exec mode to use"</span>)</span><br><span class="line">  .action(<span class="function"><span class="keyword">function</span> (<span class="params">cmd, options</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'exec "%s" using %s mode'</span>, cmd, options.exec_mode);</span><br><span class="line">  &#125;)</span><br><span class="line">  .on(<span class="string">"--help"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">""</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Examples:"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">""</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"  $ deploy exec sequential"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"  $ deploy exec async"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">program.command(<span class="string">"*"</span>).action(<span class="function"><span class="keyword">function</span> (<span class="params">env</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'deploying "%s"'</span>, env);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">program.parse(process.argv);</span><br></pre></td></tr></table></figure>
+
 <p>结果：</p>
 <img src="/Blog/commander/commander.png" class="">
-
 
 <h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="version"><a href="#version" class="headerlink" title="version"></a>version</h3><p>作用：定义命令程序的版本号</p>
 <h3 id="option"><a href="#option" class="headerlink" title="option"></a>option</h3><p>作用：定义命令的选项</p>
 <h3 id="command"><a href="#command" class="headerlink" title="command"></a>command</h3><p>作用：自定义命令</p>
 <h3 id="description"><a href="#description" class="headerlink" title="description"></a>description</h3><p>作用：命令的描述性语句</p>
 <h3 id="action"><a href="#action" class="headerlink" title="action"></a>action</h3><p>作用：定义命令的回调函数</p>
-<h3 id="parse"><a href="#parse" class="headerlink" title="parse"></a>parse</h3><p>作用：用于解析process.argv，设置options以及触发commands</p>
+<h3 id="parse"><a href="#parse" class="headerlink" title="parse"></a>parse</h3><p>作用：用于解析 process.argv，设置 options 以及触发 commands</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/commander/" data-id="ckbsya81l00022kswbhe1h4me" data-title="commander 基本用法" class="article-share-link">分享</a>
+      <a data-url="https://jarze.github.io/Blog/commander/" data-id="ckbyt6jpi00025mqq76aa3n6a" data-title="commander 基本用法" class="article-share-link">分享</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/commander-nodejs-js/" rel="tag">commander nodejs js</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/commander/" rel="tag">commander</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/nodejs/" rel="tag">nodejs</a></li></ul>
 
     </footer>
   </div>
@@ -337,7 +416,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/markdown/" data-id="ckbsya81n00032kswbwdiftzg" data-title="Markdown 语法和 MWeb 写作使用说明" class="article-share-link">分享</a>
+      <a data-url="https://jarze.github.io/Blog/markdown/" data-id="ckbyt6jpk00035mqqelkmgfu1" data-title="Markdown 语法和 MWeb 写作使用说明" class="article-share-link">分享</a>
       
       
       
@@ -381,62 +460,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/about/" data-id="ckbsya81j00012ksw8boi62ba" data-title="About" class="article-share-link">分享</a>
+      <a data-url="https://jarze.github.io/Blog/about/" data-id="ckbyt6jp800015mqq2en43109" data-title="About" class="article-share-link">分享</a>
       
       
       
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-vscode" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Blog/vscode/" class="article-date">
-  <time class="dt-published" datetime="2019-09-29T10:01:50.000Z" itemprop="datePublished">2019-09-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/Blog/categories/%E5%B7%A5%E5%85%B7%E6%9F%A5%E8%AF%A2/">工具查询</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Blog/vscode/">keyboard-shortcuts-macos</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>[TOC]</p>
-<h1 id="Download"><a href="#Download" class="headerlink" title="Download"></a>Download</h1><!-- [keyboard-shortcuts-macos](keyboard-shortcuts-macos.pdf) -->
-
-<a href="/Blog/vscode/keyboard-shortcuts-macos.pdf" title="keyboard-shortcuts-macos.pdf">keyboard-shortcuts-macos.pdf</a>
-
-<!-- ![keyboard-shortcuts-macos](keyboard-shortcuts-macos.png) -->
-
-<img src="/Blog/vscode/keyboard-shortcuts-macos.png" class="" title="keyboard-shortcuts-macos">
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/vscode/" data-id="ckbsya81s00072ksw7o4zc0qa" data-title="keyboard-shortcuts-macos" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/vscode-tool/" rel="tag">vscode tool</a></li></ul>
-
     </footer>
   </div>
   
@@ -455,7 +482,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/IT-JS/">IT JS</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/%E5%B7%A5%E5%85%B7%E6%9F%A5%E8%AF%A2/">工具查询</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/">Front</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/%E5%B7%A5%E5%85%B7%E6%9F%A5%E8%AF%A2/">工具查询</a></li></ul>
     </div>
   </div>
 
@@ -465,7 +492,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Node-npm/" rel="tag">Node npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/commander-nodejs-js/" rel="tag">commander nodejs js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/vscode-tool/" rel="tag">vscode tool</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Node/" rel="tag">Node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/commander/" rel="tag">commander</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/npm/" rel="tag">npm</a></li></ul>
     </div>
   </div>
 
@@ -475,7 +502,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/Blog/tags/Node-npm/" style="font-size: 10px;">Node npm</a> <a href="/Blog/tags/commander-nodejs-js/" style="font-size: 10px;">commander nodejs js</a> <a href="/Blog/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/Blog/tags/vscode-tool/" style="font-size: 10px;">vscode tool</a>
+      <a href="/Blog/tags/Node/" style="font-size: 10px;">Node</a> <a href="/Blog/tags/commander/" style="font-size: 10px;">commander</a> <a href="/Blog/tags/css/" style="font-size: 10px;">css</a> <a href="/Blog/tags/js/" style="font-size: 10px;">js</a> <a href="/Blog/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/Blog/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/Blog/tags/npm/" style="font-size: 10px;">npm</a>
     </div>
   </div>
 
@@ -497,11 +524,15 @@
       <ul>
         
           <li>
+            <a href="/Blog/text-overflow/">CSS实现单行、多行文本溢出显示省略号（…）</a>
+          </li>
+        
+          <li>
             <a href="/Blog/hello-world/">Hello World</a>
           </li>
         
           <li>
-            <a href="/Blog/package/">package.json</a>
+            <a href="/Blog/package/">package.json 中 npm 依赖包版本前的符号的意义</a>
           </li>
         
           <li>
@@ -510,10 +541,6 @@
         
           <li>
             <a href="/Blog/markdown/">Markdown 语法和 MWeb 写作使用说明</a>
-          </li>
-        
-          <li>
-            <a href="/Blog/about/">About</a>
           </li>
         
       </ul>
