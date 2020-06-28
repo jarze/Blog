@@ -1,7 +1,9 @@
 ---
 title: keyboard-shortcuts-macos
 date: 2019-09-29 10:01:50
-tags: vscode tool
+tags:
+  - vscode
+  - tool
 categories: 工具查询
 ---
 
