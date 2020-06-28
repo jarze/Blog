@@ -85,6 +85,17 @@ ignore:
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
+# Gitalk
+plugins:
+  gitalk:
+    clientID: 7cff2fe5351a4771a8ca
+    clientSecret: 44cbb554920d2d11a7882f71536207a73e848cf4
+    repo: Blog
+    owner: jarze
+    admin:
+      - jarze
+    distractionFreeMode: false
+
 ## Themes: https://hexo.io/themes/
 theme: landscape
 
