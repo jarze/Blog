@@ -2,7 +2,9 @@
 title: CSS实现单行、多行文本溢出显示省略号（…）
 date: 2020-06-28 15:41:18
 tags: css
-categories: Front
+categories:
+  - Front
+  - css
 ---
 
 如果实现单行文本的溢出显示省略号同学们应该都知道用 `text-overflow:ellipsis` 属性来，当然还需要加宽度 `width` 属来兼容部分浏览。
