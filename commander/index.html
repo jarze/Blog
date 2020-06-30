@@ -15,7 +15,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jarze.github.io/Blog/commander/commander.png">
 <meta property="article:published_time" content="2019-09-30T16:07:26.000Z">
-<meta property="article:modified_time" content="2020-06-29T07:12:43.265Z">
+<meta property="article:modified_time" content="2020-06-30T07:47:58.901Z">
 <meta property="article:author" content="jarze blog ~~~">
 <meta property="article:tag" content="commander">
 <meta property="article:tag" content="nodejs">
@@ -107,20 +107,20 @@
 <li><a href="https://github.com/tj/commander.js" target="_blank" rel="noopener">github</a></li>
 <li><a href="https://www.npmjs.com/package/commander" target="_blank" rel="noopener">npm</a></li>
 </ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install commander --save</span><br></pre></td></tr></table></figure>
+<h2><span id="安装">安装</span></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install commander --save</span><br></pre></td></tr></table></figure>
 
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><code>&lt;&gt;</code>定义必需参数，<code>[]</code>定义可选参数</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> program = <span class="built_in">require</span>(<span class="string">"commander"</span>);</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">  .version(<span class="string">"0.1.0"</span>)</span><br><span class="line">  .option(<span class="string">"-C, --chdir &lt;path&gt;"</span>, <span class="string">"change the working directory"</span>)</span><br><span class="line">  .option(<span class="string">"-c, --config &lt;path&gt;"</span>, <span class="string">"set config path. defaults to ./deploy.conf"</span>)</span><br><span class="line">  .option(<span class="string">"-T, --no-tests"</span>, <span class="string">"ignore test hook"</span>);</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">  .command(<span class="string">"setup [env]"</span>)</span><br><span class="line">  .description(<span class="string">"run setup commands for all envs"</span>)</span><br><span class="line">  .option(<span class="string">"-s, --setup_mode [mode]"</span>, <span class="string">"Which setup mode to use"</span>)</span><br><span class="line">  .action(<span class="function"><span class="keyword">function</span> (<span class="params">env, options</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> mode = options.setup_mode || <span class="string">"normal"</span>;</span><br><span class="line">    env = env || <span class="string">"all"</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"setup for %s env(s) with %s mode"</span>, env, mode);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">  .command(<span class="string">"exec &lt;cmd&gt;"</span>)</span><br><span class="line">  .alias(<span class="string">"ex"</span>)</span><br><span class="line">  .description(<span class="string">"execute the given remote cmd"</span>)</span><br><span class="line">  .option(<span class="string">"-e, --exec_mode &lt;mode&gt;"</span>, <span class="string">"Which exec mode to use"</span>)</span><br><span class="line">  .action(<span class="function"><span class="keyword">function</span> (<span class="params">cmd, options</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'exec "%s" using %s mode'</span>, cmd, options.exec_mode);</span><br><span class="line">  &#125;)</span><br><span class="line">  .on(<span class="string">"--help"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">""</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Examples:"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">""</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"  $ deploy exec sequential"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"  $ deploy exec async"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">program.command(<span class="string">"*"</span>).action(<span class="function"><span class="keyword">function</span> (<span class="params">env</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'deploying "%s"'</span>, env);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">program.parse(process.argv);</span><br></pre></td></tr></table></figure>
+<h2><span id="定义">定义</span></h2><p><code>&lt;&gt;</code>定义必需参数，<code>[]</code>定义可选参数</p>
+<h2><span id="示例">示例</span></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> program = <span class="built_in">require</span>(<span class="string">"commander"</span>);</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">  .version(<span class="string">"0.1.0"</span>)</span><br><span class="line">  .option(<span class="string">"-C, --chdir &lt;path&gt;"</span>, <span class="string">"change the working directory"</span>)</span><br><span class="line">  .option(<span class="string">"-c, --config &lt;path&gt;"</span>, <span class="string">"set config path. defaults to ./deploy.conf"</span>)</span><br><span class="line">  .option(<span class="string">"-T, --no-tests"</span>, <span class="string">"ignore test hook"</span>);</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">  .command(<span class="string">"setup [env]"</span>)</span><br><span class="line">  .description(<span class="string">"run setup commands for all envs"</span>)</span><br><span class="line">  .option(<span class="string">"-s, --setup_mode [mode]"</span>, <span class="string">"Which setup mode to use"</span>)</span><br><span class="line">  .action(<span class="function"><span class="keyword">function</span> (<span class="params">env, options</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> mode = options.setup_mode || <span class="string">"normal"</span>;</span><br><span class="line">    env = env || <span class="string">"all"</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"setup for %s env(s) with %s mode"</span>, env, mode);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">  .command(<span class="string">"exec &lt;cmd&gt;"</span>)</span><br><span class="line">  .alias(<span class="string">"ex"</span>)</span><br><span class="line">  .description(<span class="string">"execute the given remote cmd"</span>)</span><br><span class="line">  .option(<span class="string">"-e, --exec_mode &lt;mode&gt;"</span>, <span class="string">"Which exec mode to use"</span>)</span><br><span class="line">  .action(<span class="function"><span class="keyword">function</span> (<span class="params">cmd, options</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'exec "%s" using %s mode'</span>, cmd, options.exec_mode);</span><br><span class="line">  &#125;)</span><br><span class="line">  .on(<span class="string">"--help"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">""</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Examples:"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">""</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"  $ deploy exec sequential"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"  $ deploy exec async"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">program.command(<span class="string">"*"</span>).action(<span class="function"><span class="keyword">function</span> (<span class="params">env</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'deploying "%s"'</span>, env);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">program.parse(process.argv);</span><br></pre></td></tr></table></figure>
 
 <p>结果：</p>
-<img src="/Blog/commander/commander.png" class="">
+<img src="/Blog/commander/commander.png" class>
 
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="version"><a href="#version" class="headerlink" title="version"></a>version</h3><p>作用：定义命令程序的版本号</p>
-<h3 id="option"><a href="#option" class="headerlink" title="option"></a>option</h3><p>作用：定义命令的选项</p>
-<h3 id="command"><a href="#command" class="headerlink" title="command"></a>command</h3><p>作用：自定义命令</p>
-<h3 id="description"><a href="#description" class="headerlink" title="description"></a>description</h3><p>作用：命令的描述性语句</p>
-<h3 id="action"><a href="#action" class="headerlink" title="action"></a>action</h3><p>作用：定义命令的回调函数</p>
-<h3 id="parse"><a href="#parse" class="headerlink" title="parse"></a>parse</h3><p>作用：用于解析 process.argv，设置 options 以及触发 commands</p>
+<h2><span id="方法">方法</span></h2><h3><span id="version">version</span></h3><p>作用：定义命令程序的版本号</p>
+<h3><span id="option">option</span></h3><p>作用：定义命令的选项</p>
+<h3><span id="command">command</span></h3><p>作用：自定义命令</p>
+<h3><span id="description">description</span></h3><p>作用：命令的描述性语句</p>
+<h3><span id="action">action</span></h3><p>作用：定义命令的回调函数</p>
+<h3><span id="parse">parse</span></h3><p>作用：用于解析 process.argv，设置 options 以及触发 commands</p>
 
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -134,7 +134,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/commander/" data-id="ckc060kpa00024tucgpr8789e" data-title="commander 基本用法" class="article-share-link">分享</a>
+      <a data-url="https://jarze.github.io/Blog/commander/" data-id="ckc1mpwl200021sj8ba1gc6qb" data-title="commander 基本用法" class="article-share-link">分享</a>
       
       
       
@@ -175,7 +175,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/">Front</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/%E5%B7%A5%E5%85%B7%E6%9F%A5%E8%AF%A2/">工具查询</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/">Front</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/js/">js</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/%E5%B7%A5%E5%85%B7%E6%9F%A5%E8%AF%A2/">工具查询</a></li></ul>
     </div>
   </div>
 
@@ -185,7 +185,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Node/" rel="tag">Node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/commander/" rel="tag">commander</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/tool/" rel="tag">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/vscode/" rel="tag">vscode</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Node/" rel="tag">Node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/commander/" rel="tag">commander</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/mobx/" rel="tag">mobx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/tool/" rel="tag">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/vscode/" rel="tag">vscode</a></li></ul>
     </div>
   </div>
 
@@ -195,7 +195,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/Blog/tags/Node/" style="font-size: 10px;">Node</a> <a href="/Blog/tags/commander/" style="font-size: 10px;">commander</a> <a href="/Blog/tags/css/" style="font-size: 10px;">css</a> <a href="/Blog/tags/js/" style="font-size: 10px;">js</a> <a href="/Blog/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/Blog/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/Blog/tags/npm/" style="font-size: 10px;">npm</a> <a href="/Blog/tags/tool/" style="font-size: 10px;">tool</a> <a href="/Blog/tags/vscode/" style="font-size: 10px;">vscode</a>
+      <a href="/Blog/tags/Node/" style="font-size: 10px;">Node</a> <a href="/Blog/tags/commander/" style="font-size: 10px;">commander</a> <a href="/Blog/tags/css/" style="font-size: 10px;">css</a> <a href="/Blog/tags/js/" style="font-size: 20px;">js</a> <a href="/Blog/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/Blog/tags/mobx/" style="font-size: 10px;">mobx</a> <a href="/Blog/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/Blog/tags/npm/" style="font-size: 10px;">npm</a> <a href="/Blog/tags/tool/" style="font-size: 10px;">tool</a> <a href="/Blog/tags/vscode/" style="font-size: 10px;">vscode</a>
     </div>
   </div>
 
@@ -221,6 +221,10 @@
           </li>
         
           <li>
+            <a href="/Blog/mobx-basic/">MobX 基础介绍</a>
+          </li>
+        
+          <li>
             <a href="/Blog/text-overflow/">CSS实现单行、多行文本溢出显示省略号（…）</a>
           </li>
         
@@ -230,10 +234,6 @@
         
           <li>
             <a href="/Blog/commander/">commander 基本用法</a>
-          </li>
-        
-          <li>
-            <a href="/Blog/markdown/">Markdown 语法和 MWeb 写作使用说明</a>
           </li>
         
       </ul>
