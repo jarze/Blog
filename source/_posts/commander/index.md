@@ -17,6 +17,8 @@ categories: Front
 npm install commander --save
 ```
 
+<!-- more -->
+
 ## 定义
 
 `<>`定义必需参数，`[]`定义可选参数

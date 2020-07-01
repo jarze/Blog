@@ -9,6 +9,8 @@ categories:
 
 如果实现单行文本的溢出显示省略号同学们应该都知道用 `text-overflow:ellipsis` 属性来，当然还需要加宽度 `width` 属来兼容部分浏览。
 
+<!-- more -->
+
 **实现方法：**
 
 ```javascript
