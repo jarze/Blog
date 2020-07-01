@@ -13,6 +13,8 @@ categories: Front
 
 主版本号.次版本号.修补版本号
 
+<!-- more -->
+
 `patch`：修复 bug，兼容老版本
 
 `minor`：新增功能，兼容老版本

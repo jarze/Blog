@@ -7,13 +7,13 @@ tags:
 categories: 工具查询
 ---
 
-[TOC]
-
-# Download
-
 <!-- [keyboard-shortcuts-macos](keyboard-shortcuts-macos.pdf) -->
 
+## Download
+
 {% asset_link keyboard-shortcuts-macos.pdf %}
+
+<!-- more -->
 
 <!-- ![keyboard-shortcuts-macos](keyboard-shortcuts-macos.png) -->
 
