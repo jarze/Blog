@@ -170,6 +170,22 @@ module.exports = {
         ]
       },
 
+      {
+        test: /\.less$/,
+        loader: "style-loader!css-loader!less-loader",
+        // use: [
+        //   {
+        //     loader: "style-loader",
+        //   },
+        //   {
+        //     loader: "css-loader",
+        //   },
+        //   {
+        //     loader: "less-loader",
+        //   },
+        // ],
+      },
+
       { oneOf: [ /* rules */ ] },
       // 只使用这些嵌套规则之一
 
