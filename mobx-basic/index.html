@@ -15,7 +15,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jarze.github.io/Blog/mobx-basic/action-state-view.png">
 <meta property="article:published_time" content="2020-06-28T16:46:45.000Z">
-<meta property="article:modified_time" content="2020-08-13T11:37:42.500Z">
+<meta property="article:modified_time" content="2020-11-04T03:28:00.621Z">
 <meta property="article:author" content="jarze blog ~~~">
 <meta property="article:tag" content="js">
 <meta property="article:tag" content="mobx">
@@ -187,7 +187,7 @@
 <p><strong>计算值</strong>是<strong>延迟</strong>更新的。任何不在使用状态的计算值将不会更新，直到需要它进行副作用（<code>I / O</code>）操作时。 如果视图不再使用，那么它会自动被垃圾回收。</p>
 <p>所有的<strong>计算值</strong>都应该是<strong>纯净</strong>的。它们不应该用来改变<strong>状态</strong>。</p>
 <h1><span id="实例">实例</span></h1><p>下面的代码清单举例说明了以上的概念和原则:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; observable, autorun &#125; <span class="keyword">from</span> <span class="string">"mobx"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> todoStore = observable(&#123;</span><br><span class="line">  <span class="comment">/* 一些观察的状态 */</span></span><br><span class="line">  todos: [],</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 推导值 */</span></span><br><span class="line">  <span class="keyword">get</span> completedCount() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.todos.filter(<span class="function">(<span class="params">todo</span>) =&gt;</span> todo.completed).length;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 观察状态改变的函数 */</span></span><br><span class="line">autorun(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Completed %d of %d items"</span>, todoStore.completedCount, todoStore.todos.length);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* ..以及一些改变状态的动作 */</span></span><br><span class="line">todoStore.todos[<span class="number">0</span>] = &#123;</span><br><span class="line">  title: <span class="string">"Take a walk"</span>,</span><br><span class="line">  completed: <span class="literal">false</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// -&gt; 同步打印 'Completed 0 of 1 items'</span></span><br><span class="line"></span><br><span class="line">todoStore.todos[<span class="number">0</span>].completed = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">// -&gt; 同步打印 'Completed 1 of 1 items'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; observable, autorun &#125; <span class="keyword">from</span> <span class="string">"mobx"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> todoStore = observable(&#123;</span><br><span class="line">  <span class="comment">/* 一些观察的状态 */</span></span><br><span class="line">  todos: [],</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 推导值 */</span></span><br><span class="line">  <span class="keyword">get</span> completedCount() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.todos.filter(<span class="function"><span class="params">todo</span> =&gt;</span> todo.completed).length;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 观察状态改变的函数 */</span></span><br><span class="line">autorun(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(</span><br><span class="line">    <span class="string">"Completed %d of %d items"</span>,</span><br><span class="line">    todoStore.completedCount,</span><br><span class="line">    todoStore.todos.length</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* ..以及一些改变状态的动作 */</span></span><br><span class="line">todoStore.todos[<span class="number">0</span>] = &#123;</span><br><span class="line">  title: <span class="string">"Take a walk"</span>,</span><br><span class="line">  completed: <span class="literal">false</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// -&gt; 同步打印 'Completed 0 of 1 items'</span></span><br><span class="line"></span><br><span class="line">todoStore.todos[<span class="number">0</span>].completed = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">// -&gt; 同步打印 'Completed 1 of 1 items'</span></span><br></pre></td></tr></table></figure>
 
 <h1><span id="核心-api">核心 API</span></h1><h2><span id="observable">observable</span></h2><h3><span id="observablevalue"><code>observable(value)</code></span></h3><p>用法:</p>
 <ul>
@@ -250,7 +250,7 @@
 <h3><span id="decorate"><code>decorate</code></span></h3><p>用法: <code>decorate(object, decorators)</code></p>
 <p>这是将可观察性装饰器)应用于普通对象或类实例的简便方法。第二个参数是一个属性设置为某些装饰器的对象。</p>
 <p>当无法使用 <code>@decorator</code> 语法或需要对可观察性进行更细粒度的控制时使用这个方法。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList</span> </span>&#123;</span><br><span class="line">  todos = &#123;&#125;;</span><br><span class="line">  <span class="keyword">get</span> unfinishedTodoCount() &#123;</span><br><span class="line">    <span class="keyword">return</span> values(<span class="keyword">this</span>.todos).filter(<span class="function">(<span class="params">todo</span>) =&gt;</span> !todo.finished).length;</span><br><span class="line">  &#125;</span><br><span class="line">  addTodo() &#123;</span><br><span class="line">    <span class="keyword">const</span> t = <span class="keyword">new</span> Todo();</span><br><span class="line">    t.title = <span class="string">"Test_"</span> + <span class="built_in">Math</span>.random();</span><br><span class="line">    <span class="keyword">set</span>(this.todos, t.id, t);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">decorate(TodoList, &#123;</span><br><span class="line">  todos: observable,</span><br><span class="line">  unfinishedTodoCount: computed,</span><br><span class="line">  addTodo: action.bound,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList</span> </span>&#123;</span><br><span class="line">  todos = &#123;&#125;;</span><br><span class="line">  <span class="keyword">get</span> unfinishedTodoCount() &#123;</span><br><span class="line">    <span class="keyword">return</span> values(<span class="keyword">this</span>.todos).filter(<span class="function"><span class="params">todo</span> =&gt;</span> !todo.finished).length;</span><br><span class="line">  &#125;</span><br><span class="line">  addTodo() &#123;</span><br><span class="line">    <span class="keyword">const</span> t = <span class="keyword">new</span> Todo();</span><br><span class="line">    t.title = <span class="string">"Test_"</span> + <span class="built_in">Math</span>.random();</span><br><span class="line">    <span class="keyword">set</span>(this.todos, t.id, t);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">decorate(TodoList, &#123;</span><br><span class="line">  todos: observable,</span><br><span class="line">  unfinishedTodoCount: computed,</span><br><span class="line">  addTodo: action.bound,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>想要在单个属性上应用多个装饰器的话，你可以传入一个装饰器数组。多个装饰器应用的顺序是从从右至左。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; decorate, observable &#125; <span class="keyword">from</span> <span class="string">"mobx"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; serializable, primitive &#125; <span class="keyword">from</span> <span class="string">"serializr"</span>;</span><br><span class="line"><span class="keyword">import</span> persist <span class="keyword">from</span> <span class="string">"mobx-persist"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Todo</span> </span>&#123;</span><br><span class="line">  id = <span class="built_in">Math</span>.random();</span><br><span class="line">  title = <span class="string">""</span>;</span><br><span class="line">  finished = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">decorate(Todo, &#123;</span><br><span class="line">  title: [serializable(primitive), persist(<span class="string">"object"</span>), observable],</span><br><span class="line">  finished: [serializable(primitive), observable],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -347,7 +347,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/mobx-basic/" data-id="ckdsqapbh00114opyf52kbbtx" data-title="MobX 基础介绍" class="article-share-link">分享</a>
+      <a data-url="https://jarze.github.io/Blog/mobx-basic/" data-id="ckh2ucqxs001e3zvd5phz1b9h" data-title="MobX 基础介绍" class="article-share-link">分享</a>
       
       
       
@@ -359,11 +359,11 @@
     
 <nav id="article-nav">
   
-    <a href="/Blog/webpack%E9%85%8D%E7%BD%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/Blog/es6/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前一篇</strong>
       <div class="article-nav-title">
         
-          webpack 配置
+          es6
         
       </div>
     </a>
@@ -398,7 +398,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Node/" rel="tag">Node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/commander/" rel="tag">commander</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/mobx/" rel="tag">mobx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/tool/" rel="tag">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/vscode/" rel="tag">vscode</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Node/" rel="tag">Node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/commander/" rel="tag">commander</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/make/" rel="tag">make</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/mobx/" rel="tag">mobx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/tool/" rel="tag">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/vscode/" rel="tag">vscode</a></li></ul>
     </div>
   </div>
 
@@ -408,7 +408,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/Blog/tags/Node/" style="font-size: 10px;">Node</a> <a href="/Blog/tags/commander/" style="font-size: 10px;">commander</a> <a href="/Blog/tags/css/" style="font-size: 10px;">css</a> <a href="/Blog/tags/js/" style="font-size: 20px;">js</a> <a href="/Blog/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/Blog/tags/mobx/" style="font-size: 10px;">mobx</a> <a href="/Blog/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/Blog/tags/npm/" style="font-size: 10px;">npm</a> <a href="/Blog/tags/tool/" style="font-size: 10px;">tool</a> <a href="/Blog/tags/vscode/" style="font-size: 10px;">vscode</a>
+      <a href="/Blog/tags/Node/" style="font-size: 10px;">Node</a> <a href="/Blog/tags/commander/" style="font-size: 10px;">commander</a> <a href="/Blog/tags/css/" style="font-size: 10px;">css</a> <a href="/Blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/Blog/tags/js/" style="font-size: 20px;">js</a> <a href="/Blog/tags/make/" style="font-size: 10px;">make</a> <a href="/Blog/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/Blog/tags/mobx/" style="font-size: 10px;">mobx</a> <a href="/Blog/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/Blog/tags/npm/" style="font-size: 10px;">npm</a> <a href="/Blog/tags/shell/" style="font-size: 10px;">shell</a> <a href="/Blog/tags/tool/" style="font-size: 10px;">tool</a> <a href="/Blog/tags/vscode/" style="font-size: 10px;">vscode</a>
     </div>
   </div>
 
@@ -417,7 +417,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/09/">九月 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/09/">九月 2019</a></li></ul>
     </div>
   </div>
 
@@ -434,19 +434,19 @@
           </li>
         
           <li>
+            <a href="/Blog/Makefile/">Make 命令</a>
+          </li>
+        
+          <li>
             <a href="/Blog/webpack%E9%85%8D%E7%BD%AE/">webpack 配置</a>
           </li>
         
           <li>
+            <a href="/Blog/es6/">es6</a>
+          </li>
+        
+          <li>
             <a href="/Blog/mobx-basic/">MobX 基础介绍</a>
-          </li>
-        
-          <li>
-            <a href="/Blog/text-overflow/">CSS实现单行、多行文本溢出显示省略号（…）</a>
-          </li>
-        
-          <li>
-            <a href="/Blog/package/">package.json 中 npm 依赖包版本前的符号的意义</a>
           </li>
         
       </ul>
