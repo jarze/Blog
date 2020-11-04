@@ -79,13 +79,17 @@ var todoStore = observable({
 
   /* 推导值 */
   get completedCount() {
-    return this.todos.filter((todo) => todo.completed).length;
+    return this.todos.filter(todo => todo.completed).length;
   },
 });
 
 /* 观察状态改变的函数 */
 autorun(function () {
-  console.log("Completed %d of %d items", todoStore.completedCount, todoStore.todos.length);
+  console.log(
+    "Completed %d of %d items",
+    todoStore.completedCount,
+    todoStore.todos.length
+  );
 });
 
 /* ..以及一些改变状态的动作 */
@@ -226,7 +230,7 @@ const taskStore = observable(
 class TodoList {
   todos = {};
   get unfinishedTodoCount() {
-    return values(this.todos).filter((todo) => !todo.finished).length;
+    return values(this.todos).filter(todo => !todo.finished).length;
   }
   addTodo() {
     const t = new Todo();
