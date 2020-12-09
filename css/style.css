@@ -183,7 +183,7 @@ body {
   #main {
     display: inline;
     float: left;
-    width: 73.33333333333333%;
+    width: 81.66666666666667%;
     margin: 0 0.833333333333333%;
   }
 }
@@ -1290,7 +1290,7 @@ pre .javascript .function {
   #sidebar {
     display: inline;
     float: left;
-    width: 23.333333333333332%;
+    width: 15%;
     margin: 0 0.833333333333333%;
   }
 }
