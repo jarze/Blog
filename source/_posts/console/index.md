@@ -32,9 +32,13 @@ IE 低版本没有（当然你装了高版本，然后打开控制台他又能�
 
 - `console.log('普通-文本')`与 `console.dir('普通-对象')`
   不同之处在于输出 `dom` 节点对象类型是会有一些差别。
+
 - `console.info('信息')` `console.log` 的别名，输出信息，部分浏览器会增加一个蓝色标志。
+
 - `console.warn('警告')` 黄色警告标识，也有堆栈信息。
+
 - `console.error('错误')` 输出信息时，在最前面加一个红色的叉，表示出错，同时会显示错误发生的堆栈。
+
 - `console.debug('调试')` 从 `Chromium 58` 开始，`Chromium` 浏览器只有勾选了控制台中的 `“Verbose”` 日志级别才可见。
 
 支持多种写法
@@ -42,8 +46,20 @@ IE 低版本没有（当然你装了高版本，然后打开控制台他又能�
 - 多参数
   - `console.log('auther:', 'lilnong.top')`
 - <mark>`占位符格式，支持的占位符有：字符（%s）、整数（%d 或%i）、浮点数（%f）、可展开的 DOM（%o）、列出 DOM 的属性（%O）、根据提供的 css 样式格式化字符串（%c）`</mark>
-  - `console.log('auther:%s', 'lilnong.top')`
-  - `console.log('%cauther:%s', "color: red; font-size: 20px",'lilnong.top')`; 更适合封装起来使用。
+
+  - %s：字符串
+  - %d：整数
+  - %i：整数
+  - %f：浮点数
+  - %o：obj 对象（DOM）
+  - %O：obj 对象
+  - %c：CSS 样式
+
+    - `console.log('auther:%s', 'lilnong.top')`
+
+    - `console.log('%cauther:%s', "color: red; font-size: 20px",'lilnong.top')`;
+
+  _更适合封装起来使用。_
 
 ### 功能性的 `API`
 
@@ -77,8 +93,11 @@ document.body.addEventListener('touchmove', (e)=>e.preventDefault())
 ```
 
 - `errors` 是指错误级别的日志
+
 - `warning` 是指警告级别的日志
+
 - `info` 是指信息级别的日志
+
 - `verbose` 是指调试级别的日志
 
 清空当前面板内容。
