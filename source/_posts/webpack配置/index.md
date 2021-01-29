@@ -2,6 +2,10 @@
 title: webpack 配置
 date: 2020-08-11 11:49:00
 tags:
+  - webpack
+categories:
+  - Front
+  - tool
 ---
 
 - [**`webpack`中文网**](https://www.webpackjs.com/configuration/)

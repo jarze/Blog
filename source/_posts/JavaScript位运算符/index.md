@@ -4,7 +4,7 @@ date: 2020-12-09 16:10:52
 tags: js
 categories:
   - Front
-  - css
+  - js
 ---
 
 [JavaScript 位运算符](https://www.w3school.com.cn/js/js_bitwise.asp)
@@ -31,13 +31,13 @@ categories:
 
   ```js
   function hexToRGB(hex) {
-    hex = hex.replace("#", "0x");
+    hex = hex.replace('#', '0x');
     let r = hex >> 16;
     let g = (hex >> 8) & 0xff;
     let b = hex & 0xff;
-    return "rgb(" + r + "," + g + "," + b + ")";
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
   }
-  hexToRGB("#cccccc"); // rgb(204,204,204)
+  hexToRGB('#cccccc'); // rgb(204,204,204)
   ```
 
   - RGB 转 16 进制颜色值：
@@ -46,9 +46,9 @@ categories:
   function RGBToHex(rgb) {
     let rgbArr = rgb.split(/[^\d]+/);
     let color = (rgbArr[1] << 16) | (rgbArr[2] << 8) | rgbArr[3];
-    return "#" + color.toString(16);
+    return '#' + color.toString(16);
   }
-  RGBToHex("rgb(204,204,204)"); // #cccccc
+  RGBToHex('rgb(204,204,204)'); // #cccccc
   ```
 
 ---
