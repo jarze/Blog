@@ -4,16 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>标签: make | Jarze</title>
+  <title>css单位 | Jarze</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="学习笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Jarze">
-<meta property="og:url" content="https://jarze.github.io/Blog/tags/make/index.html">
+  <meta name="description" content="浏览器支持 下表中的数字表示支持该长度单位的最低浏览器版本。     长度单位 Chrome IE Firefox Safari Opera    em, ex, %, px, cm, mm, in, pt, pc 1.0 3.0 1.0 1.0 3.5   ch 27.0 9.0 1.0 7.0 20.0   rem 4.0 9.0 3.6 4.1 11.6   vh , vw 20.0 9.0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css单位">
+<meta property="og:url" content="https://jarze.github.io/Blog/css%E5%8D%95%E4%BD%8D/index.html">
 <meta property="og:site_name" content="Jarze">
-<meta property="og:description" content="学习笔记">
+<meta property="og:description" content="浏览器支持 下表中的数字表示支持该长度单位的最低浏览器版本。     长度单位 Chrome IE Firefox Safari Opera    em, ex, %, px, cm, mm, in, pt, pc 1.0 3.0 1.0 1.0 3.5   ch 27.0 9.0 1.0 7.0 20.0   rem 4.0 9.0 3.6 4.1 11.6   vh , vw 20.0 9.0">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-29T11:22:37.000Z">
+<meta property="article:modified_time" content="2021-01-29T03:38:14.814Z">
 <meta property="article:author" content="jarze blog ~~~">
+<meta property="article:tag" content="css">
 <meta name="twitter:card" content="summary">
   
   
@@ -70,39 +73,214 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/Blog/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/Blog/Makefile/" class="archive-article-date">
-  <time class="dt-published" datetime="2020-10-13T14:42:08.000Z" itemprop="datePublished">10月 13</time>
+        <section id="main"><article id="post-css单位" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Blog/css%E5%8D%95%E4%BD%8D/" class="article-date">
+  <time class="dt-published" datetime="2021-01-29T11:22:37.000Z" itemprop="datePublished">2021-01-29</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/Blog/categories/Front/">Front</a>►<a class="article-category-link" href="/Blog/categories/Front/css/">css</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Blog/Makefile/">Make 命令</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      css单位
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1><span id="浏览器支持">浏览器支持</span></h1><blockquote>
+<p>下表中的数字表示支持该长度单位的最低浏览器版本。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>长度单位</th>
+<th>Chrome</th>
+<th>IE</th>
+<th>Firefox</th>
+<th>Safari</th>
+<th>Opera</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>em, ex, %, px, cm, mm, in, pt, pc</td>
+<td>1.0</td>
+<td>3.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>3.5</td>
+</tr>
+<tr>
+<td>ch</td>
+<td>27.0</td>
+<td>9.0</td>
+<td>1.0</td>
+<td>7.0</td>
+<td>20.0</td>
+</tr>
+<tr>
+<td>rem</td>
+<td>4.0</td>
+<td>9.0</td>
+<td>3.6</td>
+<td>4.1</td>
+<td>11.6</td>
+</tr>
+<tr>
+<td>vh</td>
+<td>, vw</td>
+<td>20.0</td>
+<td>9.0</td>
+<td>19.0</td>
+<td>6.0 20.0</td>
+</tr>
+<tr>
+<td>vmin</td>
+<td>20.0</td>
+<td>9.0*</td>
+<td>19.0</td>
+<td>6.0</td>
+<td>20.0</td>
+</tr>
+<tr>
+<td>vmax</td>
+<td>26.0</td>
+<td>不支持</td>
+<td>19.0</td>
+<td>不支持</td>
+<td>20.0</td>
+</tr>
+</tbody></table>
+<a id="more"></a>
+
+<h1><span id="相对长度">相对长度</span></h1><blockquote>
+<p>相对长度单位指定了一个长度相对于另一个长度的属性。对于不同的设备相对长度更适用。<br>提示: rem 与 em 有什么区别呢？区别在于使用 rem 为元素设定字体大小时，仍然是相对大小，但相对的只是 HTML 根元素。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>单位</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>em</td>
+<td>它是描述相对于应用在当前元素的字体尺寸，所以它也是相对长度单位。一般浏览器字体大小默认为 16px，则 2em == 32px； 下</td>
+</tr>
+<tr>
+<td>ex</td>
+<td>依赖于英文字母小 x 的高度</td>
+</tr>
+<tr>
+<td>ch</td>
+<td>数字 0</td>
+</tr>
+<tr>
+<td>rem</td>
+<td>rem 是根 em（root 体大小。</td>
+</tr>
+<tr>
+<td>vw</td>
+<td>viewpoint width，视窗宽度，1vw=视窗宽度的 1%</td>
+</tr>
+<tr>
+<td>vh</td>
+<td>viewpoint height，视窗高度，1vh=视窗高度的 1%</td>
+</tr>
+<tr>
+<td>vmin</td>
+<td>vw 和 vh 中较小的那个。</td>
+</tr>
+<tr>
+<td>vmax</td>
+<td>vw 和 vh 中较大的那个。</td>
+</tr>
+<tr>
+<td>%</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1><span id="绝对长度">绝对长度</span></h1><blockquote>
+<p>绝对长度单位是一个固定的值，它反应一个真实的物理尺寸。绝对长度单位视输出介质而定，不依赖于环境（显示器、分辨率、操作系统等）。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>单位</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cm</td>
+<td>厘米</td>
+</tr>
+<tr>
+<td>mm</td>
+<td>毫米</td>
+</tr>
+<tr>
+<td>in</td>
+<td>英寸 (1in = 96px = 2.54cm)</td>
+</tr>
+<tr>
+<td>px</td>
+<td>* 像素 (1px = 1/96th of 1in)</td>
+</tr>
+<tr>
+<td>pt</td>
+<td>point，大约 1/72 英寸； (1pt = 1/72in)</td>
+</tr>
+<tr>
+<td>pc</td>
+<td>pica，大约 12pt，1/6 英寸； (1pc = 12 pt)</td>
+</tr>
+</tbody></table>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"7cff2fe5351a4771a8ca","clientSecret":"44cbb554920d2d11a7882f71536207a73e848cf4","repo":"Blog","owner":"jarze","admin":["jarze"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jarze.github.io/Blog/css%E5%8D%95%E4%BD%8D/" data-id="ckkhql2am000a9lsu0etx1ctg" data-title="css单位" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/css/" rel="tag">css</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/Blog/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>
