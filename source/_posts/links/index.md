@@ -19,7 +19,11 @@ summary:focus { outline: none; }
 summary+* { padding-left: 2em; }
 </style>
 
-<details open="open"><summary><h1>图片处理</h1></summary>
+[➲ 去编辑](https://github.com/jarze/Blog/edit/page/source/_posts/links/index.md)
+
+---
+
+<details open="open"><summary><h1>🤡 图片处理</h1></summary>
 
 - [**`docsmall`**](https://docsmall.com/) _(在线 jpg、png、gif 压缩缩放)_
 - [**TinyPNG**](https://tinypng.com) _(jpg、png 智能压缩)_
@@ -30,7 +34,9 @@ summary+* { padding-left: 2em; }
 
 </details>
 
-<details open="open"><summary><h1>MDX</h1></summary>
+<!-- more -->
+
+<details open="open"><summary><h1>🤡 MDX</h1></summary>
 
 - [**ok-mdx**](https://github.com/jxnblk/ok-mdx) _(Browser-based MDX editor)_
 - [**docz**](https://www.docz.site/) _(Documentation framework)_
