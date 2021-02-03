@@ -36,16 +36,15 @@ summary+* { padding-left: 2em; }
 
 <!-- more -->
 
-<details open="open"><summary><h1>🤡 MDX</h1></summary>
+<details open="open"><summary><h1>🤡 MDX、Docs、Website</h1></summary>
 
-- [**ok-mdx**](https://github.com/jxnblk/ok-mdx) _(Browser-based MDX editor)_
+
+- [**mdx**](https://mdxjs.com/projects) _(Markdown for the component era)_
 - [**docz**](https://www.docz.site/) _(Documentation framework)_
-- [**mdx-deck**](https://github.com/jxnblk/mdx-deck) _(MDX-based presentation decks)_
-- [**mdx-docs**](https://github.com/jxnblk/mdx-docs) _(Next-based documentation framework)_
-- [**mdx-paper**](https://github.com/hubgit/mdx-paper) _(MDX-based research articles)_
-- [**spectacle-boilerplate-mdx**](https://github.com/FormidableLabs/spectacle-boilerplate-mdx) _(Boilerplate that facilitates using MDX with _(Spectacle)\_
 - [**Charge**](https://charge.js.org/) _(An opinionated, zero-config static site generator)_
-
+- [**Docusaurus**](https://docusaurus.io/) _(Docusaurus was designed from the ground up to be easily installed and used to get your website up and running quickly.)_
+- [**gitbook**](https://docs.gitbook.com/) _(GitBook is a modern documentation platform where teams can document everything from products to internal knowledge-bases and APIs.)_
+- [**typedoc**](https://typedoc.org/) _(A documentation generator for TypeScript projects.)_
 </details>
 <br />
 <br />
