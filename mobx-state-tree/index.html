@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>mobx-state-tree | Jarze</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="1234.model.views.volatile.actions">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mobx-state-tree">
+<meta property="og:url" content="https://jarze.github.io/Blog/mobx-state-tree/index.html">
+<meta property="og:site_name" content="Jarze">
+<meta property="og:description" content="1234.model.views.volatile.actions">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-19T16:32:32.000Z">
+<meta property="article:modified_time" content="2021-07-12T03:35:10.613Z">
+<meta property="article:author" content="jarze blog ~~~">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="mobx">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/Blog/css/images/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/Blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.min.css">
+
+  
+  <meta name="google-site-verification" content="BEvcfET7cgXFsJH40NIqTskqOHR7z8uvgu5JPD1LRZU" />
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Jarze</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/Blog/" id="subtitle">🇨🇳🇨🇳🇨🇳</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/Blog/about">About</a>
+        
+          <a class="main-nav-link" href="/Blog/links">Links</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jarze.github.io/Blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-mobx-state-tree" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Blog/mobx-state-tree/" class="article-date">
+  <time class="dt-published" datetime="2020-08-19T16:32:32.000Z" itemprop="datePublished">2020-08-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/Blog/categories/Front/">Front</a>►<a class="article-category-link" href="/Blog/categories/Front/js/">js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      mobx-state-tree
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.model</span><br><span class="line">.views</span><br><span class="line">.volatile</span><br><span class="line">.actions</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h1><span id="mobx-state-tree">mobx-state-tree</span></h1><!-- toc -->
+
+<ul>
+<li><a href="#model">model</a><ul>
+<li><a href="#modelvolatile"><code>model.volatile</code></a></li>
+</ul>
+</li>
+<li><a href="#types">types</a><ul>
+<li><a href="#复杂类型">复杂类型</a></li>
+<li><a href="#原始类型">原始类型</a></li>
+<li><a href="#实用程序类型">实用程序类型</a><ul>
+<li><a href="#typesidentifier"><code>types.identifier</code></a></li>
+<li><a href="#typesrefinement"><code>types.refinement</code></a></li>
+<li><a href="#typesreference"><code>types.reference</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#actions">actions</a></li>
+</ul>
+<!-- tocstop -->
+
+<hr>
+<p>types.model 创建一个可链接的模型类型，其中每个链接的方法都会产生一个新的类型：</p>
+<ul>
+<li><strong><code>named(name)</code></strong> 克隆当前类型，但是给它一个新名称</li>
+<li><strong><code>props(props)</code></strong> 根据当前类型生成一个新类型，并添加/覆盖指定的属性</li>
+<li><strong><code>actions(self =&gt; object literal with actions)</code></strong> 根据当前类型生成一种新类型，并添加/覆盖指定的操作</li>
+<li><strong><code>views(self =&gt; object literal with view functions)</code></strong> 根据当前类型生成一种新类型，并添加/覆盖指定的视图函数</li>
+<li><strong><code>preProcessSnapshot(snapshot =&gt; snapshot)</code></strong>可用于在实例化新模型之前对原始JSON进行预处理。请参阅生命周期挂钩或其他types.snapshotProcessor</li>
+<li><strong><code>postProcessSnapshot(snapshot =&gt; snapshot)</code></strong>可用于在获取模型快照之前对原始JSON进行后处理。请参阅生命周期挂钩或其他types.snapshotProcessor</li>
+</ul>
+<hr>
+<h1><span id="model">model</span></h1><h2><span id="modelvolatile"><code>model.volatile</code></span></h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Todo = types</span><br><span class="line">    .model(&#123;&#125;)</span><br><span class="line">    .volatile(<span class="function"><span class="params">self</span> =&gt;</span> (&#123;</span><br><span class="line">        localState: <span class="number">3</span></span><br><span class="line">    &#125;))</span><br><span class="line">    .actions(<span class="function"><span class="params">self</span> =&gt;</span> (&#123;</span><br><span class="line">        setX(value) &#123;</span><br><span class="line">            self.localState = value</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;))</span><br></pre></td></tr></table></figure>
+<p>从volatile初始化函数返回的对象可以包含任何数据，并将导致具有相同名称的实例属性。挥发性特性具有以下特征：</p>
+<ol>
+<li>可以从模型外部读取它们（如果您想要隐藏的易失性状态，请如上一节中所述将其保留在闭包中，并且仅当未在视图中使用该状态时，才考虑使其不可观察）。</li>
+<li>易挥发的属性将仅可观察，请参见可观察的参考资料。分配给它们的值将保持不变，并且不会自动转换为可观察的深层结构。</li>
+<li>像普通属性一样，只能通过操作对其进行修改</li>
+<li>易挥发的道具不会显示在快照中，也无法通过应用快照进行更新</li>
+<li>在实例的生命周期中保留了易挥发的道具。另请参阅对帐</li>
+<li>易失性道具的更改不会显示在补丁或快照流中</li>
+<li>当前不支持在由返回的对象中定义getters / setter方法 volatile</li>
+</ol>
+<h1><span id="types">types</span></h1><h2><span id="复杂类型">复杂类型</span></h2><ul>
+<li><strong><code>types.model(properties, actions)</code></strong> 定义一个“类似”类型，该类具有在对象上操作的属性和操作。</li>
+<li><strong><code>types.array(type)</code></strong> 声明指定类型的数组。</li>
+<li><strong><code>types.map(type)</code></strong> 声明指定类型的映射。</li>
+</ul>
+<p><strong>请注意，由于MST v3types.array和MSTtypes.map在types.optional默认情况下是自动包装的，因此分别将[]和{}设置为其默认值。</strong></p>
+<h2><span id="原始类型">原始类型</span></h2><ul>
+<li><strong><code>types.string</code></strong></li>
+<li><strong><code>types.number</code></strong></li>
+<li><strong><code>types.integer</code></strong></li>
+<li><strong><code>types.boolean</code></strong></li>
+<li><strong><code>types.Date</code></strong></li>
+<li><strong><code>types.custom</code></strong>创建一个自定义基本类型。这对于定义自己的类型很有用，这些类型可以将序列化表格一对一映射到不可变的对象（如Decimal或Date）。</li>
+</ul>
+<h2><span id="实用程序类型">实用程序类型</span></h2><ul>
+<li><strong><code>types.union(options?: { dispatcher?: (snapshot) =&gt; Type, eager?: boolean }, types...)</code></strong>创建多种类型的联合。如果无法从快照中明确推断出正确的类型，请提供调度程序功能来确定类型。当eagerflag设置为true（默认）时-将使用第一个匹配类型，如果将其设置为false类型检查，则仅在完全匹配1个类型时通过。</li>
+<li><strong><code>types.optional(type, defaultValue, optionalValues?)</code></strong>将值标记为可选（例如在模型中）。如果未提供值undefined（或设置为作为可选optionalValues数组传递的任何原始值），defaultValue则将使用它。如果defaultValue为函数，则将对其进行评估。创建时可用于生成ID或时间戳。</li>
+<li><strong><code>types.literal(value)</code></strong>可用于创建文字类型，其中唯一可能的值就是该值。与unions结合使用时，功能非常强大。例如temperature: types.union(types.literal(“hot”), types.literal(“cold”))。</li>
+<li><strong><code>types.enumeration(name?, options: string[])</code></strong>创建一个枚举。此方法是字符串文字的并集的简写形式。如果您使用的是Typescript，并且想基于字符串枚举（例如enum Color { … }）创建类型，请使用types.enumeration<color>(“Color”, Object.values(Color))，其中”Color”name参数是可选的。</color></li>
+<li><strong><code>types.refinement(name?, baseType, (snapshot) =&gt; boolean)</code></strong>创建比基本类型更具体的类型，例如types.refinement(types.string, value =&gt; value.length &gt; 5)，创建只能长于5的字符串类型。</li>
+<li><strong><code>types.maybe(type)</code></strong>使类型成为可选且可为null的简写形式types.optional(types.union(type, types.literal(undefined)), undefined)。</li>
+<li><strong><code>types.maybeNull(type)</code></strong>类似于maybe，但用于null表示缺少值。</li>
+<li><strong><code>types.null</code></strong>的类型null。</li>
+<li><strong><code>types.undefined</code></strong>的类型undefined。</li>
+<li><strong><code>types.late(() =&gt; type)</code></strong> 可以用于创建递归或循环类型，或者以这样的方式分布在文件上的类型：否则文件之间的循环依赖关系将成为一个问题。</li>
+<li><strong><code>types.frozen(subType? | defaultValue?)</code></strong>接受任何类型的可序列化的值（原始的和复杂的），但假定该值本身是不可变的且可序列化的。 frozen可以通过几种不同的方式调用：<ul>
+<li><code>types.frozen()</code> -行为与MST 2中的types.frozen相同。</li>
+<li><code>types.frozen(subType)</code>-提供有效的MST类型，然后冻结将检查提供的数据是否符合该类型的快照。请注意，该类型实际上不会实例化，因此只能用于检查数据的形状。向SubType添加视图或动作将毫无意义。</li>
+<li><code>types.frozen(someDefaultValue)</code> -提供原始值，对象或数组，MST将根据该对象推断类型，并将其设置为字段的默认值</li>
+<li>（打字稿）<code>types.frozen&lt;TypeScriptType&gt;(...)</code>-提供打字稿类型，以帮助强力键入字段（仅设计时）</li>
+</ul>
+</li>
+<li><strong><code>types.compose(name?, type1...typeX)</code></strong>，通过采用一堆现有类型并将它们组合成一个新模型来创建新模型类型。</li>
+<li><strong><code>types.reference(targetType)</code></strong>创建一个属性，该属性引用targetType同一棵树中某处给定项的另一个项。有关更多详细信息，请参见参考。</li>
+<li><strong><code>types.safeReference(targetType)</code></strong>类似于标准引用，不同之处在于它默认情况下接受未定义的值并自动将其自身设置为未定义（当父级是模型时）/当其指向的引用被分离/销毁时，将自身从数组和映射中移除。有关更多详细信息，请参见参考。</li>
+<li><strong><code>types.snapshotProcessor(type, processors, name?)</code></strong>在序列化给定类型之前/之后运行快照前/快照后处理器。例子：</li>
+</ul>
+<hr>
+<h3><span id="typesidentifier"><code>types.identifier</code></span></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Todo = types.model(&#123;</span><br><span class="line">  id: types.identifier,</span><br><span class="line">  title: types.string,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> TodoStore = types.model(&#123;</span><br><span class="line">  todos: types.array(Todo),</span><br><span class="line">  selectedTodo: types.reference(Todo),</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// create a store with a normalized snapshot</span></span><br><span class="line"><span class="keyword">const</span> storeInstance = TodoStore.create(&#123;</span><br><span class="line">  todos: [</span><br><span class="line">    &#123;</span><br><span class="line">      id: <span class="string">"47"</span>,</span><br><span class="line">      title: <span class="string">"Get coffee"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  selectedTodo: <span class="string">"47"</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// because `selectedTodo` is declared to be a reference, it returns the actual Todo node with the matching identifier</span></span><br><span class="line"><span class="built_in">console</span>.log(storeInstance.selectedTodo.title);</span><br></pre></td></tr></table></figure>
+
+<h3><span id="typesrefinement"><code>types.refinement</code></span></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Car = types.model(<span class="string">"Car"</span>, &#123;</span><br><span class="line">    id: types.refinement(types.identifier, identifier =&gt; identifier.indexOf(<span class="string">"Car_"</span>) === <span class="number">0</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+<h3><span id="typesreference"><code>types.reference</code></span></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> User = types.model(&#123;</span><br><span class="line">    id: types.identifier,</span><br><span class="line">    name: types.string</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> UserByNameReference = types.maybeNull(</span><br><span class="line">    types.reference(User, &#123;</span><br><span class="line">        <span class="comment">// given an identifier, find the user</span></span><br><span class="line">        <span class="keyword">get</span>(identifier /* string */, parent: any /*Store*/) &#123;</span><br><span class="line">            <span class="keyword">return</span> parent.users.find(<span class="function"><span class="params">u</span> =&gt;</span> u.name === identifier) || <span class="literal">null</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// given a user, produce the identifier that should be stored</span></span><br><span class="line">        <span class="keyword">set</span>(value /* User */) &#123;</span><br><span class="line">            <span class="keyword">return</span> value.name</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Store = types.model(&#123;</span><br><span class="line">    users: types.array(User),</span><br><span class="line">    selection: UserByNameReference</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> s = Store.create(&#123;</span><br><span class="line">    users: [&#123; <span class="attr">id</span>: <span class="string">"1"</span>, <span class="attr">name</span>: <span class="string">"Michel"</span> &#125;, &#123; <span class="attr">id</span>: <span class="string">"2"</span>, <span class="attr">name</span>: <span class="string">"Mattia"</span> &#125;],</span><br><span class="line">    selection: <span class="string">"Mattia"</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1><span id="actions">actions</span></h1><ul>
+<li>onAction 侦听在模型或其任何后代上调用的任何操作。</li>
+<li>addMiddleware 将拦截器功能添加到在子树上调用的任何操作。</li>
+<li>applyAction 根据给定的动作描述在模型上调用动作</li>
+</ul>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"7cff2fe5351a4771a8ca","clientSecret":"44cbb554920d2d11a7882f71536207a73e848cf4","repo":"Blog","owner":"jarze","admin":["jarze"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jarze.github.io/Blog/mobx-state-tree/" data-id="ckr02ox9500274worh37h6mpz" data-title="mobx-state-tree" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/mobx/" rel="tag">mobx</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Blog/Makefile/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Make 命令
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Blog/webpack%E9%85%8D%E7%BD%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">webpack 配置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/">Front</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/tool/">tool</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Fun/">Fun</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/%E5%B7%A5%E5%85%B7%E6%9F%A5%E8%AF%A2/">工具查询</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Node/" rel="tag">Node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/commander/" rel="tag">commander</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/eslint/" rel="tag">eslint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/link/" rel="tag">link</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/make/" rel="tag">make</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/mobx/" rel="tag">mobx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/puml/" rel="tag">puml</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/tool/" rel="tag">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/webpack/" rel="tag">webpack</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/Node/" style="font-size: 10px;">Node</a> <a href="/Blog/tags/commander/" style="font-size: 10px;">commander</a> <a href="/Blog/tags/css/" style="font-size: 13.33px;">css</a> <a href="/Blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/Blog/tags/eslint/" style="font-size: 10px;">eslint</a> <a href="/Blog/tags/js/" style="font-size: 20px;">js</a> <a href="/Blog/tags/link/" style="font-size: 10px;">link</a> <a href="/Blog/tags/make/" style="font-size: 10px;">make</a> <a href="/Blog/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/Blog/tags/mobx/" style="font-size: 13.33px;">mobx</a> <a href="/Blog/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/Blog/tags/npm/" style="font-size: 10px;">npm</a> <a href="/Blog/tags/puml/" style="font-size: 10px;">puml</a> <a href="/Blog/tags/shell/" style="font-size: 10px;">shell</a> <a href="/Blog/tags/tool/" style="font-size: 16.67px;">tool</a> <a href="/Blog/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/Blog/tags/webpack/" style="font-size: 10px;">webpack</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/09/">九月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/css%E5%8D%95%E4%BD%8D/">css单位</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/links/">links</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/eslint-rules/">eslint prettier规则配置说明</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/plantuml/">plantuml</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 jarze blog ~~~<br />
+      <!-- Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/Blog/about" class="mobile-nav-link">About</a>
+  
+    <a href="/Blog/links" class="mobile-nav-link">Links</a>
+  
+</nav>
+    
+
+
+<script src="/Blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/Blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
