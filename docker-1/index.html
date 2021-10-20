@@ -15,20 +15,23 @@
 <!-- End Google Analytics -->
 
   
-  <title>css单位 | Jarze</title>
+  <title>docker-1 | Jarze</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="浏览器支持 下表中的数字表示支持该长度单位的最低浏览器版本。     长度单位 Chrome IE Firefox Safari Opera    em, ex, %, px, cm, mm, in, pt, pc 1.0 3.0 1.0 1.0 3.5   ch 27.0 9.0 1.0 7.0 20.0   rem 4.0 9.0 3.6 4.1 11.6   vh , vw 20.0 9.0">
+  <meta name="description" content="基本概念Docker 包括三个基本概念  镜像（Image） 容器（Container） 仓库（Repository）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="css单位">
-<meta property="og:url" content="https://jarze.github.io/Blog/css%E5%8D%95%E4%BD%8D/index.html">
+<meta property="og:title" content="docker-1">
+<meta property="og:url" content="https://jarze.github.io/Blog/docker-1/index.html">
 <meta property="og:site_name" content="Jarze">
-<meta property="og:description" content="浏览器支持 下表中的数字表示支持该长度单位的最低浏览器版本。     长度单位 Chrome IE Firefox Safari Opera    em, ex, %, px, cm, mm, in, pt, pc 1.0 3.0 1.0 1.0 3.5   ch 27.0 9.0 1.0 7.0 20.0   rem 4.0 9.0 3.6 4.1 11.6   vh , vw 20.0 9.0">
+<meta property="og:description" content="基本概念Docker 包括三个基本概念  镜像（Image） 容器（Container） 仓库（Repository）">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-01-29T11:22:37.000Z">
+<meta property="og:image" content="https://jarze.github.io/Blog/docker-1/swarm-diagram.png">
+<meta property="og:image" content="https://jarze.github.io/Blog/docker-1/services-diagram.png">
+<meta property="article:published_time" content="2021-07-12T11:41:34.000Z">
 <meta property="article:modified_time" content="2021-10-20T09:34:31.381Z">
 <meta property="article:author" content="jarze blog ~~~">
-<meta property="article:tag" content="css">
+<meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jarze.github.io/Blog/docker-1/swarm-diagram.png">
   
   
     <link rel="icon" href="/Blog/css/images/favicon.png">
@@ -89,16 +92,12 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-css单位" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-docker-1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/Blog/css%E5%8D%95%E4%BD%8D/" class="article-date">
-  <time class="dt-published" datetime="2021-01-29T11:22:37.000Z" itemprop="datePublished">2021-01-29</time>
+    <a href="/Blog/docker-1/" class="article-date">
+  <time class="dt-published" datetime="2021-07-12T11:41:34.000Z" itemprop="datePublished">2021-07-12</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/Blog/categories/Front/">Front</a>►<a class="article-category-link" href="/Blog/categories/Front/css/">css</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -107,7 +106,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      css单位
+      docker-1
     </h1>
   
 
@@ -115,153 +114,112 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1><span id="浏览器支持">浏览器支持</span></h1><blockquote>
-<p>下表中的数字表示支持该长度单位的最低浏览器版本。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>长度单位</th>
-<th>Chrome</th>
-<th>IE</th>
-<th>Firefox</th>
-<th>Safari</th>
-<th>Opera</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>em, ex, %, px, cm, mm, in, pt, pc</td>
-<td>1.0</td>
-<td>3.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>3.5</td>
-</tr>
-<tr>
-<td>ch</td>
-<td>27.0</td>
-<td>9.0</td>
-<td>1.0</td>
-<td>7.0</td>
-<td>20.0</td>
-</tr>
-<tr>
-<td>rem</td>
-<td>4.0</td>
-<td>9.0</td>
-<td>3.6</td>
-<td>4.1</td>
-<td>11.6</td>
-</tr>
-<tr>
-<td>vh</td>
-<td>, vw</td>
-<td>20.0</td>
-<td>9.0</td>
-<td>19.0</td>
-<td>6.0 20.0</td>
-</tr>
-<tr>
-<td>vmin</td>
-<td>20.0</td>
-<td>9.0*</td>
-<td>19.0</td>
-<td>6.0</td>
-<td>20.0</td>
-</tr>
-<tr>
-<td>vmax</td>
-<td>26.0</td>
-<td>不支持</td>
-<td>19.0</td>
-<td>不支持</td>
-<td>20.0</td>
-</tr>
-</tbody></table>
+        <h1><span id="基本概念">基本概念</span></h1><p><code>Docker</code> 包括三个基本概念</p>
+<ul>
+<li>镜像（<code>Image</code>）</li>
+<li>容器（<code>Container</code>）</li>
+<li>仓库（<code>Repository</code>）</li>
+</ul>
 <a id="more"></a>
 
-<h1><span id="相对长度">相对长度</span></h1><blockquote>
-<p>相对长度单位指定了一个长度相对于另一个长度的属性。对于不同的设备相对长度更适用。<br>提示: rem 与 em 有什么区别呢？区别在于使用 rem 为元素设定字体大小时，仍然是相对大小，但相对的只是 HTML 根元素。</p>
-</blockquote>
-<table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#使用docker ps命令获取容器的ID 。</span></span><br><span class="line"> docker ps</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用docker stop命令停止容器。</span></span><br><span class="line"><span class="comment"># Swap out &lt;the-container-id&gt; with the ID from docker ps</span></span><br><span class="line"> docker stop &lt;the-container-id&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 容器停止后，可以使用以下docker rm命令将其删除。</span></span><br><span class="line"> docker rm &lt;the-container-id&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Docker 镜像（Image），就相当于是一个 root 文件系统。分层存储</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker image</span><br><span class="line">docker container</span><br></pre></td></tr></table></figure>
+
+<p>Docker 镜像 是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。镜像 不包含 任何动态数据，其内容在构建之后也不会被改变。</p>
+<p>镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的 类 和 实例 一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。</p>
+<p>容器的实质是进程，但与直接在宿主执行的进程不同，容器进程运行于属于自己的独立的 命名空间。</p>
+<p>数据卷的生存周期独立于容器，容器消亡，数据卷不会消亡。因此，使用数据卷后，容器删除或者重新运行之后，数据却不会丢失。</p>
+<hr>
+<h2><span id="数据卷volume">数据卷（Volume）</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker volume</span><br></pre></td></tr></table></figure>
+
+<p>数据卷 是一个可供一个或多个容器使用的特殊目录，它绕过 UFS，可以提供很多有用的特性：</p>
+<ul>
+<li>数据卷 可以在容器之间共享和重用</li>
+<li>对 数据卷 的修改会立马生效</li>
+<li>对 数据卷 的更新，不会影响镜像</li>
+<li>数据卷 默认会一直存在，即使容器被删除</li>
+</ul>
+<h3><span id="挂载一个主机目录作为数据卷">挂载一个主机目录作为数据卷</span></h3><p>使用 –mount 标记可以指定挂载一个本地主机的目录到容器中去。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -P --name web --mount type&#x3D;bind,source&#x3D;&#x2F;src&#x2F;webapp,target&#x3D;&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html nginx</span><br></pre></td></tr></table></figure>
+
+<h2><span id="使用网络">使用网络</span></h2><p>Docker 允许通过外部访问容器或容器互联的方式来提供网络服务。</p>
+<p>容器中可以运行一些网络应用，要让外部也可以访问这些应用，可以通过 -P 或 -p 参数来指定端口映射。<br>当使用 -P 标记时，Docker 会随机映射一个端口到内部容器开放的网络端口。</p>
+<h2><span id="docker-compose">Docker Compose</span></h2><p>Compose 项目是 Docker 官方的开源项目，负责实现对 Docker 容器集群的快速编排。从功能上看，跟 OpenStack 中的 Heat 十分类似。</p>
+<p>它允许用户通过一个单独的 docker-compose.yml 模板文件（YAML 格式）来定义一组相关联的应用容器为一个项目（project）。<br>Compose 中有两个重要的概念：</p>
+<ul>
+<li>服务 (service)：一个应用的容器，实际上可以包括若干运行相同镜像的容器实例。</li>
+<li>项目 (project)：由一组关联的应用容器组成的一个完整业务单元，在 docker-compose.yml 文件中定义。</li>
+</ul>
+<p>Compose 的默认管理对象是项目，通过子命令对项目中的一组容器进行便捷地生命周期管理。</p>
+<h3><span id="compose-模板文件">Compose 模板文件</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">version: <span class="string">"3"</span></span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  webapp:</span><br><span class="line">    image: examples/web</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">"80:80"</span></span><br><span class="line">    volumes:</span><br><span class="line">      - <span class="string">"/data"</span></span><br><span class="line"></span><br><span class="line">  web:</span><br><span class="line">    build: .</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>image</strong> 指定镜像</li>
+<li><strong>build</strong> 指定 Dockerfile 所在文件夹的路径（可以是绝对路径，或者相对 docker-compose.yml 文件的路径）。 Compose 将会利用它自动构建这个镜像，然后使用这个镜像。在 Dockerfile 中设置的选项(例如：CMD, EXPOSE, VOLUME, ENV 等) 将会自动被获取，无需在 docker-compose.yml 中重复设置。<ul>
+<li><strong>context</strong> 指定 Dockerfile 所在文件夹的路径</li>
+<li><strong>dockerfile</strong> 指令指定 Dockerfile 文件名。</li>
+<li><strong>arg</strong> 指令指定构建镜像时的变量。</li>
+<li><strong>cache_from</strong> 指定构建镜像的缓存</li>
+</ul>
+</li>
+</ul>
+<h2><span id="swarm">swarm</span></h2><table>
 <thead>
 <tr>
-<th>单位</th>
-<th>描述</th>
+<th>Command</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>em</td>
-<td>它是描述相对于应用在当前元素的字体尺寸，所以它也是相对长度单位。一般浏览器字体大小默认为 16px，则 2em == 32px； 下</td>
+<td>docker swarm ca</td>
+<td>Display and rotate the root CA</td>
 </tr>
 <tr>
-<td>ex</td>
-<td>依赖于英文字母小 x 的高度</td>
+<td>docker swarm init</td>
+<td>Initialize a swarm</td>
 </tr>
 <tr>
-<td>ch</td>
-<td>数字 0</td>
+<td>docker swarm join</td>
+<td>Join a swarm as a node and/or manager</td>
 </tr>
 <tr>
-<td>rem</td>
-<td>rem 是根 em（root 体大小。</td>
+<td>docker swarm join-token</td>
+<td>Manage join tokens</td>
 </tr>
 <tr>
-<td>vw</td>
-<td>viewpoint width，视窗宽度，1vw=视窗宽度的 1%</td>
+<td>docker swarm leave</td>
+<td>Leave the swarm</td>
 </tr>
 <tr>
-<td>vh</td>
-<td>viewpoint height，视窗高度，1vh=视窗高度的 1%</td>
+<td>docker swarm unlock</td>
+<td>Unlock swarm</td>
 </tr>
 <tr>
-<td>vmin</td>
-<td>vw 和 vh 中较小的那个。</td>
+<td>docker swarm unlock-key</td>
+<td>Manage the unlock key</td>
 </tr>
 <tr>
-<td>vmax</td>
-<td>vw 和 vh 中较大的那个。</td>
-</tr>
-<tr>
-<td>%</td>
-<td></td>
+<td>docker swarm update</td>
+<td>Update the swarm</td>
 </tr>
 </tbody></table>
-<h1><span id="绝对长度">绝对长度</span></h1><blockquote>
-<p>绝对长度单位是一个固定的值，它反应一个真实的物理尺寸。绝对长度单位视输出介质而定，不依赖于环境（显示器、分辨率、操作系统等）。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>单位</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>cm</td>
-<td>厘米</td>
-</tr>
-<tr>
-<td>mm</td>
-<td>毫米</td>
-</tr>
-<tr>
-<td>in</td>
-<td>英寸 (1in = 96px = 2.54cm)</td>
-</tr>
-<tr>
-<td>px</td>
-<td>* 像素 (1px = 1/96th of 1in)</td>
-</tr>
-<tr>
-<td>pt</td>
-<td>point，大约 1/72 英寸； (1pt = 1/72in)</td>
-</tr>
-<tr>
-<td>pc</td>
-<td>pica，大约 12pt，1/6 英寸； (1pc = 12 pt)</td>
-</tr>
-</tbody></table>
+<p>运行 Docker 的主机可以主动初始化一个 Swarm 集群或者加入一个已存在的 Swarm 集群，这样这个运行 Docker 的主机就成为一个 Swarm 集群的节点 (node) 。</p>
+<p>节点分为管理 (manager) 节点和工作 (worker) 节点。</p>
+<p>管理节点用于 Swarm 集群的管理，docker swarm 命令基本只能在管理节点执行（节点退出集群命令 docker swarm leave 可以在工作节点执行）。一个 Swarm 集群可以有多个管理节点，但只有一个管理节点可以成为 leader，leader 通过 raft 协议实现。</p>
+<p>工作节点是任务执行节点，管理节点将服务 (service) 下发至工作节点执行。管理节点默认也作为工作节点。你也可以通过配置让服务只运行在管理节点。</p>
+<p>来自 Docker 官网的这张图片形象的展示了集群中管理节点与工作节点的关系。</p>
+<img src="/Blog/docker-1/swarm-diagram.png" class title="swarm-diagram">
+
+<h3><span id="服务和任务">服务和任务</span></h3><p>任务 （Task）是 Swarm 中的最小的调度单位，目前来说就是一个单一的容器。</p>
+<p>服务 （Services） 是指一组任务的集合，服务定义了任务的属性。服务有两种模式：</p>
+<ul>
+<li>replicated services 按照一定规则在各个工作节点上运行指定个数的任务。</li>
+<li>global services 每个工作节点上运行一个任务</li>
+</ul>
+<p>两种模式通过 docker service create 的 –mode 参数指定。<br>来自 Docker 官网的这张图片形象的展示了容器、任务、服务的关系。</p>
+<img src="/Blog/docker-1/services-diagram.png" class title="services-diagram">
 
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -275,11 +233,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/css%E5%8D%95%E4%BD%8D/" data-id="ckuzbk7kb000a45tr4rp81bge" data-title="css单位" class="article-share-link">分享</a>
+      <a data-url="https://jarze.github.io/Blog/docker-1/" data-id="ckuzbk7kd000d45trb4h944uz" data-title="docker-1" class="article-share-link">分享</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/css/" rel="tag">css</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/docker/" rel="tag">docker</a></li></ul>
 
     </footer>
   </div>
@@ -287,19 +245,19 @@
     
 <nav id="article-nav">
   
-    <a href="/Blog/docker-1/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/Blog/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前一篇</strong>
       <div class="article-nav-title">
         
-          docker-1
+          Hello World
         
       </div>
     </a>
   
   
-    <a href="/Blog/links/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/Blog/css%E5%8D%95%E4%BD%8D/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">links</div>
+      <div class="article-nav-title">css单位</div>
     </a>
   
 </nav>
