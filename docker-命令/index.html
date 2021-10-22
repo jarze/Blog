@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109981608-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109981608-1');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>docker-命令 | Jarze</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="客户端命令 - docker 客户端命令选项 –config&#x3D;””：指定客户端配置文件，默认为 ~&#x2F;.docker； -D&#x3D;true|false：是否使用 debug 模式。默认不开启； -H, –host&#x3D;[]：指定命令对应 Docker 守护进程的监听接口，可以为 unix 套接字 unix:&#x2F;&#x2F;&#x2F;path&#x2F;to&#x2F;socket，文件句柄 fd:&#x2F;&#x2F;socketfd 或 tcp 套接字 tcp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker-命令">
+<meta property="og:url" content="https://jarze.github.io/Blog/docker-%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Jarze">
+<meta property="og:description" content="客户端命令 - docker 客户端命令选项 –config&#x3D;””：指定客户端配置文件，默认为 ~&#x2F;.docker； -D&#x3D;true|false：是否使用 debug 模式。默认不开启； -H, –host&#x3D;[]：指定命令对应 Docker 守护进程的监听接口，可以为 unix 套接字 unix:&#x2F;&#x2F;&#x2F;path&#x2F;to&#x2F;socket，文件句柄 fd:&#x2F;&#x2F;socketfd 或 tcp 套接字 tcp">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jarze.github.io/Blog/docker-%E5%91%BD%E4%BB%A4/cmd_logic.png">
+<meta property="article:published_time" content="2021-10-21T13:52:36.000Z">
+<meta property="article:modified_time" content="2021-10-22T03:43:00.687Z">
+<meta property="article:author" content="jarze blog ~~~">
+<meta property="article:tag" content="docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jarze.github.io/Blog/docker-%E5%91%BD%E4%BB%A4/cmd_logic.png">
+  
+  
+    <link rel="icon" href="/Blog/css/images/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/Blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.min.css">
+
+  
+  <meta name="google-site-verification" content="BEvcfET7cgXFsJH40NIqTskqOHR7z8uvgu5JPD1LRZU" />
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Jarze</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/Blog/" id="subtitle">🇨🇳🇨🇳🇨🇳</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/Blog/about">About</a>
+        
+          <a class="main-nav-link" href="/Blog/links">Links</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jarze.github.io/Blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-docker-命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Blog/docker-%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time class="dt-published" datetime="2021-10-21T13:52:36.000Z" itemprop="datePublished">2021-10-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/Blog/categories/Docker/">Docker</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      docker-命令
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <hr>
+<h1><span id="客户端命令-docker">客户端命令 - docker</span></h1><hr>
+<h2><span id="客户端命令选项">客户端命令选项</span></h2><ul>
+<li>–config=””：指定客户端配置文件，默认为 ~/.docker；</li>
+<li>-D=true|false：是否使用 debug 模式。默认不开启；</li>
+<li>-H, –host=[]：指定命令对应 Docker 守护进程的监听接口，可以为 unix 套接字 unix:///path/to/socket，文件句柄 fd://socketfd 或 tcp 套接字 tcp://[host[:port]]，默认为 unix:///var/run/docker.sock；</li>
+<li>-l, –log-level=”debug|info|warn|error|fatal”：指定日志输出级别；</li>
+<li>–tls=true|false：是否对 Docker 守护进程启用 TLS 安全机制，默认为否；</li>
+<li>–tlscacert=/.docker/ca.pem：TLS CA 签名的可信证书文件路径；</li>
+<li>–tlscert=/.docker/cert.pem：TLS 可信证书文件路径；</li>
+<li>–tlscert=/.docker/key.pem：TLS 密钥文件路径；</li>
+<li>–tlsverify=true|false：启用 TLS 校验，默认为否。</li>
+</ul>
+<a id="more"></a>
+
+<hr>
+<h2><span id="客户端命令">客户端命令</span></h2><p>可以通过 docker COMMAND –help 来查看这些命令的具体用法。</p>
+<ul>
+<li>attach：依附到一个正在运行的容器中；</li>
+<li>build：从一个 Dockerfile 创建一个镜像；</li>
+<li>commit：从一个容器的修改中创建一个新的镜像；</li>
+<li>cp：在容器和本地宿主系统之间复制文件中；</li>
+<li>create：创建一个新容器，但并不运行它；</li>
+<li>diff：检查一个容器内文件系统的修改，包括修改和增加；</li>
+<li>events：从服务端获取实时的事件；</li>
+<li>exec：在运行的容器内执行命令；</li>
+<li>export：导出容器内容为一个 tar 包；</li>
+<li>history：显示一个镜像的历史信息；</li>
+<li>images：列出存在的镜像；</li>
+<li>import：导入一个文件（典型为 tar 包）路径或目录来创建一个本地镜像；</li>
+<li>info：显示一些相关的系统信息；</li>
+<li>inspect：显示一个容器的具体配置信息；</li>
+<li>kill：关闭一个运行中的容器 (包括进程和所有相关资源)；</li>
+<li>load：从一个 tar 包中加载一个镜像；</li>
+<li>login：注册或登录到一个 Docker 的仓库服务器；</li>
+<li>logout：从 Docker 的仓库服务器登出；</li>
+<li>logs：获取容器的 log 信息；</li>
+<li>network：管理 Docker 的网络，包括查看、创建、删除、挂载、卸载等；</li>
+<li>node：管理 swarm 集群中的节点，包括查看、更新、删除、提升/取消管理节点等；</li>
+<li>pause：暂停一个容器中的所有进程；</li>
+<li>port：查找一个 nat 到一个私有网口的公共口；</li>
+<li>ps：列出主机上的容器；</li>
+<li>pull：从一个 Docker 的仓库服务器下拉一个镜像或仓库；</li>
+<li>push：将一个镜像或者仓库推送到一个 Docker 的注册服务器；</li>
+<li>rename：重命名一个容器；</li>
+<li>restart：重启一个运行中的容器；</li>
+<li>rm：删除给定的若干个容器；</li>
+<li>rmi：删除给定的若干个镜像；</li>
+<li>run：创建一个新容器，并在其中运行给定命令；</li>
+<li>save：保存一个镜像为 tar 包文件；</li>
+<li>search：在 Docker index 中搜索一个镜像；</li>
+<li>service：管理 Docker 所启动的应用服务，包括创建、更新、删除等；</li>
+<li>start：启动一个容器；</li>
+<li>stats：输出（一个或多个）容器的资源使用统计信息；</li>
+<li>stop：终止一个运行中的容器；</li>
+<li>swarm：管理 Docker swarm 集群，包括创建、加入、退出、更新等；</li>
+<li>tag：为一个镜像打标签；</li>
+<li>top：查看一个容器中的正在运行的进程信息；</li>
+<li>unpause：将一个容器内所有的进程从暂停状态中恢复；</li>
+<li>update：更新指定的若干容器的配置信息；</li>
+<li>version：输出 Docker 的版本信息；</li>
+<li>volume：管理 Docker volume，包括查看、创建、删除等；</li>
+<li>wait：阻塞直到一个容器终止，然后输出它的退出符。</li>
+</ul>
+<hr>
+<h2><span id="一张图总结-docker-的命令">一张图总结 Docker 的命令</span></h2><img src="/Blog/docker-%E5%91%BD%E4%BB%A4/cmd_logic.png" class title="cmd_logic">
+
+<hr>
+<h1><span id="服务端命令-dockerd">服务端命令 - dockerd</span></h1><hr>
+<h2><span id="dockerd-命令选项">dockerd 命令选项</span></h2><ul>
+<li>–api-cors-header=””：CORS 头部域，默认不允许 CORS，要允许任意的跨域访问，可以指定为 “*“；</li>
+<li>–authorization-plugin=””：载入认证的插件；</li>
+<li>-b=””：将容器挂载到一个已存在的网桥上。指定为 none 时则禁用容器的网络，与 –bip 选项互斥；</li>
+<li>–bip=””：让动态创建的 docker0 网桥采用给定的 CIDR 地址; 与 -b 选项互斥；</li>
+<li>–cgroup-parent=””：指定 cgroup 的父组，默认 fs cgroup 驱动为 /docker，systemd cgroup 驱动为 system.slice；</li>
+<li>–cluster-store=””：构成集群（如 Swarm）时，集群键值数据库服务地址；</li>
+<li>–cluster-advertise=””：构成集群时，自身的被访问地址，可以为 host:port 或 interface:port；</li>
+<li>–cluster-store-opt=””：构成集群时，键值数据库的配置选项；</li>
+<li>–config-file=”/etc/docker/daemon.json”：daemon 配置文件路径；</li>
+<li>–containerd=””：containerd 文件的路径；</li>
+<li>-D, –debug=true|false：是否使用 Debug 模式。缺省为 false；</li>
+<li>–default-gateway=””：容器的 IPv4 网关地址，必须在网桥的子网段内；</li>
+<li>–default-gateway-v6=””：容器的 IPv6 网关地址；</li>
+<li>–default-ulimit=[]：默认的 ulimit 值；</li>
+<li>–disable-legacy-registry=true|false：是否允许访问旧版本的镜像仓库服务器；</li>
+<li>–dns=””：指定容器使用的 DNS 服务器地址；</li>
+<li>–dns-opt=””：DNS 选项；</li>
+<li>–dns-search=[]：DNS 搜索域；</li>
+<li>–exec-opt=[]：运行时的执行选项；</li>
+<li>–exec-root=””：容器执行状态文件的根路径，默认为 /var/run/docker；</li>
+<li>–fixed-cidr=””：限定分配 IPv4 地址范围；</li>
+<li>–fixed-cidr-v6=””：限定分配 IPv6 地址范围；</li>
+<li>-G, –group=””：分配给 unix 套接字的组，默认为 docker；</li>
+<li>-g, –graph=””：Docker 运行时的根路径，默认为 /var/lib/docker；</li>
+<li>-H, –host=[]：指定命令对应 Docker daemon 的监听接口，可以为 unix 套接字 unix:///path/to/socket，文件句柄 fd://socketfd 或 tcp 套接字 tcp://[host[:port]]，默认为 unix:///var/run/docker.sock；</li>
+<li>–icc=true|false：是否启用容器间以及跟 daemon 所在主机的通信。默认为 true。</li>
+<li>–insecure-registry=[]：允许访问给定的非安全仓库服务；</li>
+<li>–ip=””：绑定容器端口时候的默认 IP 地址。缺省为 0.0.0.0；</li>
+<li>–ip-forward=true|false：是否检查启动在 Docker 主机上的启用 IP 转发服务，默认开启。注意关闭该选项将不对系统转发能力进行任何检查修改；</li>
+<li>–ip-masq=true|false：是否进行地址伪装，用于容器访问外部网络，默认开启；</li>
+<li>–iptables=true|false：是否允许 Docker 添加 iptables 规则。缺省为 true；</li>
+<li>–ipv6=true|false：是否启用 IPv6 支持，默认关闭；</li>
+<li>-l, –log-level=”debug|info|warn|error|fatal”：指定日志输出级别；</li>
+<li>–label=”[]”：添加指定的键值对标注；</li>
+<li>–log-driver=”json-file|syslog|journald|gelf|fluentd|awslogs|splunk|etwlogs|gcplogs|none”：指定日志后端驱动，默认为 json-file；</li>
+<li>–log-opt=[]：日志后端的选项；</li>
+<li>–mtu=VALUE：指定容器网络的 mtu；</li>
+<li>-p=””：指定 daemon 的 PID 文件路径。缺省为 /var/run/docker.pid；</li>
+<li>–raw-logs：输出原始，未加色彩的日志信息；</li>
+<li>–registry-mirror=<scheme>://<host>：指定 docker pull 时使用的注册服务器镜像地址；</host></scheme></li>
+<li>-s, –storage-driver=””：指定使用给定的存储后端；</li>
+<li>–selinux-enabled=true|false：是否启用 SELinux 支持。缺省值为 false。SELinux 目前尚不支持 overlay 存储驱动；</li>
+<li>–storage-opt=[]：驱动后端选项；</li>
+<li>–tls=true|false：是否对 Docker daemon 启用 TLS 安全机制，默认为否；</li>
+<li>–tlscacert=/.docker/ca.pem：TLS CA 签名的可信证书文件路径；</li>
+<li>–tlscert=/.docker/cert.pem：TLS 可信证书文件路径；</li>
+<li>–tlscert=/.docker/key.pem：TLS 密钥文件路径；</li>
+<li>–tlsverify=true|false：启用 TLS 校验，默认为否；</li>
+<li>–userland-proxy=true|false：是否使用用户态代理来实现容器间和出容器的回环通信，默认为 true；</li>
+<li>–userns-remap=default|uid:gid|user:group|user|uid：指定容器的用户命名空间，默认是创建新的 UID 和 GID 映射到容器内进程。</li>
+</ul>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"7cff2fe5351a4771a8ca","clientSecret":"44cbb554920d2d11a7882f71536207a73e848cf4","repo":"Blog","owner":"jarze","admin":["jarze"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jarze.github.io/Blog/docker-%E5%91%BD%E4%BB%A4/" data-id="ckv1tvrfj000d4lme47e11a1j" data-title="docker-命令" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/docker/" rel="tag">docker</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Blog/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Blog/docker-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">docker-1</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/">Front</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/tool/">tool</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Fun/">Fun</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/%E5%B7%A5%E5%85%B7%E6%9F%A5%E8%AF%A2/">工具查询</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Node/" rel="tag">Node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/commander/" rel="tag">commander</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/eslint/" rel="tag">eslint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/link/" rel="tag">link</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/make/" rel="tag">make</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/mobx/" rel="tag">mobx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/puml/" rel="tag">puml</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/tool/" rel="tag">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/webpack/" rel="tag">webpack</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/Node/" style="font-size: 10px;">Node</a> <a href="/Blog/tags/commander/" style="font-size: 10px;">commander</a> <a href="/Blog/tags/css/" style="font-size: 13.33px;">css</a> <a href="/Blog/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/Blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/Blog/tags/eslint/" style="font-size: 10px;">eslint</a> <a href="/Blog/tags/js/" style="font-size: 20px;">js</a> <a href="/Blog/tags/link/" style="font-size: 10px;">link</a> <a href="/Blog/tags/make/" style="font-size: 10px;">make</a> <a href="/Blog/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/Blog/tags/mobx/" style="font-size: 13.33px;">mobx</a> <a href="/Blog/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/Blog/tags/npm/" style="font-size: 10px;">npm</a> <a href="/Blog/tags/puml/" style="font-size: 10px;">puml</a> <a href="/Blog/tags/shell/" style="font-size: 10px;">shell</a> <a href="/Blog/tags/tool/" style="font-size: 16.67px;">tool</a> <a href="/Blog/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/Blog/tags/webpack/" style="font-size: 10px;">webpack</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/09/">九月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/docker-%E5%91%BD%E4%BB%A4/">docker-命令</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/docker-1/">docker-1</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/css%E5%8D%95%E4%BD%8D/">css单位</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/links/">links</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 jarze blog ~~~<br />
+      <!-- Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/Blog/about" class="mobile-nav-link">About</a>
+  
+    <a href="/Blog/links" class="mobile-nav-link">Links</a>
+  
+</nav>
+    
+
+
+<script src="/Blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/Blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script data-ad-client="ca-pub-2547143607556885" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</html>
