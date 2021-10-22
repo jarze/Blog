@@ -47,6 +47,8 @@ summary+* { padding-left: 2em; }
 - [**typedoc**](https://typedoc.org/) _(A documentation generator for TypeScript projects.)_
 - [**docsify**](https://docsify.js.org/#/) _(A magical documentation site generator.)_
 - [**VuePress**](https://vuepress.vuejs.org/zh/) _(Vue 驱动的静态网站生成器.)_
+- [**Gatsby**](https://www.gatsbyjs.com/) _(Gatsby 4 combines the control and scalability of server-side rendering with the performance of static-site generation, creating a whole new web of possibilites.)_
+- [**Next.js**](https://nextjs.org/) _(The React Framework for Production. Next.js gives you the best developer experience with all the features you need for production: hybrid static & server rendering, TypeScript support, smart bundling, route pre-fetching, and more. No config needed.)_
 </details>
 
 
