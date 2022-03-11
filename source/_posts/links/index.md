@@ -49,19 +49,18 @@ summary+* { padding-left: 2em; }
 - [**VuePress**](https://vuepress.vuejs.org/zh/) _(Vue 驱动的静态网站生成器.)_
 - [**Gatsby**](https://www.gatsbyjs.com/) _(Gatsby 4 combines the control and scalability of server-side rendering with the performance of static-site generation, creating a whole new web of possibilites.)_
 - [**Next.js**](https://nextjs.org/) _(The React Framework for Production. Next.js gives you the best developer experience with all the features you need for production: hybrid static & server rendering, TypeScript support, smart bundling, route pre-fetching, and more. No config needed.)_
+- [**mkdocs**](https://www.mkdocs.org/) _(A documentation generator for the Markdown language.)_
 </details>
-
 
 <details open="open"><summary><h1>🤡 DEMO</h1></summary>
 
-- [**demosify**](http://www.demosify.com/) _(Demo演示)_
+- [**demosify**](http://www.demosify.com/) _(Demo 演示)_
 
 </details>
 
-
 <details open="open"><summary><h1>🤡 流程图</h1></summary>
 
-- [**draw.io**](https://draw.io/)_(免登录、完全免费、跨平台,还可以使用vs code开源插件)_
+- [**draw.io**](https://draw.io/)_(免登录、完全免费、跨平台,还可以使用 vs code 开源插件)_
 - [**plantuml**](https://plantuml.com/)
 
 </details>
