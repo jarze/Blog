@@ -10,7 +10,6 @@ categories: 工具查询
 ---
 
 <br />
-<br />
 <style>
 details { user-select: none; }
 details[open] summary {text-shadow: #FC0 1px 0 10px;}
@@ -38,7 +37,6 @@ summary+* { padding-left: 2em; }
 
 <details open="open"><summary><h1>🤡 MDX、Docs、Website</h1></summary>
 
-
 - [**mdx**](https://mdxjs.com/projects) _(Markdown for the component era)_
 - [**docz**](https://www.docz.site/) _(Documentation framework)_
 - [**Charge**](https://charge.js.org/) _(An opinionated, zero-config static site generator)_
@@ -52,9 +50,10 @@ summary+* { padding-left: 2em; }
 - [**mkdocs**](https://www.mkdocs.org/) _(A documentation generator for the Markdown language.)_
 </details>
 
-<details open="open"><summary><h1>🤡 DEMO</h1></summary>
+<details open="open"><summary><h1>🤡 Editor</h1></summary>
 
 - [**demosify**](http://www.demosify.com/) _(Demo 演示)_
+- [**Monaco Editor**](https://microsoft.github.io/monaco-editor/) _(The Monaco Editor is the code editor that powers VS Code.)_
 
 </details>
 
