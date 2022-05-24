@@ -15,24 +15,17 @@
 <!-- End Google Analytics -->
 
   
-  <title>CSS实现单行、多行文本溢出显示省略号（…） | Jarze</title>
+  <title>归档: 2022/5 | Jarze</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="如果实现单行文本的溢出显示省略号同学们应该都知道用 text-overflow:ellipsis 属性来，当然还需要加宽度 width 属来兼容部分浏览。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="CSS实现单行、多行文本溢出显示省略号（…）">
-<meta property="og:url" content="https://jarze.github.io/Blog/text-overflow/index.html">
+  <meta name="description" content="学习笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jarze">
+<meta property="og:url" content="https://jarze.github.io/Blog/archives/2022/05/index.html">
 <meta property="og:site_name" content="Jarze">
-<meta property="og:description" content="如果实现单行文本的溢出显示省略号同学们应该都知道用 text-overflow:ellipsis 属性来，当然还需要加宽度 width 属来兼容部分浏览。">
+<meta property="og:description" content="学习笔记">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jarze.github.io/Blog/text-overflow/one-line.jpg">
-<meta property="og:image" content="https://jarze.github.io/Blog/text-overflow/muti-line.jpg">
-<meta property="og:image" content="https://jarze.github.io/Blog/text-overflow/muti-line-2.jpg">
-<meta property="article:published_time" content="2020-06-28T15:41:18.000Z">
-<meta property="article:modified_time" content="2022-05-24T06:15:09.012Z">
 <meta property="article:author" content="jarze blog ~~~">
-<meta property="article:tag" content="css">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jarze.github.io/Blog/text-overflow/one-line.jpg">
   
   
     <link rel="icon" href="/Blog/css/images/favicon.png">
@@ -113,110 +106,39 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-text-overflow" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Blog/text-overflow/" class="article-date">
-  <time class="dt-published" datetime="2020-06-28T15:41:18.000Z" itemprop="datePublished">2020-06-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/Blog/categories/Front/">Front</a>►<a class="article-category-link" href="/Blog/categories/Front/css/">css</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="p-name article-title" itemprop="headline name">
-      CSS实现单行、多行文本溢出显示省略号（…）
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/Blog/archives/2022" class="archive-year">2022</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/Blog/hello-world/" class="archive-article-date">
+  <time class="dt-published" datetime="2022-05-24T06:15:09.008Z" itemprop="datePublished">5月 24</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/Blog/hello-world/">Hello World</a>
     </h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>如果实现单行文本的溢出显示省略号同学们应该都知道用 <code>text-overflow:ellipsis</code> 属性来，当然还需要加宽度 <code>width</code> 属来兼容部分浏览。</p>
-<a id="more"></a>
-
-<p><strong>实现方法：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">overflow: hidden;</span><br><span class="line">text-overflow:ellipsis;</span><br><span class="line">white-space: nowrap;</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果如图：</strong></p>
-<img src="/Blog/text-overflow/one-line.jpg" class>
-
-<p>但是这个属性只支持单行文本的溢出显示省略号，如果我们要实现多行文本溢出显示省略号呢。<br>接下来重点说一说多行文本溢出显示省略号，如下。</p>
-<p><strong>实现方法：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">display: -webkit-box;</span><br><span class="line">-webkit-box-orient: vertical;</span><br><span class="line">-webkit-line-clamp: <span class="number">3</span>;</span><br><span class="line">overflow: hidden;</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果如图：</strong></p>
-<img src="/Blog/text-overflow/muti-line.jpg" class>
-
-<p><strong>适用范围：</strong><br>因使用了 <code>WebKit</code> 的 <code>CSS</code> 扩展属性，该方法适用于 <code>WebKit</code> 浏览器及移动端；<br><em>注：</em></p>
-<ul>
-<li><code>-webkit-line-clamp</code> 用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的 <code>WebKit</code> 属性。常见结合属性：</li>
-<li><code>display: -webkit-box</code>; 必须结合的属性 ，将对象作为弹性伸缩盒子模型显示 。</li>
-<li><code>-webkit-box-orient</code> 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 。</li>
-</ul>
-<p><strong>实现方法：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">p&#123;</span><br><span class="line">	position: relative; line-height: <span class="number">20</span>px; max-height: <span class="number">40</span>px;overflow: hidden;</span><br><span class="line">	&#125;</span><br><span class="line">p::after&#123;</span><br><span class="line">	content: <span class="string">"..."</span>; position: absolute; bottom: <span class="number">0</span>; right: <span class="number">0</span>; padding-left: <span class="number">40</span>px;</span><br><span class="line">	background: -webkit-linear-gradient(left, transparent, #fff 55%);</span><br><span class="line">	background: -o-linear-gradient(right, transparent, #fff 55%);</span><br><span class="line">	background: -moz-linear-gradient(right, transparent, #fff 55%);</span><br><span class="line">	background: linear-gradient(to right, transparent, #fff 55%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果如图：</strong></p>
-<img src="/Blog/text-overflow/muti-line-2.jpg" class>
-
-<p><strong>适用范围：</strong><br>该方法适用范围广，但文字未超出行的情况下也会出现省略号,可结合 <code>js</code> 优化该方法。<br><em>注：</em></p>
-<ul>
-<li>将 <code>height</code> 设置为 <code>line-height</code> 的整数倍，防止超出的文字露出。</li>
-<li>给 <code>p::after</code> 添加渐变背景可避免文字只显示一半。</li>
-<li>由于 <code>ie6-7</code> 不显示 <code>content</code> 内容，所以要添加标签兼容 <code>ie6-7</code>（如：<code>&lt;span&gt;…&lt;span/&gt;</code>）；兼容 ie8 需要将<code>::after</code> 替换成<code>:after</code>。</li>
-</ul>
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"7cff2fe5351a4771a8ca","clientSecret":"44cbb554920d2d11a7882f71536207a73e848cf4","repo":"Blog","owner":"jarze","admin":["jarze"],"distractionFreeMode":false};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/text-overflow/" data-id="cl3jrjpuf0015flsg5rvi6by3" data-title="CSS实现单行、多行文本溢出显示省略号（…）" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/css/" rel="tag">css</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/Blog/mobx-basic/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          MobX 基础介绍
-        
-      </div>
-    </a>
-  
-  
-    <a href="/Blog/package/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">package.json 中 npm 依赖包版本前的符号的意义</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
 
 </section>
