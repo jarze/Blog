@@ -15,19 +15,20 @@
 <!-- End Google Analytics -->
 
   
-  <title>npm-scripts | Jarze</title>
+  <title>mobx-可观察对象 | Jarze</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="npm scripts 使用指南">
+  <meta name="description" content="https:&#x2F;&#x2F;zh.mobx.js.org&#x2F;observable-state.html      makeObservable makeAutoObservable observable 可用的注解">
 <meta property="og:type" content="article">
-<meta property="og:title" content="npm-scripts">
-<meta property="og:url" content="https://jarze.github.io/Blog/npm-scripts/index.html">
+<meta property="og:title" content="mobx-可观察对象">
+<meta property="og:url" content="https://jarze.github.io/Blog/mobx-2/index.html">
 <meta property="og:site_name" content="Jarze">
-<meta property="og:description" content="npm scripts 使用指南">
+<meta property="og:description" content="https:&#x2F;&#x2F;zh.mobx.js.org&#x2F;observable-state.html      makeObservable makeAutoObservable observable 可用的注解">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-10T14:57:18.000Z">
+<meta property="article:published_time" content="2022-05-24T10:59:05.000Z">
 <meta property="article:modified_time" content="2022-06-30T03:25:41.056Z">
 <meta property="article:author" content="jarze blog ~~~">
-<meta property="article:tag" content="npm">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="mobx">
 <meta name="twitter:card" content="summary">
   
   
@@ -109,14 +110,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-npm-scripts" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-mobx-2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/Blog/npm-scripts/" class="article-date">
-  <time class="dt-published" datetime="2021-12-10T14:57:18.000Z" itemprop="datePublished">2021-12-10</time>
+    <a href="/Blog/mobx-2/" class="article-date">
+  <time class="dt-published" datetime="2022-05-24T10:59:05.000Z" itemprop="datePublished">2022-05-24</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/Blog/categories/Front/">Front</a>
+    <a class="article-category-link" href="/Blog/categories/Front/">Front</a>►<a class="article-category-link" href="/Blog/categories/Front/js/">js</a>
   </div>
 
   </div>
@@ -127,7 +128,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      npm-scripts
+      mobx-可观察对象
     </h1>
   
 
@@ -135,59 +136,111 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a href="https://www.ruanyifeng.com/blog/2016/10/npm_scripts.html" target="_blank" rel="noopener">npm scripts 使用指南</a></p>
+        <ul>
+<li><a href="https://zh.mobx.js.org/observable-state.html" target="_blank" rel="noopener">https://zh.mobx.js.org/observable-state.html</a></li>
+</ul>
+<hr>
+<!-- toc -->
+
+<ul>
+<li><a href="#makeobservable"><code>makeObservable</code></a></li>
+<li><a href="#makeautoobservable"><code>makeAutoObservable</code></a></li>
+<li><a href="#observable"><code>observable</code></a></li>
+<li><a href="#可用的注解">可用的注解</a></li>
+</ul>
+<!-- tocstop -->
+
+<hr>
 <a id="more"></a>
 
-<h2><span id="通配符">通配符</span></h2><p>由于 npm 脚本就是 Shell 脚本，因为可以使用 Shell 通配符。</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"lint"</span>: <span class="string">"jshint *.js"</span></span><br><span class="line"><span class="string">"lint"</span>: <span class="string">"jshint **/*.js"</span></span><br></pre></td></tr></table></figure>
+<style id="none-comment"></style>
 
-<p>上面代码中，*表示任意文件名，**表示任意一层子目录。</p>
-<p>如果要将通配符传入原始命令，防止被 Shell 转义，要将星号转义。</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"test"</span>: <span class="string">"tap test/\*.js"</span></span><br></pre></td></tr></table></figure>
+<h2><span id="makeobservable"><code>makeObservable</code></span></h2><p>用法：</p>
+<ul>
+<li><code>makeObservable(target, annotations?, options?)</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; makeObservable, observable, computed, action, flow &#125; <span class="keyword">from</span> <span class="string">"mobx"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Doubler</span> </span>&#123;</span><br><span class="line">    value</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(value) &#123;</span><br><span class="line">        makeObservable(<span class="keyword">this</span>, &#123;</span><br><span class="line">            value: observable,</span><br><span class="line">            double: computed,</span><br><span class="line">            increment: action,</span><br><span class="line">            fetch: flow</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">this</span>.value = value</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">get</span> double() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.value * <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    increment() &#123;</span><br><span class="line">        <span class="keyword">this</span>.value++</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    *fetch() &#123;</span><br><span class="line">        <span class="keyword">const</span> response = <span class="keyword">yield</span> fetch(<span class="string">"/api/value"</span>)</span><br><span class="line">        <span class="keyword">this</span>.value = response.json()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2><span id="传参">传参</span></h2><p>向 npm 脚本传入参数，要使用<code>--</code>标明。</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"lint"</span>: <span class="string">"jshint **.js"</span></span><br></pre></td></tr></table></figure>
+<h2><span id="makeautoobservable"><code>makeAutoObservable</code></span></h2><p>使用：</p>
+<ul>
+<li><code>makeAutoObservable(target, overrides?, options?)</code></li>
+</ul>
+<p><code>makeAutoObservable</code> 就像是加强版的 <code>makeObservable</code>，在默认情况下它将推断所有的属性。你仍然可以使用 <code>overrides</code> 重写某些注解的默认行为</p>
+<p>推断规则：</p>
+<ul>
+<li>所有 自有 属性都成为 <code>observable</code>。</li>
+<li>所有 <code>getters</code> 都成为 <code>computed</code>。</li>
+<li>所有 <code>setters</code> 都成为 <code>action</code>。</li>
+<li>所有 <code>prototype</code> 中的 <code>functions</code> 都成为 <code>autoAction</code>。</li>
+<li>所有 <code>prototype</code> 中的 <code>generator functions</code> 都成为 <code>flow</code>。（需要注意，<code>generators</code> 函数在某些编译器配置中无法被检测到，如果 <code>flow</code> 没有正常运行，请务必明确地指定 <code>flow</code> 注解。）</li>
+<li>在 <code>overrides</code> 参数中标记为 <code>false</code> 的成员将不会被添加注解。例如，将其用于像标识符这样的只读字段。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; makeAutoObservable &#125; <span class="keyword">from</span> <span class="string">"mobx"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createDoubler</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> makeAutoObservable(&#123;</span><br><span class="line">        value,</span><br><span class="line">        <span class="keyword">get</span> double() &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.value * <span class="number">2</span></span><br><span class="line">        &#125;,</span><br><span class="line">        increment() &#123;</span><br><span class="line">            <span class="keyword">this</span>.value++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>向上面的 npm run lint 命令传入参数，必须写成下面这样。</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run lint --  --reporter checkstyle &gt; checkstyle.xml</span><br></pre></td></tr></table></figure>
-
-<p>也可以在 package.json 里面再封装一个命令。</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"lint"</span>: <span class="string">"jshint **.js"</span>,</span><br><span class="line"><span class="string">"lint:checkstyle"</span>: <span class="string">"npm run lint -- --reporter checkstyle &gt; checkstyle.xml"</span></span><br></pre></td></tr></table></figure>
-
-<h2><span id="执行顺序">执行顺序</span></h2><p>如果 npm 脚本里面需要执行多个任务，那么需要明确它们的执行顺序。<br>如果是并行执行（即同时的平行执行），可以使用&amp;符号。</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run script1.js &amp; npm run script2.js</span><br></pre></td></tr></table></figure>
-
-<p>如果是继发执行（即只有前一个任务成功，才执行下一个任务），可以使用&amp;&amp;符号。</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run script1.js &amp;&amp; npm run script2.js</span><br></pre></td></tr></table></figure>
-
-<p>这两个符号是 Bash 的功能。此外，还可以使用 node 的任务管理模块：script-runner、npm-run-all、redrun。</p>
-<h2><span id="默认值">默认值</span></h2><p>一般来说，npm 脚本由用户提供。但是，npm 对两个脚本提供了默认值。也就是说，这两个脚本不用定义，就可以直接使用。</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"start"</span>: <span class="string">"node server.js"</span>，</span><br><span class="line"><span class="string">"install"</span>: <span class="string">"node-gyp rebuild"</span></span><br></pre></td></tr></table></figure>
-
-<p>上面代码中，npm run start 的默认值是 node server.js，前提是项目根目录下有 server.js 这个脚本；npm run install 的默认值是 node-gyp rebuild，前提是项目根目录下有 binding.gyp 文件。</p>
-<h2><span id="钩子">钩子</span></h2><p>npm 脚本有 <strong><code>pre</code></strong>和 <strong><code>post</code></strong> 两个钩子。举例来说，<code>build</code> 脚本命令的钩子就是 <code>prebuild</code> 和 <code>postbuild</code>。</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"prebuild"</span>: <span class="string">"echo I run before the build script"</span>,</span><br><span class="line"><span class="string">"build"</span>: <span class="string">"cross-env NODE_ENV=production webpack"</span>,</span><br><span class="line"><span class="string">"postbuild"</span>: <span class="string">"echo I run after the build script"</span></span><br></pre></td></tr></table></figure>
-
-<p>用户执行 npm run build 的时候，会自动按照下面的顺序执行。</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run prebuild &amp;&amp; npm run build &amp;&amp; npm run postbuild</span><br></pre></td></tr></table></figure>
-
-<p>因此，可以在这两个钩子里面，完成一些准备工作和清理工作。下面是一个例子。</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"clean"</span>: <span class="string">"rimraf ./dist &amp;&amp; mkdir dist"</span>,</span><br><span class="line"><span class="string">"prebuild"</span>: <span class="string">"npm run clean"</span>,</span><br><span class="line"><span class="string">"build"</span>: <span class="string">"cross-env NODE_ENV=production webpack"</span></span><br></pre></td></tr></table></figure>
-
-<p>npm 默认提供下面这些钩子。</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">prepublish，postpublish</span><br><span class="line">preinstall，postinstall</span><br><span class="line">preuninstall，postuninstall</span><br><span class="line">preversion，postversion</span><br><span class="line">pretest，posttest</span><br><span class="line">prestop，poststop</span><br><span class="line">prestart，poststart</span><br><span class="line">prerestart，postrestart</span><br></pre></td></tr></table></figure>
-
-<p>npm start、npm stop 和 npm restart 都比较好理解，而 npm restart 是一个复合命令，实际上会执行三个脚本命令：stop、restart、start。具体的执行顺序如下。</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">prerestart</span><br><span class="line">prestop</span><br><span class="line">stop</span><br><span class="line">poststop</span><br><span class="line">restart</span><br><span class="line">prestart</span><br><span class="line">start</span><br><span class="line">poststart</span><br><span class="line">postrestart</span><br></pre></td></tr></table></figure>
-
-<p>而发包的生命周期更为复杂，当执行 <code>npm publish</code>，将自动执行以下脚本。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">prepublishOnly; <span class="comment">// 最重要的一个生命周期。</span></span><br><span class="line">prepack;</span><br><span class="line">prepare; <span class="comment">//npm install 之后自动执行,npm publish 之前自动执行</span></span><br><span class="line">postpack;</span><br><span class="line">publish;</span><br><span class="line">postpublish;</span><br></pre></td></tr></table></figure>
-
-<p>当然你无需完全记住所有的生命周期，如果你需要在发包之前自动做一些事情，如测试、构建等，请在 <code>prepulishOnly</code> 中完成。</p>
-<h2><span id="变量">变量</span></h2><p>npm 脚本有一个非常强大的功能，就是可以使用 npm 的内部变量。<br>首先，通过<code>npm_package_</code>前缀，npm 脚本可以拿到 package.json 里面的字段。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; view.js</span><br><span class="line">console.log(process.env.npm_package_name); &#x2F;&#x2F; foo</span><br><span class="line">console.log(process.env.npm_package_version); &#x2F;&#x2F; 1.2.5</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># env 命令可以列出所有环境变量。</span></span><br><span class="line"><span class="string">"env"</span>: <span class="string">"env"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过npm_package_前缀，npm 脚本可以拿到package.json里面的字段</span></span><br><span class="line">console.log(process.env.npm_package_name); // foo</span><br><span class="line">console.log(process.env.npm_package_version); // 1.2.5</span><br><span class="line"></span><br><span class="line"><span class="comment"># npm 脚本还可以通过npm_config_前缀，拿到 npm 的配置变量</span></span><br><span class="line"><span class="string">"view"</span>: <span class="string">"echo <span class="variable">$npm_config_tag</span>"</span>,</span><br></pre></td></tr></table></figure>
+<h2><span id="observable"><code>observable</code></span></h2><h2><span id="可用的注解">可用的注解</span></h2><table>
+<thead>
+<tr>
+<th>注解</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>observable</code></td>
+<td>observable.deep    定义一个存储 state 的可跟踪字段。如果可能，任何被赋值给 observable 的字段都会基于它自己的类型被（深</td>
+</tr>
+<tr>
+<td><code>observable.ref</code></td>
+<td>类似于 observable，但只有重新赋值才会被追踪。所赋的值会被完全忽略，并且将不会主动转化为</td>
+</tr>
+<tr>
+<td><code>observable.shallow</code></td>
+<td>类似于 observable.ref 但是是用于集合的。任何所赋的集合都会被转化为可观察值，但是其内部的值并不</td>
+</tr>
+<tr>
+<td><code>observable.struct</code></td>
+<td>类似于 observable，但是会忽略所赋的值中所有在结构上与当前值相同的值。</td>
+</tr>
+<tr>
+<td><code>action</code></td>
+<td>把一个函数标记为会修改state 的 action。查看 actions 获取更多信息。不可写。</td>
+</tr>
+<tr>
+<td><code>action.bound</code></td>
+<td>类似于 action，但是会将 action 绑定到实例，因此将始终设置 this。不可写。</td>
+</tr>
+<tr>
+<td><code>computed</code></td>
+<td>可以用在getter 上，用来将其声明为可缓存的派生值。查看 computeds 获取更多信息。</td>
+</tr>
+<tr>
+<td><code>computed.struct</code></td>
+<td>类似于 computed，但如果重新计算后的结果在结构上与之前的结果相等，那么观察者将不会收到通知。</td>
+</tr>
+<tr>
+<td><code>true</code></td>
+<td>推断最佳注解。查看makeAutoObservable 获取更多信息。</td>
+</tr>
+<tr>
+<td><code>false</code></td>
+<td>刻意不为该属性指定注解。</td>
+</tr>
+<tr>
+<td><code>flow</code></td>
+<td>创建一个 flow 管理异步进程。查看 flow 获取更多信息。需要注意的是，推断出来的 TypeScript 返回类型可能会出错。</td>
+</tr>
+<tr>
+<td><code>flow.bound</code></td>
+<td>类似于 flow, 但是会将 flow 绑定到实例，因此将始终设置 this。 不可写。</td>
+</tr>
+<tr>
+<td><code>override</code></td>
+<td>用于子类覆盖继承的action，flow，computed，action.bound。</td>
+</tr>
+<tr>
+<td><code>autoAction</code></td>
+<td>不应被显式调用，但 makeAutoObservable 内部会对其进行调用，以便根据调用上下文将方法标识为 action 或者</td>
+</tr>
+</tbody></table>
 
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -201,11 +254,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/npm-scripts/" data-id="cl50gsb1m0011elpsf884he3w" data-title="npm-scripts" class="article-share-link">分享</a>
+      <a data-url="https://jarze.github.io/Blog/mobx-2/" data-id="cl50gsb1j000velpseakygylv" data-title="mobx-可观察对象" class="article-share-link">分享</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/npm/" rel="tag">npm</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/mobx/" rel="tag">mobx</a></li></ul>
 
     </footer>
   </div>
@@ -213,19 +266,19 @@
     
 <nav id="article-nav">
   
-    <a href="/Blog/commitizen%E8%A7%84%E8%8C%83/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/Blog/curl/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前一篇</strong>
       <div class="article-nav-title">
         
-          commitizen规范
+          curl
         
       </div>
     </a>
   
   
-    <a href="/Blog/docker-%E5%91%BD%E4%BB%A4/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/Blog/Accessibility/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">docker-命令</div>
+      <div class="article-nav-title">无障碍与可访问-Accessibility</div>
     </a>
   
 </nav>

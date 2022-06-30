@@ -111,7 +111,7 @@
     <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/Blog/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2022-06-16T06:29:57.544Z" itemprop="datePublished">2022-06-16</time>
+  <time class="dt-published" datetime="2022-06-30T03:25:41.056Z" itemprop="datePublished">2022-06-30</time>
 </a>
     
   </div>
@@ -139,7 +139,59 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/hello-world/" data-id="cl4gn7ref0000dpwq67w80j31" data-title="Hello World" class="article-share-link">分享</a>
+      <a data-url="https://jarze.github.io/Blog/hello-world/" data-id="cl50gsb000000elps1qstaj70" data-title="Hello World" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-nginx-配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Blog/nginx-%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time class="dt-published" datetime="2022-06-28T16:01:06.000Z" itemprop="datePublished">2022-06-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Blog/nginx-%E9%85%8D%E7%BD%AE/">nginx-配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+
+<h1><span id="nginx解决no-resolver-defined-to-resolve-xxxxxx">Nginx解决“no resolver defined to resolve xxx.xxx”</span></h1><p>在nginx的配置文件中的<code>http{}</code>部分添加一行 <code>resolver 8.8.8.8;</code></p>
+<h1><span id="nginx反向代理处理301-302跳转">nginx反向代理处理301、302跳转</span></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">        proxy_pass http:&#x2F;&#x2F;127.0.0.1:8081;</span><br><span class="line">				# 确定代码大于或等于 300 的代理响应是否应传递给客户端或被拦截并重定向到 nginx 以使用error_page指令进行处理。</span><br><span class="line">        proxy_intercept_errors on;</span><br><span class="line">				#使用error_page 指令 启用或禁用执行多个重定向 。这种重定向的数量是有限的。</span><br><span class="line">				recursive_error_pages on;</span><br><span class="line">        error_page 301 302 307 &#x3D; @handle_redirects;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location @handle_redirects &#123;</span><br><span class="line">      set $saved_redirect_location $upstream_http_location;</span><br><span class="line">      proxy_pass $saved_redirect_location;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1><span id="nginx-配置-html-不缓存">nginx 配置 html 不缓存</span></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">location ~.*\.(htm|html)$ &#123;</span><br><span class="line">   root &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;</span><br><span class="line">   index index.html index.htm;</span><br><span class="line">   try_files $uri &#x2F;index.html;</span><br><span class="line">   add_header Cache-Control &#39;no-cache, no-store, must-revalidate&#39;;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"7cff2fe5351a4771a8ca","clientSecret":"44cbb554920d2d11a7882f71536207a73e848cf4","repo":"Blog","owner":"jarze","admin":["jarze"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jarze.github.io/Blog/nginx-%E9%85%8D%E7%BD%AE/" data-id="cl50gsb1k000xelpsa7oga0c4" data-title="nginx-配置" class="article-share-link">分享</a>
       
       
       
@@ -185,10 +237,73 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/curl/" data-id="cl4gn7rft000gdpwqdnvlhius" data-title="curl" class="article-share-link">分享</a>
+      <a data-url="https://jarze.github.io/Blog/curl/" data-id="cl50gsb1c000gelps9mpw9373" data-title="curl" class="article-share-link">分享</a>
       
       
       
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-mobx-2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Blog/mobx-2/" class="article-date">
+  <time class="dt-published" datetime="2022-05-24T10:59:05.000Z" itemprop="datePublished">2022-05-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/Blog/categories/Front/">Front</a>►<a class="article-category-link" href="/Blog/categories/Front/js/">js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Blog/mobx-2/">mobx-可观察对象</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a href="https://zh.mobx.js.org/observable-state.html" target="_blank" rel="noopener">https://zh.mobx.js.org/observable-state.html</a></li>
+</ul>
+<hr>
+<!-- toc -->
+
+<ul>
+<li><a href="#makeobservable"><code>makeObservable</code></a></li>
+<li><a href="#makeautoobservable"><code>makeAutoObservable</code></a></li>
+<li><a href="#observable"><code>observable</code></a></li>
+<li><a href="#可用的注解">可用的注解</a></li>
+</ul>
+<!-- tocstop -->
+
+<hr>
+        
+          <p class="article-more-link">
+            <a href="/Blog/mobx-2/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jarze.github.io/Blog/mobx-2/" data-id="cl50gsb1j000velpseakygylv" data-title="mobx-可观察对象" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/mobx/" rel="tag">mobx</a></li></ul>
+
     </footer>
   </div>
   
@@ -431,7 +546,7 @@ h3 {
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/Accessibility/" data-id="cl4gn7rgr002mdpwq8dk819ga" data-title="无障碍与可访问-Accessibility" class="article-share-link">分享</a>
+      <a data-url="https://jarze.github.io/Blog/Accessibility/" data-id="cl50gsb2d002telps0anl2gzf" data-title="无障碍与可访问-Accessibility" class="article-share-link">分享</a>
       
       
       
@@ -483,7 +598,7 @@ h3 {
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/package-json%E9%85%8D%E7%BD%AE%E9%A1%B9/" data-id="cl4gn7rg10011dpwqg7vx6b7s" data-title="package.json配置项" class="article-share-link">分享</a>
+      <a data-url="https://jarze.github.io/Blog/package-json%E9%85%8D%E7%BD%AE%E9%A1%B9/" data-id="cl50gsb1q0019elpse6twdptd" data-title="package.json配置项" class="article-share-link">分享</a>
       
       
       
@@ -533,7 +648,7 @@ h3 {
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/commitizen%E8%A7%84%E8%8C%83/" data-id="cl4gn7rfp0007dpwq5cg90pgf" data-title="commitizen规范" class="article-share-link">分享</a>
+      <a data-url="https://jarze.github.io/Blog/commitizen%E8%A7%84%E8%8C%83/" data-id="cl50gsb170007elps2r15gvps" data-title="commitizen规范" class="article-share-link">分享</a>
       
       
       
@@ -582,7 +697,7 @@ h3 {
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/npm-scripts/" data-id="cl4gn7rfz000vdpwq1bvvef8l" data-title="npm-scripts" class="article-share-link">分享</a>
+      <a data-url="https://jarze.github.io/Blog/npm-scripts/" data-id="cl50gsb1m0011elpsf884he3w" data-title="npm-scripts" class="article-share-link">分享</a>
       
       
       
@@ -643,7 +758,7 @@ h3 {
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/docker-%E5%91%BD%E4%BB%A4/" data-id="cl4gn7rfu000idpwq1dolbkps" data-title="docker-命令" class="article-share-link">分享</a>
+      <a data-url="https://jarze.github.io/Blog/docker-%E5%91%BD%E4%BB%A4/" data-id="cl50gsb1d000ielpsgzszeuc7" data-title="docker-命令" class="article-share-link">分享</a>
       
       
       
@@ -697,193 +812,11 @@ h3 {
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/docker-1/" data-id="cl4gn7rgs002ndpwq3t1fg8h1" data-title="docker-1" class="article-share-link">分享</a>
+      <a data-url="https://jarze.github.io/Blog/docker-1/" data-id="cl50gsb2e002uelpsap6xce44" data-title="docker-1" class="article-share-link">分享</a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/docker/" rel="tag">docker</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-css单位" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Blog/css%E5%8D%95%E4%BD%8D/" class="article-date">
-  <time class="dt-published" datetime="2021-01-29T11:22:37.000Z" itemprop="datePublished">2021-01-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/Blog/categories/Front/">Front</a>►<a class="article-category-link" href="/Blog/categories/Front/css/">css</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Blog/css%E5%8D%95%E4%BD%8D/">css单位</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h1><blockquote>
-<p>下表中的数字表示支持该长度单位的最低浏览器版本。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>长度单位</th>
-<th>Chrome</th>
-<th>IE</th>
-<th>Firefox</th>
-<th>Safari</th>
-<th>Opera</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>em, ex, %, px, cm, mm, in, pt, pc</td>
-<td>1.0</td>
-<td>3.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>3.5</td>
-</tr>
-<tr>
-<td>ch</td>
-<td>27.0</td>
-<td>9.0</td>
-<td>1.0</td>
-<td>7.0</td>
-<td>20.0</td>
-</tr>
-<tr>
-<td>rem</td>
-<td>4.0</td>
-<td>9.0</td>
-<td>3.6</td>
-<td>4.1</td>
-<td>11.6</td>
-</tr>
-<tr>
-<td>vh</td>
-<td>, vw</td>
-<td>20.0</td>
-<td>9.0</td>
-<td>19.0</td>
-<td>6.0 20.0</td>
-</tr>
-<tr>
-<td>vmin</td>
-<td>20.0</td>
-<td>9.0*</td>
-<td>19.0</td>
-<td>6.0</td>
-<td>20.0</td>
-</tr>
-<tr>
-<td>vmax</td>
-<td>26.0</td>
-<td>不支持</td>
-<td>19.0</td>
-<td>不支持</td>
-<td>20.0</td>
-</tr>
-</tbody></table>
-        
-          <p class="article-more-link">
-            <a href="/Blog/css%E5%8D%95%E4%BD%8D/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/css%E5%8D%95%E4%BD%8D/" data-id="cl4gn7rfs000cdpwq3aac5q7x" data-title="css单位" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/css/" rel="tag">css</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-links" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Blog/links/" class="article-date">
-  <time class="dt-published" datetime="2021-01-26T17:21:37.000Z" itemprop="datePublished">2021-01-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/Blog/categories/%E5%B7%A5%E5%85%B7%E6%9F%A5%E8%AF%A2/">工具查询</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Blog/links/">links</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <hr>
-<br />
-<style>
-details { user-select: none; }
-details[open] summary {text-shadow: #FC0 1px 0 10px;}
-summary h1 { display: inline; line-height: 1.5em !important; }
-summary:focus { outline: none; }
-summary+* { padding-left: 2em; }
-</style>
-
-<p><a href="https://github.com/jarze/Blog/edit/page/source/_posts/links/index.md" target="_blank" rel="noopener">➲ 去编辑</a></p>
-<hr>
-<details open="open"><summary><h1>🤡 图片处理</h1></summary>
-
-<ul>
-<li><a href="https://docsmall.com/" target="_blank" rel="noopener"><strong><code>docsmall</code></strong></a> <em>(在线 jpg、png、gif 压缩缩放)</em></li>
-<li><a href="https://tinypng.com" target="_blank" rel="noopener"><strong>TinyPNG</strong></a> <em>(jpg、png 智能压缩)</em></li>
-<li><a href="https://zhitu.isux.us" target="_blank" rel="noopener"><strong>智图</strong></a> <em>(图片压缩在线工具)</em></li>
-<li><a href="https://img.top" target="_blank" rel="noopener"><strong>img.top</strong></a> <em>(智能图片压缩)</em></li>
-<li><a href="https://www.soogif.com" target="_blank" rel="noopener"><strong>soogif</strong></a> <em>(免费动图在线制作工具)</em></li>
-<li><a href="https://ezgif.com" target="_blank" rel="noopener"><strong>ezgif</strong></a> <em>(GIF 全能编辑器)</em></li>
-</ul>
-</details>
-        
-          <p class="article-more-link">
-            <a href="/Blog/links/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/links/" data-id="cl4gn7rfx000odpwqbihp4b8g" data-title="links" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/link/" rel="tag">link</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/tool/" rel="tag">tool</a></li></ul>
 
     </footer>
   </div>
@@ -928,7 +861,7 @@ summary+* { padding-left: 2em; }
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/Blog/tags/Accessibility/" style="font-size: 10px;">Accessibility</a> <a href="/Blog/tags/Node/" style="font-size: 10px;">Node</a> <a href="/Blog/tags/WCAG/" style="font-size: 10px;">WCAG</a> <a href="/Blog/tags/commander/" style="font-size: 10px;">commander</a> <a href="/Blog/tags/css/" style="font-size: 13.33px;">css</a> <a href="/Blog/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/Blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/Blog/tags/eslint/" style="font-size: 10px;">eslint</a> <a href="/Blog/tags/git/" style="font-size: 10px;">git</a> <a href="/Blog/tags/js/" style="font-size: 20px;">js</a> <a href="/Blog/tags/link/" style="font-size: 10px;">link</a> <a href="/Blog/tags/make/" style="font-size: 10px;">make</a> <a href="/Blog/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/Blog/tags/mobx/" style="font-size: 13.33px;">mobx</a> <a href="/Blog/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/Blog/tags/npm/" style="font-size: 16.67px;">npm</a> <a href="/Blog/tags/puml/" style="font-size: 10px;">puml</a> <a href="/Blog/tags/shell/" style="font-size: 10px;">shell</a> <a href="/Blog/tags/tool/" style="font-size: 16.67px;">tool</a> <a href="/Blog/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/Blog/tags/webpack/" style="font-size: 10px;">webpack</a>
+      <a href="/Blog/tags/Accessibility/" style="font-size: 10px;">Accessibility</a> <a href="/Blog/tags/Node/" style="font-size: 10px;">Node</a> <a href="/Blog/tags/WCAG/" style="font-size: 10px;">WCAG</a> <a href="/Blog/tags/commander/" style="font-size: 10px;">commander</a> <a href="/Blog/tags/css/" style="font-size: 13.33px;">css</a> <a href="/Blog/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/Blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/Blog/tags/eslint/" style="font-size: 10px;">eslint</a> <a href="/Blog/tags/git/" style="font-size: 10px;">git</a> <a href="/Blog/tags/js/" style="font-size: 20px;">js</a> <a href="/Blog/tags/link/" style="font-size: 10px;">link</a> <a href="/Blog/tags/make/" style="font-size: 10px;">make</a> <a href="/Blog/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/Blog/tags/mobx/" style="font-size: 16.67px;">mobx</a> <a href="/Blog/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/Blog/tags/npm/" style="font-size: 16.67px;">npm</a> <a href="/Blog/tags/puml/" style="font-size: 10px;">puml</a> <a href="/Blog/tags/shell/" style="font-size: 10px;">shell</a> <a href="/Blog/tags/tool/" style="font-size: 16.67px;">tool</a> <a href="/Blog/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/Blog/tags/webpack/" style="font-size: 10px;">webpack</a>
     </div>
   </div>
 
@@ -954,19 +887,19 @@ summary+* { padding-left: 2em; }
           </li>
         
           <li>
+            <a href="/Blog/nginx-%E9%85%8D%E7%BD%AE/">nginx-配置</a>
+          </li>
+        
+          <li>
             <a href="/Blog/curl/">curl</a>
           </li>
         
           <li>
+            <a href="/Blog/mobx-2/">mobx-可观察对象</a>
+          </li>
+        
+          <li>
             <a href="/Blog/Accessibility/">无障碍与可访问-Accessibility</a>
-          </li>
-        
-          <li>
-            <a href="/Blog/package-json%E9%85%8D%E7%BD%AE%E9%A1%B9/">package.json配置项</a>
-          </li>
-        
-          <li>
-            <a href="/Blog/commitizen%E8%A7%84%E8%8C%83/">commitizen规范</a>
           </li>
         
       </ul>
