@@ -4,6 +4,8 @@ date: 2022-06-28 16:01:06
 tags:
 ---
 
+---
+
 <!-- more -->
 
 # Nginx解决“no resolver defined to resolve xxx.xxx”
@@ -39,7 +41,7 @@ server {
 
 ``` conf
 
-   location ~.*\.(htm|html)$ {
+    location ~.*\.(htm|html)$ {
       root /usr/share/nginx/html;
       index index.html index.htm;
       try_files $uri /index.html;
