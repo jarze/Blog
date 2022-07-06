@@ -17,15 +17,13 @@
   
   <title>nginx-配置 | Jarze</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Nginx解决“no resolver defined to resolve xxx.xxx”在nginx的配置文件中的http{}部分添加一行 resolver 8.8.8.8; nginx反向代理处理301、302跳转1234567891011121314151617server &amp;#123;    ...    location &#x2F; &amp;#123;        proxy_pa">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="article">
 <meta property="og:title" content="nginx-配置">
 <meta property="og:url" content="https://jarze.github.io/Blog/nginx-%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Jarze">
-<meta property="og:description" content="Nginx解决“no resolver defined to resolve xxx.xxx”在nginx的配置文件中的http{}部分添加一行 resolver 8.8.8.8; nginx反向代理处理301、302跳转1234567891011121314151617server &amp;#123;    ...    location &#x2F; &amp;#123;        proxy_pa">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-28T16:01:06.000Z">
-<meta property="article:modified_time" content="2022-06-30T03:25:41.056Z">
+<meta property="article:modified_time" content="2022-07-06T07:16:53.768Z">
 <meta property="article:author" content="jarze blog ~~~">
 <meta name="twitter:card" content="summary">
   
@@ -130,12 +128,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
+        <hr>
+<a id="more"></a>
 
 <h1><span id="nginx解决no-resolver-defined-to-resolve-xxxxxx">Nginx解决“no resolver defined to resolve xxx.xxx”</span></h1><p>在nginx的配置文件中的<code>http{}</code>部分添加一行 <code>resolver 8.8.8.8;</code></p>
 <h1><span id="nginx反向代理处理301-302跳转">nginx反向代理处理301、302跳转</span></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">        proxy_pass http:&#x2F;&#x2F;127.0.0.1:8081;</span><br><span class="line">				# 确定代码大于或等于 300 的代理响应是否应传递给客户端或被拦截并重定向到 nginx 以使用error_page指令进行处理。</span><br><span class="line">        proxy_intercept_errors on;</span><br><span class="line">				#使用error_page 指令 启用或禁用执行多个重定向 。这种重定向的数量是有限的。</span><br><span class="line">				recursive_error_pages on;</span><br><span class="line">        error_page 301 302 307 &#x3D; @handle_redirects;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location @handle_redirects &#123;</span><br><span class="line">      set $saved_redirect_location $upstream_http_location;</span><br><span class="line">      proxy_pass $saved_redirect_location;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<h1><span id="nginx-配置-html-不缓存">nginx 配置 html 不缓存</span></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">location ~.*\.(htm|html)$ &#123;</span><br><span class="line">   root &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;</span><br><span class="line">   index index.html index.htm;</span><br><span class="line">   try_files $uri &#x2F;index.html;</span><br><span class="line">   add_header Cache-Control &#39;no-cache, no-store, must-revalidate&#39;;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="nginx-配置-html-不缓存">nginx 配置 html 不缓存</span></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">location ~.*\.(htm|html)$ &#123;</span><br><span class="line">  root &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;</span><br><span class="line">  index index.html index.htm;</span><br><span class="line">  try_files $uri &#x2F;index.html;</span><br><span class="line">  add_header Cache-Control &#39;no-cache, no-store, must-revalidate&#39;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
@@ -148,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/nginx-%E9%85%8D%E7%BD%AE/" data-id="cl50gsb1k000xelpsa7oga0c4" data-title="nginx-配置" class="article-share-link">分享</a>
+      <a data-url="https://jarze.github.io/Blog/nginx-%E9%85%8D%E7%BD%AE/" data-id="cl599or6i000xfamfh2u31kmm" data-title="nginx-配置" class="article-share-link">分享</a>
       
       
       
@@ -216,7 +215,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/05/">五月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/09/">九月 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/05/">五月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/09/">九月 2019</a></li></ul>
     </div>
   </div>
 
