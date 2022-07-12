@@ -17,15 +17,15 @@
   
   <title>css单位 | Jarze</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="浏览器支持 下表中的数字表示支持该长度单位的最低浏览器版本。     长度单位 Chrome IE Firefox Safari Opera    em, ex, %, px, cm, mm, in, pt, pc 1.0 3.0 1.0 1.0 3.5   ch 27.0 9.0 1.0 7.0 20.0   rem 4.0 9.0 3.6 4.1 11.6   vh , vw 20.0 9.0">
+  <meta name="description" content="浏览器支持 相对长度 绝对长度 角度单位&lt;angle&gt;     MDN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="css单位">
 <meta property="og:url" content="https://jarze.github.io/Blog/css%E5%8D%95%E4%BD%8D/index.html">
 <meta property="og:site_name" content="Jarze">
-<meta property="og:description" content="浏览器支持 下表中的数字表示支持该长度单位的最低浏览器版本。     长度单位 Chrome IE Firefox Safari Opera    em, ex, %, px, cm, mm, in, pt, pc 1.0 3.0 1.0 1.0 3.5   ch 27.0 9.0 1.0 7.0 20.0   rem 4.0 9.0 3.6 4.1 11.6   vh , vw 20.0 9.0">
+<meta property="og:description" content="浏览器支持 相对长度 绝对长度 角度单位&lt;angle&gt;     MDN">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-29T11:22:37.000Z">
-<meta property="article:modified_time" content="2022-07-06T07:16:53.764Z">
+<meta property="article:modified_time" content="2022-07-12T01:49:08.140Z">
 <meta property="article:author" content="jarze blog ~~~">
 <meta property="article:tag" content="css">
 <meta name="twitter:card" content="summary">
@@ -135,7 +135,22 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1><span id="浏览器支持">浏览器支持</span></h1><blockquote>
+        <!-- toc -->
+
+<ul>
+<li><a href="#浏览器支持">浏览器支持</a></li>
+<li><a href="#相对长度">相对长度</a></li>
+<li><a href="#绝对长度">绝对长度</a></li>
+<li><a href="#角度单位anglehttpsdevelopermozillaorgzh-cndocswebcssangle">角度单位<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/angle" target="_blank" rel="noopener"><code>&lt;angle&gt;</code></a></a></li>
+</ul>
+<!-- tocstop -->
+
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/Values_and_units" target="_blank" rel="noopener">MDN</a></li>
+</ul>
+<a id="more"></a>
+
+<h1><span id="浏览器支持">浏览器支持</span></h1><blockquote>
 <p>下表中的数字表示支持该长度单位的最低浏览器版本。</p>
 </blockquote>
 <table>
@@ -174,12 +189,12 @@
 <td>11.6</td>
 </tr>
 <tr>
-<td>vh</td>
-<td>, vw</td>
+<td>vh, vw</td>
 <td>20.0</td>
 <td>9.0</td>
 <td>19.0</td>
-<td>6.0 20.0</td>
+<td>6.0</td>
+<td>20.0</td>
 </tr>
 <tr>
 <td>vmin</td>
@@ -198,7 +213,7 @@
 <td>20.0</td>
 </tr>
 </tbody></table>
-<a id="more"></a>
+<!-- more -->
 
 <h1><span id="相对长度">相对长度</span></h1><blockquote>
 <p>相对长度单位指定了一个长度相对于另一个长度的属性。对于不同的设备相对长度更适用。<br>提示: rem 与 em 有什么区别呢？区别在于使用 rem 为元素设定字体大小时，仍然是相对大小，但相对的只是 HTML 根元素。</p>
@@ -212,11 +227,11 @@
 </thead>
 <tbody><tr>
 <td>em</td>
-<td>它是描述相对于应用在当前元素的字体尺寸，所以它也是相对长度单位。一般浏览器字体大小默认为 16px，则 2em == 32px； 下</td>
+<td>在 font-size 中使用是相对于父元素的字体大小，在其他属性中使用是相对于自身的字体大小，如 width</td>
 </tr>
 <tr>
 <td>ex</td>
-<td>依赖于英文字母小 x 的高度</td>
+<td>字符“x”的高度</td>
 </tr>
 <tr>
 <td>ch</td>
@@ -224,7 +239,11 @@
 </tr>
 <tr>
 <td>rem</td>
-<td>rem 是根 em（root 体大小。</td>
+<td>rem 是根元素字体大小。</td>
+</tr>
+<tr>
+<td>lh</td>
+<td>元素的 line-height</td>
 </tr>
 <tr>
 <td>vw</td>
@@ -244,7 +263,7 @@
 </tr>
 <tr>
 <td>%</td>
-<td></td>
+<td>相对父元素百分比</td>
 </tr>
 </tbody></table>
 <h1><span id="绝对长度">绝对长度</span></h1><blockquote>
@@ -254,32 +273,73 @@
 <thead>
 <tr>
 <th>单位</th>
-<th>描述</th>
+<th>名称</th>
+<th>等价换算</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>cm</td>
 <td>厘米</td>
+<td>1cm = 96px/2.54</td>
 </tr>
 <tr>
 <td>mm</td>
 <td>毫米</td>
+<td>1mm = 1/10th of 1cm</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>四分之一毫米</td>
+<td>1Q = 1/40th of 1cm</td>
 </tr>
 <tr>
 <td>in</td>
-<td>英寸 (1in = 96px = 2.54cm)</td>
-</tr>
-<tr>
-<td>px</td>
-<td>* 像素 (1px = 1/96th of 1in)</td>
-</tr>
-<tr>
-<td>pt</td>
-<td>point，大约 1/72 英寸； (1pt = 1/72in)</td>
+<td>英寸</td>
+<td>1in = 2.54cm = 96px</td>
 </tr>
 <tr>
 <td>pc</td>
-<td>pica，大约 12pt，1/6 英寸； (1pc = 12 pt)</td>
+<td>十二点活字</td>
+<td>1pc = 1/6th of 1in</td>
+</tr>
+<tr>
+<td>pt</td>
+<td>点</td>
+<td>1pt = 1/72th of 1in</td>
+</tr>
+<tr>
+<td>px</td>
+<td>像素</td>
+<td>1px = 1/96th of 1in</td>
+</tr>
+</tbody></table>
+<h1><span id="角度单位ltanglegt">角度单位</span></h1><table>
+<thead>
+<tr>
+<th>单位</th>
+<th>描述</th>
+<th>换算</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>deg</td>
+<td>度(Degress)。一个圆共360度</td>
+<td>90deg</td>
+</tr>
+<tr>
+<td>grad</td>
+<td>梯度(Gradians)。一个圆共400梯度</td>
+<td>100grad</td>
+</tr>
+<tr>
+<td>rad</td>
+<td>弧度(Radians)。一个圆共2π弧度</td>
+<td>1.570796326794897rad</td>
+</tr>
+<tr>
+<td>turn</td>
+<td>转、圈(Turns)。一个圆共1圈</td>
+<td>0.25turn</td>
 </tr>
 </tbody></table>
 
@@ -295,7 +355,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jarze.github.io/Blog/css%E5%8D%95%E4%BD%8D/" data-id="cl599or6a000cfamfatwt7wcr" data-title="css单位" class="article-share-link">分享</a>
+      <a data-url="https://jarze.github.io/Blog/css%E5%8D%95%E4%BD%8D/" data-id="cl5himctd000edyp5h8po1mdv" data-title="css单位" class="article-share-link">分享</a>
       
       
       
@@ -382,6 +442,10 @@
           </li>
         
           <li>
+            <a href="/Blog/Picture/">Picture</a>
+          </li>
+        
+          <li>
             <a href="/Blog/nginx-%E9%85%8D%E7%BD%AE/">nginx-配置</a>
           </li>
         
@@ -391,10 +455,6 @@
         
           <li>
             <a href="/Blog/mobx-2/">mobx-可观察对象</a>
-          </li>
-        
-          <li>
-            <a href="/Blog/Accessibility/">无障碍与可访问-Accessibility</a>
           </li>
         
       </ul>
