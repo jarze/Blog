@@ -15,16 +15,19 @@
 <!-- End Google Analytics -->
 
   
-  <title>归档: 2019 | Jarze</title>
+  <title>React | Jarze</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="学习笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Jarze">
-<meta property="og:url" content="https://jarze.github.io/Blog/archives/2019/index.html">
+  <meta name="description" content="与 flushSync 同步刷新状态更新  1234567import &amp;#123; flushSync &amp;#125; from &#39;react-dom&#39;;flushSync(() &#x3D;&gt; &amp;#123;  setTodos([...todos, newTodo]);&amp;#125;);listRef.current.lastChild.scrollIntoView();   强制批量处理  123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React">
+<meta property="og:url" content="https://jarze.github.io/Blog/React/index.html">
 <meta property="og:site_name" content="Jarze">
-<meta property="og:description" content="学习笔记">
+<meta property="og:description" content="与 flushSync 同步刷新状态更新  1234567import &amp;#123; flushSync &amp;#125; from &#39;react-dom&#39;;flushSync(() &#x3D;&gt; &amp;#123;  setTodos([...todos, newTodo]);&amp;#125;);listRef.current.lastChild.scrollIntoView();   强制批量处理  123">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-11T15:41:20.000Z">
+<meta property="article:modified_time" content="2023-01-30T02:25:47.512Z">
 <meta property="article:author" content="jarze blog ~~~">
+<meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary">
   
   
@@ -106,96 +109,85 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/Blog/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/Blog/commander/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-09-30T16:07:26.000Z" itemprop="datePublished">9月 30</time>
+        <section id="main"><article id="post-React" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Blog/React/" class="article-date">
+  <time class="dt-published" datetime="2022-03-11T15:41:20.000Z" itemprop="datePublished">2022-03-11</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/Blog/categories/Front/">Front</a>►<a class="article-category-link" href="/Blog/categories/Front/js/">js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Blog/commander/">commander 基本用法</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      React
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/Blog/markdown/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-09-30T11:30:07.000Z" itemprop="datePublished">9月 30</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Blog/markdown/">Markdown 语法和 MWeb 写作使用说明</a>
-    </h1>
-  
+        <blockquote>
+<p>与 <code>flushSync</code> 同步刷新状态更新</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; flushSync &#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"></span><br><span class="line">flushSync(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  setTodos([...todos, newTodo]);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">listRef.current.lastChild.scrollIntoView();</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/Blog/about/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-09-30T11:10:55.000Z" itemprop="datePublished">9月 30</time>
-</a>
+<blockquote>
+<p>强制批量处理</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; unstable_batchedUpdates &#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"></span><br><span class="line">unstable_batchedUpdates(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  setCount(<span class="function"><span class="params">c</span> =&gt;</span> c + <span class="number">1</span>);</span><br><span class="line">  setFlag(<span class="function"><span class="params">f</span> =&gt;</span> !f);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"7cff2fe5351a4771a8ca","clientSecret":"44cbb554920d2d11a7882f71536207a73e848cf4","repo":"Blog","owner":"jarze","admin":["jarze"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Blog/about/">About</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/Blog/vscode/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-09-29T10:01:50.000Z" itemprop="datePublished">9月 29</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jarze.github.io/Blog/React/" data-id="cldi6vl4o0006f1p19x1p28yq" data-title="React" class="article-share-link">分享</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Blog/vscode/">keyboard-shortcuts-macos</a>
-    </h1>
-  
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/react/" rel="tag">react</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Blog/commitizen%E8%A7%84%E8%8C%83/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          commitizen规范
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Blog/npm-scripts/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">npm-scripts</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>
