@@ -19,3 +19,13 @@
 - 列出网站资料。
 
 `hexo list <type>`
+
+
+# 使用
+
+- 列表页显示简介
+ `<!-- more -->`
+- 目录
+  `<!-- toc -->`
+- 不显示评论
+  `<style id='none-comment'></style>`
