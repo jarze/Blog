@@ -39,3 +39,5 @@ function exitFull() {
 }
 
 ```
+<!-- more -->
+<style id='none-comment'></style>
