@@ -15,6 +15,10 @@ categories:
 
 <!-- more -->
 
+- 只有当组件所处的树中没有匹配到 `Provider` 时，其 `defaultValue` 参数才会生效。这有助于在不使用 `Provider` 包装组件的情况下对组件进行测试。
+- 将 `undefined` 传递给 `Provider` 的 `value` 时，消费组件的 `defaultValue` 不会生效。
+- `Provider` 接收一个 `value` 属性，传递给消费组件。一个 `Provider` 可以和多个消费组件由对应关系。多个 `Provider` 也可以嵌套使用，里层的会覆盖外层的数据。
+- 当 `Provider` 的 `value` 值发生变化时，它内部的所有消费组件都会重新渲染。`<Provider>` 及其内部 `<Consumer>` 组件都不受制于 `shouldComponentUpdate` 函数，因此当 `<Consumer>` 组件在其祖先组件退出更新的情况下也能更新。
 
 > **`context`**
 
@@ -22,7 +26,12 @@ categories:
 
 import { createContext } from 'react';
 
-export default createContext({});
+const MyContext = createContext({ name: 'defaultValue' });
+
+// 在 DevTools 中显示 MyContext.Provider 和 MyContext.Consumer
+MyContext.displayName = 'MyContextName';
+
+export default MyContext;
 
 ```
 
