@@ -18,6 +18,7 @@ summary:focus { outline: none; }
 summary+* { padding-left: 2em; }
 </style>
 
+[🔗 link](https://github.com/jarze/jarze.github.io/edit/master/README.md)
 [➲ 去编辑](https://github.com/jarze/Blog/edit/page/source/_posts/links/index.md)
 
 ---
@@ -48,12 +49,14 @@ summary+* { padding-left: 2em; }
 - [**Gatsby**](https://www.gatsbyjs.com/) _(Gatsby 4 combines the control and scalability of server-side rendering with the performance of static-site generation, creating a whole new web of possibilites.)_
 - [**Next.js**](https://nextjs.org/) _(The React Framework for Production. Next.js gives you the best developer experience with all the features you need for production: hybrid static & server rendering, TypeScript support, smart bundling, route pre-fetching, and more. No config needed.)_
 - [**mkdocs**](https://www.mkdocs.org/) _(A documentation generator for the Markdown language.)_
+- [**dumi**](https://d.umijs.org/) _(为组件研发而生的静态站点框架.)_
 </details>
 
 <details open="open"><summary><h1>🤡 Editor</h1></summary>
 
 - [**demosify**](http://www.demosify.com/) _(Demo 演示)_
 - [**Monaco Editor**](https://microsoft.github.io/monaco-editor/) _(The Monaco Editor is the code editor that powers VS Code.)_
+- [**CodeMirror**](http://www.demosify.com/) _(CodeMirror is a code editor component for the web. It can be used in websites to implement a text input field with support for many editing features, and has a rich programming interface to allow further extension.)_
 
 </details>
 
