@@ -29,3 +29,8 @@
   `<!-- toc -->`
 - 不显示评论
   `<style id='none-comment'></style>`
+- 链接
+  `{% asset_link 1.pdf %}`
+- 图片
+  `{% asset_img 1.png PNG %}`
+
