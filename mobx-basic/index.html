@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109981608-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109981608-1');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>MobX 基础介绍 | Jarze</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="mobx(github,mobx中文文档) mobx-state-tree(npm,github,docs) 实用工具: mobx-utils 博客、视频及相关项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MobX 基础介绍">
+<meta property="og:url" content="https://jarze.github.io/Blog/mobx-basic/index.html">
+<meta property="og:site_name" content="Jarze">
+<meta property="og:description" content="mobx(github,mobx中文文档) mobx-state-tree(npm,github,docs) 实用工具: mobx-utils 博客、视频及相关项目">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jarze.github.io/Blog/mobx-basic/action-state-view.png">
+<meta property="article:published_time" content="2020-06-28T16:46:45.000Z">
+<meta property="article:modified_time" content="2023-02-09T07:33:06.208Z">
+<meta property="article:author" content="jarze blog ~~~">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="mobx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jarze.github.io/Blog/mobx-basic/action-state-view.png">
+  
+  
+    <link rel="icon" href="/Blog/css/images/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/Blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.min.css">
+
+  
+  <meta name="google-site-verification" content="BEvcfET7cgXFsJH40NIqTskqOHR7z8uvgu5JPD1LRZU" />
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Jarze</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/Blog/" id="subtitle">🇨🇳🇨🇳🇨🇳</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/Blog/about">About</a>
+        
+          <a class="main-nav-link" href="/Blog/links">Links</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jarze.github.io/Blog"></form>
+      </div>
+      
+      <div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-icon">
+				🔍
+			</span>
+			<div class="search-input-container"></div>
+			<input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="..." spellcheck="false"
+           type="search" class="search-input">
+			<span class="popup-btn-close" role="button">
+				✖️
+			</span>
+		</div>
+		<div class="search-result-container">
+		</div>
+	</div>
+</div>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-mobx-basic" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Blog/mobx-basic/" class="article-date">
+  <time class="dt-published" datetime="2020-06-28T16:46:45.000Z" itemprop="datePublished">2020-06-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/Blog/categories/Front/">Front</a>►<a class="article-category-link" href="/Blog/categories/Front/js/">js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      MobX 基础介绍
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <hr>
+<ul>
+<li><strong><code>mobx</code></strong>(<a href="https://github.com/mobxjs/mobx" target="_blank" rel="noopener"><code>github</code></a>,<a href="https://cn.mobx.js.org/" target="_blank" rel="noopener"><code>mobx</code>中文文档</a>)</li>
+<li><strong><code>mobx-state-tree</code></strong>(<a href="https://www.npmjs.com/package/mobx-state-tree" target="_blank" rel="noopener"><code>npm</code></a>,<a href="https://github.com/mobxjs/mobx-state-tree" target="_blank" rel="noopener"><code>github</code></a>,<a href="http://mobx-state-tree.js.org/" target="_blank" rel="noopener"><code>docs</code></a>)</li>
+<li><strong>实用工具</strong>: <a href="https://github.com/mobxjs/mobx-utils" target="_blank" rel="noopener"><code>mobx-utils</code></a></li>
+<li><a href="https://github.com/mobxjs/awesome-mobx#examples" target="_blank" rel="noopener">博客、视频及相关项目</a></li>
+</ul>
+<hr>
+<a id="more"></a>
+
+<p>[TOC]</p>
+<!-- toc -->
+
+<ul>
+<li><a href="#概念">概念</a><ul>
+<li><a href="#1-state状态">1. State(状态)</a></li>
+<li><a href="#2-derivations衍生">2. Derivations(衍生)</a></li>
+<li><a href="#3-actions动作">3. Actions(动作)</a></li>
+</ul>
+</li>
+<li><a href="#原则">原则</a></li>
+<li><a href="#实例">实例</a></li>
+<li><a href="#核心-api">核心 API</a><ul>
+<li><a href="#observable">observable</a><ul>
+<li><a href="#observablevalue"><code>observable(value)</code></a></li>
+<li><a href="#observable-property-value"><code>@observable property = value</code></a></li>
+<li><a href="#observable-property-value">@observable property = value</a></li>
+<li><a href="#observableobjectvalue-decorators-options"><code>observable.object(value, decorators?, options?)</code></a></li>
+<li><a href="#observablearrayvalue-options"><code>observable.array(value, options?)</code></a></li>
+<li><a href="#observablemapvalue-options"><code>observable.map(value, options?)</code></a></li>
+<li><a href="#extendobservable"><code>extendObservable</code></a></li>
+</ul>
+</li>
+<li><a href="#装饰器decorators">装饰器(Decorators)</a><ul>
+<li><a href="#decorate"><code>decorate</code></a></li>
+</ul>
+</li>
+<li><a href="#computed-values计算值">Computed values(计算值)</a></li>
+<li><a href="#actions动作">Actions(动作)</a></li>
+<li><a href="#flow">Flow</a><ul>
+<li><a href="#flows-可以撤销">Flows 可以撤销</a></li>
+<li><a href="#flows-支持异步迭代器">Flows 支持异步迭代器</a></li>
+</ul>
+</li>
+<li><a href="#reactions反应-derivations衍生">Reactions(反应) &amp; Derivations(衍生)</a><ul>
+<li><a href="#observer">observer</a></li>
+<li><a href="#autorun">autorun</a></li>
+<li><a href="#when">when</a></li>
+<li><a href="#options">options</a></li>
+<li><a href="#reaction">reaction</a></li>
+<li><a href="#options-1">options</a></li>
+<li><a href="#onreactionerror">onReactionError</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="概念">概念</span></h1><h2><span id="1-state状态">1. State(状态)</span></h2><p><strong>状态</strong> 是驱动应用的数据。 通常有像待办事项列表这样的<strong>领域特定状态</strong>，还有像当前已选元素的<strong>视图状态</strong>。 记住，状态就像是有数据的 <code>excel</code> 表格。</p>
+<h2><span id="2-derivations衍生">2. Derivations(衍生)</span></h2><p><strong>任何</strong> 源自<strong>状态</strong>并且不会再有任何进一步的相互作用的东西就是衍生。 衍生以多种形式存在:</p>
+<ul>
+<li><strong>用户界面</strong></li>
+<li><strong>衍生数据</strong>，比如剩下的待办事项的数量。</li>
+<li><strong>后端集成</strong>，比如把变化发送到服务器端。</li>
+</ul>
+<p>MobX 区分了两种类型的衍生:</p>
+<ul>
+<li><p><strong><code>Computed values</code>(计算值)</strong> - 它们是永远可以使用纯函数(<code>pure function</code>)从当前可观察状态中衍生出的值。</p>
+</li>
+<li><p><strong><code>Reactions</code>(反应)</strong> - <code>Reactions</code> 是当状态改变时需要自动发生的副作用。需要有一个桥梁来连接命令式编程(<code>imperative programming</code>)和响应式编程(<code>reactive programming</code>)。或者说得更明确一些，它们最终都需要实现 <code>I / O</code> 操作。</p>
+<p><em>刚开始使用 MobX 时，人们倾向于频繁的使用 reactions。 黄金法则: 如果你想创建一个基于当前状态的值时，请使用 <strong><code>computed</code></strong>。</em></p>
+</li>
+</ul>
+<p>回到 excel 表格这个比喻中来，公式是<strong>计算</strong>值的衍生。但对于用户来说，能看到屏幕给出的<strong>反应</strong>则需要部分重绘 GUI。</p>
+<h2><span id="3-actions动作">3. Actions(动作)</span></h2><p><strong>动作</strong> 是任一一段可以改变状态的代码。用户事件、后端数据推送、预定事件、等等。 动作类似于用户在 <code>excel</code> 单元格中输入一个新的值。</p>
+<p>在 <code>MobX</code> 中可以显式地定义动作，它可以帮你把代码组织的更清晰。 如果是在严格模式下使用 <code>MobX</code> 的话，<code>MobX</code> 会强制只有在动作之中才可以修改状态。</p>
+<h1><span id="原则">原则</span></h1><p><code>MobX</code> 支持单向数据流，也就是<strong>动作</strong>改变<strong>状态</strong>，而状态的改变会更新所有受影响的<strong>视图</strong>。</p>
+<img src="/Blog/mobx-basic/action-state-view.png" class title="action-state-view">
+
+<p>当<strong>状态</strong>改变时，所有<strong>衍生</strong>都会进行<strong>原子级的自动更新</strong>。因此永远不可能观察到中间值。</p>
+<p>所有<strong>衍生</strong>默认都是<strong>同步</strong>更新。这意味着例如<strong>动作</strong>可以在改变<strong>状态</strong>之后直接可以安全地检查计算值。</p>
+<p><strong>计算值</strong>是<strong>延迟</strong>更新的。任何不在使用状态的计算值将不会更新，直到需要它进行副作用（<code>I / O</code>）操作时。 如果视图不再使用，那么它会自动被垃圾回收。</p>
+<p>所有的<strong>计算值</strong>都应该是<strong>纯净</strong>的。它们不应该用来改变<strong>状态</strong>。</p>
+<h1><span id="实例">实例</span></h1><p>下面的代码清单举例说明了以上的概念和原则:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; observable, autorun &#125; <span class="keyword">from</span> <span class="string">"mobx"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> todoStore = observable(&#123;</span><br><span class="line">  <span class="comment">/* 一些观察的状态 */</span></span><br><span class="line">  todos: [],</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 推导值 */</span></span><br><span class="line">  <span class="keyword">get</span> completedCount() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.todos.filter(<span class="function"><span class="params">todo</span> =&gt;</span> todo.completed).length;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 观察状态改变的函数 */</span></span><br><span class="line">autorun(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(</span><br><span class="line">    <span class="string">"Completed %d of %d items"</span>,</span><br><span class="line">    todoStore.completedCount,</span><br><span class="line">    todoStore.todos.length</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* ..以及一些改变状态的动作 */</span></span><br><span class="line">todoStore.todos[<span class="number">0</span>] = &#123;</span><br><span class="line">  title: <span class="string">"Take a walk"</span>,</span><br><span class="line">  completed: <span class="literal">false</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// -&gt; 同步打印 'Completed 0 of 1 items'</span></span><br><span class="line"></span><br><span class="line">todoStore.todos[<span class="number">0</span>].completed = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">// -&gt; 同步打印 'Completed 1 of 1 items'</span></span><br></pre></td></tr></table></figure>
+
+<h1><span id="核心-api">核心 API</span></h1><h2><span id="observable">observable</span></h2><h3><span id="observablevalue"><code>observable(value)</code></span></h3><p>用法:</p>
+<ul>
+<li><code>observable(value)</code></li>
+<li><code>@observable classProperty = value</code></li>
+</ul>
+<p><code>Observable</code> 值可以是 <code>JS</code> 基本数据类型、引用类型、普通对象、类实例、数组和映射。</p>
+<p><strong>注意</strong>: <code>observable(value)</code> 是一个便捷的 <code>API</code> ，此 <code>API</code> 只有在它可以被制作成可观察的数据结构(数组、映射或 <code>observable</code> 对象)时才会成功。对于所有其他值，不会执行转换。</p>
+<p>匹配类型应用了以下转换规则，但可以通过使用 装饰器 进行微调。请参见下文。</p>
+<ol>
+<li><p>如果 <code>value</code> 是 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" target="_blank" rel="noopener"><code>ES6 Map</code></a> 的实例: 会返回一个新的 <code>Observable Map</code>。如果你不只关注某个特定 entry 的更改，而且对添加或删除其他 entry 时也做出反应的话，那么 <code>Observable map</code> 会非常有用。</p>
+</li>
+<li><p>如果 <code>value</code> 是数组，会返回一个 <code>Observable Array</code>。</p>
+</li>
+<li><p>如果 <code>value</code> 是没有原型的对象或它的原型是 <code>Object.prototype</code>，那么对象会被克隆并且所有的属性都会被转换成可观察的。参见 <code>Observable Object</code>。</p>
+</li>
+<li><p>如果 <code>value</code> 是有原型的对象，<code>JavaSript</code> 原始数据类型(<em>JavaScript 原始数据类型 Undefined、Null、Boolean、Number 和 String。(相对于基本数据类型少了个 object)</em>)或者函数，值不会发生变化。如果你需要 <code>Boxed Observable</code>，你可以采用下列任意方式:</p>
+<ul>
+<li>显式地调用 <code>observable.box(value)</code></li>
+<li>在类定义时使用 <code>@observable</code></li>
+<li>调用 <code>decorate()</code></li>
+<li>在类中使用 <code>extendObservable()</code> 来引入属性</li>
+</ul>
+</li>
+</ol>
+<p><code>MobX</code> 不会自动带有原型的对象转变成 <code>observable</code>，因为那是 <code>observable</code> 构造函数的职责。在构造函数中使用 <code>extendObservable</code> 或在类定义是使用 <code>@observable</code> 进行替代。</p>
+<p>乍看之下，这些规则可能看上去很复杂，但实际上实践当中你会发现他们是非常直观的。</p>
+<p>一些建议:</p>
+<ul>
+<li>要想使用 <code>@observable</code> 装饰器，首先要确保 在你的编译器(<code>babel</code> 或者 <code>typescript</code>)中 装饰器是启用的。</li>
+<li>默认情况下将一个数据结构转换成可观察的是<strong>有感染性的</strong>，这意味着 <code>observable</code> 被自动应用于数据结构包含的任何值，或者将来会被该数据结构包含的值。这个行为可以通过使用 装饰器 来更改。</li>
+<li><em>[<code>MobX 4</code> 及以下版本]</em> 要创建键是动态的对象时永远都使用 <code>maps！</code>对象上只有初始化时便存在的属性会转换成可观察的，尽管新添加的属性可以通过使用 <code>extendObservable</code> 转换成可观察的。</li>
+</ul>
+<h3><span id="observable-property-value"><code>@observable property = value</code></span></h3><p><code>observable</code> 也可以用作属性的装饰器。它需要启用装饰器而且它是 <code>extendObservable(this, { property: value })</code> 的语法糖。</p>
+<h3><span id="observable-property-value">@observable property = value</span></h3><p>创建一个 <code>observable</code> 的盒子，它用来存储 <code>value</code> 的 <code>observable</code> 引用。使用 <code>get()</code> 方法可以得到盒子中的当前 <code>value</code>，而使用 <code>set()</code> 方法可以更新 <code>value。</code> 这是所有其它 <code>observable</code> 创建的基础，但实际中你其实很少能使用到它。</p>
+<p>通常盒子会自动地尝试把任何还不是 <code>observable</code> 的新值转换成 <code>observable</code> 。使用 <code>{deep: false}</code> 选项会禁用这项行为。</p>
+<h3><span id="observableobjectvalue-decorators-options"><code>observable.object(value, decorators?, options?)</code></span></h3><p>为提供的对象创建一个克隆并将其所有的属性转换成 <code>observable</code> 。 默认情况下这些属性中的任何值都会转换成 <code>observable，但当使用</code> {deep: false} 选项时只有属性会转换成 <code>observable</code> 引用，而值不会改变(这也适用于将来分配的任何值)。</p>
+<p><code>observable.object()</code> 的第二个参数可以很好地调整  装饰器 的可观察性。</p>
+<h3><span id="observablearrayvalue-options"><code>observable.array(value, options?)</code></span></h3><p>基于提供的值来创建一个新的 <code>observable</code> 数组。</p>
+<p>如果不想数组中的值转换成 <code>observable</code> 请使用 <code>{deep: false}</code>选项。</p>
+<h3><span id="observablemapvalue-options"><code>observable.map(value, options?)</code></span></h3><p>基于提供的值来创建一个新的 <code>observable</code> 映射。如果不想映射中的值转换成 <code>observable</code> 请使用 <code>{deep: false}</code> 选项。 当想创建动态的键集合并且需要能观察到键的添加和移除时，请使用 <code>map。</code> 因为内部使用了成熟的 <code>ES6 Map</code>，你可以自由使用任何键而无需局限于字符串。</p>
+<h3><span id="extendobservable"><code>extendObservable</code></span></h3><p>用法: <code>extendObservable(target, properties, decorators?, options?)</code></p>
+<p>对于 <code>propertyMap</code> 中的每个键值对，都会作为一个(新)的 <code>observable</code> 属性引入到 <code>target</code> 对象中。 还可以在构造函数中使用来引入 <code>observable</code> 属性，这样就不需要用装饰器了。 如果 <code>propertyMap</code> 的某个值是一个 <code>getter</code> 函数，那么会引入一个 <code>computed</code> 属性。</p>
+<p>如果新的属性不应该具备感染性(即新分配的值不应该自动地转换成 <code>observable</code>)的话，请使用 <code>extendObservable(target, props, decorators?, {deep: false})</code> 。 注意 <code>extendObservable</code> 增强了现有的对象，不像 <code>observable.object</code> 是创建一个新对象。</p>
+<h2><span id="装饰器decorators">装饰器(Decorators)</span></h2><p>使用装饰器可以很好地调节通过 <code>observable</code>、 <code>extendObservable</code> 和 <code>observable.object</code> 定义的属性的可观察性。它们还可以控制特定属性的自动转换规则。</p>
+<p>可用的装饰器列表:</p>
+<ul>
+<li><strong><code>observable.deep</code></strong>: 所有 <code>observable</code> 都使用的默认的装饰器。它可以把任何指定的、非原始数据类型的、非 <code>observable</code> 的值转换成 <code>observable。</code></li>
+<li><strong><code>observable.ref</code></strong>: 禁用自动的 <code>observable</code> 转换，只是创建一个 observable 引用。</li>
+<li><strong><code>observable.shallow</code></strong>: 只能与集合组合使用。 将任何分配的集合转换为浅 observable (而不是深 - <code>observable</code>)的集合。 换句话说, 集合中的值将不会自动变为 <code>observable。</code></li>
+<li><strong><code>computed</code></strong>: 创建一个衍生属性, 参见 <code>computed</code></li>
+<li><strong><code>action</code></strong>: 创建一个动作, 参见 <code>action</code></li>
+</ul>
+<p>可以使用 <code>@decorator</code>语法来应用这些装饰器:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; observable, action &#125; <span class="keyword">from</span> <span class="string">"mobx"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TaskStore</span> </span>&#123;</span><br><span class="line">  @observable.shallow tasks = [];</span><br><span class="line">  @action addTask(task) &#123;</span><br><span class="line">    <span class="comment">/* ... */</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>或者通过 <code>observable.object / observable.extendObservable</code> 或 <code>decorate()</code> 传入属性装饰器。 注意，装饰器总是“附着”在属性上的。 因此，即使分配了新值，它们仍将保持有效。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; observable, action &#125; <span class="keyword">from</span> <span class="string">"mobx"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> taskStore = observable(</span><br><span class="line">  &#123;</span><br><span class="line">    tasks: [],</span><br><span class="line">    addTask(task) &#123;</span><br><span class="line">      <span class="comment">/* ... */</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    tasks: observable.shallow,</span><br><span class="line">    addTask: action,</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h3><span id="decorate"><code>decorate</code></span></h3><p>用法: <code>decorate(object, decorators)</code></p>
+<p>这是将可观察性装饰器)应用于普通对象或类实例的简便方法。第二个参数是一个属性设置为某些装饰器的对象。</p>
+<p>当无法使用 <code>@decorator</code> 语法或需要对可观察性进行更细粒度的控制时使用这个方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList</span> </span>&#123;</span><br><span class="line">  todos = &#123;&#125;;</span><br><span class="line">  <span class="keyword">get</span> unfinishedTodoCount() &#123;</span><br><span class="line">    <span class="keyword">return</span> values(<span class="keyword">this</span>.todos).filter(<span class="function"><span class="params">todo</span> =&gt;</span> !todo.finished).length;</span><br><span class="line">  &#125;</span><br><span class="line">  addTodo() &#123;</span><br><span class="line">    <span class="keyword">const</span> t = <span class="keyword">new</span> Todo();</span><br><span class="line">    t.title = <span class="string">"Test_"</span> + <span class="built_in">Math</span>.random();</span><br><span class="line">    <span class="keyword">set</span>(this.todos, t.id, t);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">decorate(TodoList, &#123;</span><br><span class="line">  todos: observable,</span><br><span class="line">  unfinishedTodoCount: computed,</span><br><span class="line">  addTodo: action.bound,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>想要在单个属性上应用多个装饰器的话，你可以传入一个装饰器数组。多个装饰器应用的顺序是从从右至左。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; decorate, observable &#125; <span class="keyword">from</span> <span class="string">"mobx"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; serializable, primitive &#125; <span class="keyword">from</span> <span class="string">"serializr"</span>;</span><br><span class="line"><span class="keyword">import</span> persist <span class="keyword">from</span> <span class="string">"mobx-persist"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Todo</span> </span>&#123;</span><br><span class="line">  id = <span class="built_in">Math</span>.random();</span><br><span class="line">  title = <span class="string">""</span>;</span><br><span class="line">  finished = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">decorate(Todo, &#123;</span><br><span class="line">  title: [serializable(primitive), persist(<span class="string">"object"</span>), observable],</span><br><span class="line">  finished: [serializable(primitive), observable],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>: 并非所有的装饰器都可以在一起组合，此功能只会尽力而为。一些装饰器会直接影响实例，并且可以“隐藏”其他那些只更改原型的装饰器的效果。</p>
+<h2><span id="computed-values计算值">Computed values(计算值)</span></h2><p>用法:</p>
+<ul>
+<li><code>computed(() =&gt; expression)</code></li>
+<li><code>computed(() =&gt; expression, (newValue) =&gt; void)</code></li>
+<li><code>computed(() =&gt; expression, options)</code></li>
+<li><code>@computed({equals: compareFn}) get classProperty() { return expression; }</code></li>
+<li><code>@computed get classProperty() { return expression; }</code></li>
+</ul>
+<p>创建计算值，<code>expression</code> 不应该有任何副作用而只是返回一个值。 如果任何 <code>expression</code> 中使用的 <code>observable</code> 发生改变，它都会自动地重新计算，但前提是计算值被某些 <strong><code>reaction</code></strong> 使用了。</p>
+<p>还有各种选项可以控制 <code>computed</code> 的行为。包括:</p>
+<ul>
+<li><code>equals: (value, value) =&gt; boolean</code> 用来重载默认检测规则的比较函数。 内置比较器有: <code>comparer.identity</code>, <code>comparer.default</code>, <code>comparer.structural</code></li>
+<li><code>requiresReaction: boolean</code> 在重新计算衍生属性之前，等待追踪的 <code>observables</code> 值发生变化</li>
+<li><code>get: () =&gt; value)</code> 重载计算属性的 <code>getter</code></li>
+<li><code>set: (value) =&gt; void</code> 重载计算属性的 <code>setter</code></li>
+<li><code>keepAlive: boolean</code> 设置为 <code>true</code> 以自动保持计算值活动，而不是在没有观察者时暂停。</li>
+</ul>
+<h2><span id="actions动作">Actions(动作)</span></h2><p>任何应用都有动作。动作是任何用来修改状态的东西。</p>
+<p>使用 <code>MobX</code> 你可以在代码中显式地标记出动作所在的位置。 动作可以有助于更好的组织代码。 建议在任何更改 <code>observable</code> 或者有副作用的函数上使用动作。 结合开发者工具的话，动作还能提供非常有用的调试信息。 注意: 当启用严格模式时，需要强制使用 <code>action</code>，参见 <code>enforceActions。</code></p>
+<p>用法:</p>
+<ul>
+<li><code>action(fn)</code></li>
+<li><code>action(name, fn)</code></li>
+<li><code>@action classMethod</code></li>
+<li><code>@action(name) classMethod</code></li>
+<li><code>@action boundClassMethod = (args) =&gt; { body }</code></li>
+<li><code>@action.bound boundClassMethod(args) { body }</code></li>
+</ul>
+<p>对于一次性动作，可以使用 <code>runInAction(name?, fn)</code> , 它是 <code>action(name, fn)()</code> 的语法糖.</p>
+<h2><span id="flow">Flow</span></h2><p>用法: <code>flow(function* (args) { })</code></p>
+<p><code>flow()</code> 接收 <code>generator</code> 函数作为它唯一的输入</p>
+<p>当处理<strong>异步动作</strong>时，回调中执行的代码不会被 <code>action</code> 包装。这意味着你修改的 <code>observable state</code> 无法通过 <code>enforceActions</code> 检查。保留动作语义的简单方法是使用 <code>flow</code> 来包装异步函数。这将确保所有回调都会被 <code>action()</code> 包装。</p>
+<p>注意，异步函数必须是 <code>generator</code> ，而且在内部只能 <code>yield promises</code> 。<code>flow</code> 会返回一个 <code>promise</code> ，需要的话可以使用 <code>cancel()</code> 进行撤销。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; configure &#125; <span class="keyword">from</span> <span class="string">"mobx"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不允许在动作外部修改状态</span></span><br><span class="line">configure(&#123; <span class="attr">enforceActions</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Store</span> </span>&#123;</span><br><span class="line">  @observable githubProjects = [];</span><br><span class="line">  @observable state = <span class="string">"pending"</span>; <span class="comment">// "pending" / "done" / "error"</span></span><br><span class="line"></span><br><span class="line">  fetchProjects = flow(<span class="function"><span class="keyword">function</span>* <span class="title">fetchProjects</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// &lt;- 注意*号，这是生成器函数！</span></span><br><span class="line">    <span class="keyword">this</span>.githubProjects = [];</span><br><span class="line">    <span class="keyword">this</span>.state = <span class="string">"pending"</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> projects = <span class="keyword">yield</span> fetchGithubProjectsSomehow(); <span class="comment">// 用 yield 代替 await</span></span><br><span class="line">      <span class="keyword">const</span> filteredProjects = somePreprocessing(projects);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 异步代码自动会被 `action` 包装</span></span><br><span class="line">      <span class="keyword">this</span>.state = <span class="string">"done"</span>;</span><br><span class="line">      <span class="keyword">this</span>.githubProjects = filteredProjects;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="keyword">this</span>.state = <span class="string">"error"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>提示: 推荐为 <code>generator</code> 函数起个名称，此名称将出现在开发工具中</p>
+<h3><span id="flows-可以撤销">Flows 可以撤销</span></h3><p><code>Flows</code> 是可以取消的，这意味着调用返回的 <code>promise</code> 的 <code>cancel()</code> 方法。这会立即停止 <code>generator</code> ，但是 <code>finally</code> 子句仍会被处理。 返回的 <code>promise</code> 本身会使用 <code>FLOW_CANCELLED</code> 进行 <code>reject</code> 。</p>
+<h3><span id="flows-支持异步迭代器">Flows 支持异步迭代器</span></h3><p><code>Flows</code> 支持异步迭代器，这意味着可以使用异步 <code>generators</code> :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span>* <span class="title">someNumbers</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="built_in">Promise</span>.resolve(<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">yield</span> <span class="built_in">Promise</span>.resolve(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">yield</span> <span class="built_in">Promise</span>.resolve(<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> count = mobx.flow(<span class="keyword">async</span> <span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 使用 await 来循环异步迭代器</span></span><br><span class="line">  <span class="keyword">for</span> <span class="keyword">await</span> (<span class="keyword">const</span> number <span class="keyword">of</span> someNumbers()) &#123;</span><br><span class="line">    total += number;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> total;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> res = <span class="keyword">await</span> count(); <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="reactions反应-amp-derivations衍生">Reactions(反应) &amp; Derivations(衍生)</span></h2><p>计算值 是自动响应状态变化的值。 反应 是自动响应状态变化的副作用。 反应可以确保当相关状态发生变化时指定的副作用(主要是 I/O)可以自动地执行，比如打印日志、网络请求、等等。 使用反应最常见的场景是 React 组件的 <code>observer</code> 装饰器(参见下文)。</p>
+<h3><span id="observer">observer</span></h3><p>可以用作包裹 <code>React</code> 组件的高阶组件。 在组件的 <code>render</code> 函数中的任何已使用的 <code>observable</code> 发生变化时，组件都会自动重新渲染。 注意 <code>observer</code> 是由 <code>&quot;mobx-react&quot;</code> 包提供的，而不是 <code>mobx</code> 本身。</p>
+<p>用法:</p>
+<ul>
+<li><code>observer(React.createClass({ ... }))</code></li>
+<li><code>observer((props, context) =&gt; ReactElement)</code></li>
+<li><code>observer(class MyComponent extends React.Component { ... })</code></li>
+<li><code>@observer class MyComponent extends React.Component { ... }</code></li>
+</ul>
+<h3><span id="autorun">autorun</span></h3><p>用法：<code>autorun(() =&gt; { sideEffect }, options)</code> 。</p>
+<p><code>autorun</code> 负责运行所提供的 <code>sideEffect</code> 并追踪在 <code>sideEffect</code> 运行期间访问过的 <code>observable</code> 的状态。 将来如果有其中一个已使用的 <code>observable</code> 发生变化，同样的 <code>sideEffect</code> 会再运行一遍。 <code>autorun</code> 返回一个清理函数用来取消副作用。</p>
+<p>选项</p>
+<ul>
+<li><code>name?: string: 用于识别和调试的名称</code></li>
+<li><code>delay?: number: 使副作用延迟和防抖的时间。默认为 0</code></li>
+<li><code>onError?: (error) =&gt; void: 如果 autorun 函数抛出异常，则触发错误处理函数</code></li>
+<li><code>scheduler?: (callback) =&gt; void: 设置自定义调度器以决定如何调度 autorun 函数的重新运行</code></li>
+</ul>
+<h3><span id="when">when</span></h3><p>用法: <code>when(() =&gt; condition, () =&gt; { sideEffect }, options)</code> 。</p>
+<p><code>condition</code> 表达式会自动响应任何它所使用的 <code>observable。</code> 一旦表达式返回的是真值，副作用函数便会立即调用，但只会调用一次。</p>
+<p>注意: 副作用函数 (第二个参数) 其实是可选的。如果不提供副作用函数的话，将返回一个可取消的 promise (即具有 <code>cancle()</code> 方法的 <code>promise</code>)</p>
+<p><code>when</code> 返回清理器以尽早地取消操作。</p>
+<p>如果没有给 <code>when</code> 传递副作用函数的话，它将返回一个可以等待条件结束的 <code>promise</code> 。</p>
+<h3><span id="options">options</span></h3><ul>
+<li><code>name?: string</code>: 用于识别和调试的名称</li>
+<li><code>onError?: (error) =&gt; void</code>: 如果 断言函数 或 副作用函数 函数抛出异常，则触发错误处理函数</li>
+<li><code>timeout: number</code> 以毫秒为单位的延迟，之后将触发 <code>onError</code> 处理函数，以通知在指定时间内未满足条件</li>
+</ul>
+<h3><span id="reaction">reaction</span></h3><p>用法: <code>reaction(() =&gt; data, data =&gt; { sideEffect }, options)</code>.</p>
+<p><code>reaction</code> 是 <code>autorun</code> 的变种，在如何追踪 <code>observable</code> 方面给予了更细粒度的控制。 它接收两个函数，第一个是追踪并返回数据，该数据用作第二个函数，也就是副作用的输入。 与 <code>&#39;autorun&#39;</code> 不同的是副作用起初不会运行，并且在执行副作用时访问的任何 <code>observable</code> 都不会被追踪。 和 <code>autorunAsync</code> 一样，副作用是可以进行函数去抖的。</p>
+<h3><span id="options">options</span></h3><ul>
+<li><code>fireImmediately?: boolean</code>: 在触发 副作用函数 之前等待变化。默认为 <code>false</code></li>
+<li><code>delay?: number</code>: 使副作用延迟和防抖的时间。默认为 0</li>
+<li><code>equals</code>. 自定义相等函数来确定 expr 函数是否与之前的结果不同，再决定是否触发副作用。接收与<code>computed</code> 的 <code>equals</code> 选项相同的选项</li>
+<li>还接收 <code>autorun</code> 的所有选项</li>
+</ul>
+<h3><span id="onreactionerror">onReactionError</span></h3><p>用法: <code>onReactionError(handler: (error: any, derivation) =&gt; void)</code></p>
+<p>此方法附加一个全局错误监听器，对于从 <code>reaction</code> 抛出的每个错误都会调用该错误监听器。 它可以用来监控或者测试。</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"7cff2fe5351a4771a8ca","clientSecret":"44cbb554920d2d11a7882f71536207a73e848cf4","repo":"Blog","owner":"jarze","admin":["jarze"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jarze.github.io/Blog/mobx-basic/" data-id="cldws9a8j001lbgok00hx7yrx" data-title="MobX 基础介绍" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/mobx/" rel="tag">mobx</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Blog/es6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          es6
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Blog/text-overflow/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">CSS实现单行、多行文本溢出显示省略号（…）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/">Front</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/js/">js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/js/react/">react</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/tool/">tool</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Fun/">Fun</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/%E5%B7%A5%E5%85%B7%E6%9F%A5%E8%AF%A2/">工具查询</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Accessibility/" rel="tag">Accessibility</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Node/" rel="tag">Node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/WCAG/" rel="tag">WCAG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/commander/" rel="tag">commander</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/eslint/" rel="tag">eslint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/link/" rel="tag">link</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/make/" rel="tag">make</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/mobx/" rel="tag">mobx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/puml/" rel="tag">puml</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/tool/" rel="tag">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/webpack/" rel="tag">webpack</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/Accessibility/" style="font-size: 10px;">Accessibility</a> <a href="/Blog/tags/Node/" style="font-size: 10px;">Node</a> <a href="/Blog/tags/WCAG/" style="font-size: 10px;">WCAG</a> <a href="/Blog/tags/commander/" style="font-size: 10px;">commander</a> <a href="/Blog/tags/css/" style="font-size: 16.67px;">css</a> <a href="/Blog/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/Blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/Blog/tags/eslint/" style="font-size: 10px;">eslint</a> <a href="/Blog/tags/git/" style="font-size: 10px;">git</a> <a href="/Blog/tags/js/" style="font-size: 20px;">js</a> <a href="/Blog/tags/link/" style="font-size: 10px;">link</a> <a href="/Blog/tags/make/" style="font-size: 10px;">make</a> <a href="/Blog/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/Blog/tags/mobx/" style="font-size: 16.67px;">mobx</a> <a href="/Blog/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/Blog/tags/npm/" style="font-size: 16.67px;">npm</a> <a href="/Blog/tags/puml/" style="font-size: 10px;">puml</a> <a href="/Blog/tags/react/" style="font-size: 13.33px;">react</a> <a href="/Blog/tags/shell/" style="font-size: 10px;">shell</a> <a href="/Blog/tags/tool/" style="font-size: 16.67px;">tool</a> <a href="/Blog/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/Blog/tags/webpack/" style="font-size: 10px;">webpack</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2023/01/">一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/05/">五月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/09/">九月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/reactContext/">React Context 的运用</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/js%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%A8%E5%B1%8F/">js实现浏览器全屏</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/font/">font</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/less/">less</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 jarze blog ~~~<br />
+      <!-- Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/Blog/about" class="mobile-nav-link">About</a>
+  
+    <a href="/Blog/links" class="mobile-nav-link">Links</a>
+  
+</nav>
+    
+
+
+<script src="/Blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/Blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+
+
+
+  <script>window.CONFIG={path:"/Blog/search.json"};</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
+  
+<script src="/Blog/js/search.js"></script>
+
+
+  </div>
+</body>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script data-ad-client="ca-pub-2547143607556885" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</html>

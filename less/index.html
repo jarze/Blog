@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109981608-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109981608-1');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>less | Jarze</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="@import 嵌套 &amp; 变量 运算 混合 匹配模式 &gt; 符号 避免编译 Javascript 表达式 @media 媒体查询 函数 字符串函数 if default List Functions   other Variable Variables Properties as Variables (NEW!)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="less">
+<meta property="og:url" content="https://jarze.github.io/Blog/less/index.html">
+<meta property="og:site_name" content="Jarze">
+<meta property="og:description" content="@import 嵌套 &amp; 变量 运算 混合 匹配模式 &gt; 符号 避免编译 Javascript 表达式 @media 媒体查询 函数 字符串函数 if default List Functions   other Variable Variables Properties as Variables (NEW!)">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-05T10:42:24.000Z">
+<meta property="article:modified_time" content="2023-02-09T07:33:06.208Z">
+<meta property="article:author" content="jarze blog ~~~">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/Blog/css/images/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/Blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.min.css">
+
+  
+  <meta name="google-site-verification" content="BEvcfET7cgXFsJH40NIqTskqOHR7z8uvgu5JPD1LRZU" />
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Jarze</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/Blog/" id="subtitle">🇨🇳🇨🇳🇨🇳</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/Blog/about">About</a>
+        
+          <a class="main-nav-link" href="/Blog/links">Links</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jarze.github.io/Blog"></form>
+      </div>
+      
+      <div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-icon">
+				🔍
+			</span>
+			<div class="search-input-container"></div>
+			<input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="..." spellcheck="false"
+           type="search" class="search-input">
+			<span class="popup-btn-close" role="button">
+				✖️
+			</span>
+		</div>
+		<div class="search-result-container">
+		</div>
+	</div>
+</div>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-less" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Blog/less/" class="article-date">
+  <time class="dt-published" datetime="2022-08-05T10:42:24.000Z" itemprop="datePublished">2022-08-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      less
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <!-- toc -->
+
+<ul>
+<li><a href="#import">@import</a></li>
+<li><a href="#嵌套">嵌套</a></li>
+<li><a href="#">&amp;</a></li>
+<li><a href="#变量">变量</a></li>
+<li><a href="#运算">运算</a></li>
+<li><a href="#混合">混合</a></li>
+<li><a href="#匹配模式">匹配模式</a></li>
+<li><a href="#符号">&gt; 符号</a></li>
+<li><a href="#避免编译">避免编译</a></li>
+<li><a href="#javascript-表达式">Javascript 表达式</a></li>
+<li><a href="#media-媒体查询">@media 媒体查询</a></li>
+<li><a href="#函数httpslessbootcsscomfunctions">函数</a><ul>
+<li><a href="#字符串函数">字符串函数</a></li>
+<li><a href="#if">if</a></li>
+<li><a href="#defaulthttpslessbootcsscomfunctionsmisc-functions-default">default</a></li>
+<li><a href="#list-functionshttpslessbootcsscomfunctionslist-functions">List Functions</a></li>
+</ul>
+</li>
+<li><a href="#other">other</a><ul>
+<li><a href="#variable-variables">Variable Variables</a></li>
+<li><a href="#properties-as-variables-new">Properties as Variables (NEW!)</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<a id="more"></a>
+
+<p>less 是一门 css 预处理语言，它扩展了 css 语言，增加了变量，Mixin,函数等新特性，使 css 更易维护和扩展，less 可以运行在浏览器和服务器端</p>
+<p>[TOC]</p>
+<h2><span id="import">@import</span></h2><h2><span id="嵌套">嵌套</span></h2><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrapper</span> &#123;</span><br><span class="line">  <span class="selector-class">.content</span> &#123;</span><br><span class="line">    <span class="selector-tag">ul</span> &#123;</span><br><span class="line">      <span class="selector-tag">li</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>: red;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrapper</span> <span class="selector-class">.content</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="amp">&amp;</span></h2><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: blue;</span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: aqua;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.wrap</span> &#123;</span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-tag">_2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: aliceblue;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.link</span> &#123;</span><br><span class="line">  <span class="selector-tag">&amp;</span> + <span class="selector-tag">&amp;</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-tag">&amp;</span> <span class="selector-tag">&amp;</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: green;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-tag">&amp;</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: blue;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-tag">&amp;</span>,</span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-tag">ish</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: cyan;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: aqua;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.wrap_2</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: aliceblue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.link</span> + <span class="selector-class">.link</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.link</span> <span class="selector-class">.link</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.link</span><span class="selector-class">.link</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.link</span>,</span><br><span class="line"><span class="selector-class">.linkish</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: cyan;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="变量">变量</span></h2><p><code>@</code>开头</p>
+<blockquote>
+<p>注意点:变量有作用域，只能给自己和后代元素用，出了最外层的{}，别的类没法调用。</p>
+</blockquote>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="variable">@width:</span> <span class="number">200px</span>;</span><br><span class="line">  <span class="variable">@height:</span> <span class="number">500px</span>;</span><br><span class="line">  <span class="variable">@my_color:</span> <span class="number">#ccc</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">@width</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">@height</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="variable">@my_color</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">@index:</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.bl_</span><span class="variable">@&#123;index&#125;</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#55e276</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#662424</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.button-group-base</span>(<span class="variable">@btnClassName</span>) &#123;</span><br><span class="line">  &gt; <span class="selector-class">.@&#123;btnClassName&#125;</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.button-g-1</span> &#123;</span><br><span class="line">  <span class="selector-class">.button-group-base</span>(dis);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#cccccc</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bl_1</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#55e276</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#662424</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.button-g-1</span> &gt; <span class="selector-class">.dis</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>@arguments</code>包含了所有传递进来的参数</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.bor</span>(<span class="variable">@w</span>:<span class="number">3px</span>,<span class="variable">@c</span>:<span class="variable">@color</span>,<span class="variable">@s</span>:solid) &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="variable">@arguments</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.test</span> &#123;</span><br><span class="line">  <span class="selector-class">.bor</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.test</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">3px</span> <span class="number">#5f30b0</span> solid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="运算">运算</span></h2><p>两个数参与运算，只有一个单位，结果就以这个单位为准。<br>两个数参与运算，都有单位，结果就以第一个为准。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@width:</span> <span class="number">500px</span>;</span><br><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">@width</span> - <span class="number">50</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#ccc</span> - <span class="number">10</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50%</span> - <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50px</span> - <span class="number">20%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">50</span> - <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">50</span> - <span class="number">20%</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">50%</span> - <span class="number">20</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">50px</span> - <span class="number">20</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">450px</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#c2c2c2</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">30%</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">30%</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">30%</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">30px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="混合">混合</span></h2><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn</span> &#123;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">15px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.submit</span> &#123;</span><br><span class="line">  <span class="selector-class">.btn</span>;</span><br><span class="line">  <span class="attribute">background</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.star</span> &#123;</span><br><span class="line">  <span class="selector-class">.btn</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#e65151</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn</span> &#123;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">15px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.submit</span> &#123;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">background</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.star</span> &#123;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#e65151</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn1</span>(<span class="variable">@color</span>: red) &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">120px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="variable">@color</span>; <span class="comment">/* 用参数表示 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.submit1</span> &#123;</span><br><span class="line">  <span class="selector-class">.btn1</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.star1</span> &#123;</span><br><span class="line">  <span class="selector-class">.btn1</span>(<span class="number">#55e276</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.submit1</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">120px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#ff0000</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.star1</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">120px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#55e276</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="匹配模式">匹配模式</span></h2><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.atn</span>(<span class="variable">@_</span>,<span class="variable">@color</span>: <span class="number">#fff</span>) &#123;</span><br><span class="line">  <span class="comment">/* 不同命名的公共部分要这样写，必须是@_，表示公共部分 */</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">120px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="variable">@color</span>; <span class="comment">/* 用参数表示 */</span></span><br><span class="line">  <span class="attribute">cursor</span>: pointer;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.atn</span>(primary,<span class="variable">@color</span>) &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid black;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.atn</span>(danger,<span class="variable">@color</span>) &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.atn-1</span> &#123;</span><br><span class="line">  <span class="selector-class">.atn</span>(primary);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.atn-2</span> &#123;</span><br><span class="line">  <span class="selector-class">.atn</span>(danger,<span class="number">#E65151</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.atn-3</span> &#123;</span><br><span class="line">  <span class="selector-class">.atn</span>(danger);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.atn-1</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">120px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#ffffff</span>;</span><br><span class="line">  <span class="attribute">cursor</span>: pointer;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.atn-2</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">120px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#e65151</span>;</span><br><span class="line">  <span class="attribute">cursor</span>: pointer;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.atn-3</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">120px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#ffffff</span>;</span><br><span class="line">  <span class="attribute">cursor</span>: pointer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="gt-符号">&gt; 符号</span></h2><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#bgcolor</span>() &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="selector-class">.a</span>() &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#888</span>;</span><br><span class="line">    <span class="selector-tag">&amp;</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">      <span class="attribute">color</span>: <span class="number">#ff6600</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.b</span>() &#123;</span><br><span class="line">      <span class="attribute">background</span>: <span class="number">#ff0000</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.bgcolor1</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#fdfee0</span>;</span><br><span class="line">  <span class="selector-id">#bgcolor</span> &gt; <span class="selector-class">.a</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bgcolor2</span> &#123;</span><br><span class="line">  <span class="selector-id">#bgcolor</span> &gt; <span class="selector-class">.a</span> &gt; <span class="selector-class">.b</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.bgcolor1</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#fdfee0</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#888</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bgcolor1</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#ff6600</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bgcolor2</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#ff0000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="避免编译">避免编译</span></h2><blockquote>
+<p><code>~&#39;&#39;</code></p>
+</blockquote>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.test</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="string">~'calc(300px - 30px)'</span>;</span><br><span class="line">  <span class="attribute">width</span>: calc(<span class="number">300px</span> - <span class="number">30px</span>);</span><br><span class="line">  <span class="attribute">width</span>: <span class="string">'calc(300px - 30px)'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.test</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="built_in">calc</span>(<span class="number">300px</span> - <span class="number">30px</span>);</span><br><span class="line">  <span class="attribute">width</span>: <span class="built_in">calc</span>(<span class="number">270px</span>);</span><br><span class="line">  <span class="attribute">width</span>: <span class="string">'calc(300px - 30px)'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="javascript-表达式">Javascript 表达式</span></h2><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.js</span> &#123;</span><br><span class="line">  <span class="variable">@var:</span> <span class="built_in">` 'hello' .toUpperCase() + '!' `</span>;</span><br><span class="line">  <span class="variable">@height:</span> <span class="built_in">`document.body.clientHeight`</span>;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">content</span>: <span class="variable">@var</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">@height</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.js</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">"HELLO!"</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="media-媒体查询">@media 媒体查询</span></h2><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.media</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#662424</span>;</span><br><span class="line">  <span class="keyword">@media</span> (<span class="attribute">min-width</span>: <span class="number">400px</span>) &#123;</span><br><span class="line">    <span class="attribute">background</span>: blue;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.media</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#662424</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width:</span> <span class="number">400px</span>) &#123;</span><br><span class="line">  <span class="selector-class">.media</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: blue;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="函数"></span></h2><blockquote>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Functions" target="_blank" rel="noopener"><code>CSS_FUNCTIONS</code></a></p>
+</blockquote>
+<h3><span id="字符串函数">字符串函数</span></h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*判断 是否为数字*/</span></span><br><span class="line"><span class="selector-tag">isnumber</span>(<span class="number">1234</span>);   <span class="selector-tag">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*判断 是否为字符串*/</span></span><br><span class="line"><span class="selector-tag">isstring</span>(<span class="string">'1234'</span>);   <span class="selector-tag">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*判断 是否为颜色*/</span></span><br><span class="line"><span class="selector-tag">iscolor</span>(<span class="number">#fff</span>);   <span class="selector-tag">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*返回指定颜色*/</span></span><br><span class="line"><span class="selector-tag">color</span>(<span class="string">"#aaa"</span>);   <span class="selector-id">#aaa</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*向上取整*/</span></span><br><span class="line"><span class="selector-tag">ceil</span>(<span class="number">0.7</span>)  <span class="selector-tag">1</span></span><br><span class="line"><span class="comment">/*向下取整*/</span></span><br><span class="line"><span class="selector-tag">floor</span>(<span class="number">3.3</span>)  <span class="selector-tag">3</span></span><br><span class="line"><span class="comment">/*四舍五入*/</span></span><br><span class="line"><span class="selector-tag">round</span>(<span class="number">3.77</span>)  <span class="selector-tag">4</span></span><br><span class="line"><span class="comment">/*指定一个或者多个参数的最小值*/</span></span><br><span class="line"><span class="selector-tag">min</span>(<span class="number">70</span>,<span class="number">30</span>,<span class="number">45</span>,<span class="number">20</span>)   <span class="selector-tag">20</span></span><br><span class="line"><span class="comment">/*指定一个或者多个参数的最大值*/</span></span><br><span class="line"><span class="selector-tag">max</span>(<span class="number">70</span>,<span class="number">30</span>,<span class="number">45</span>,<span class="number">20</span>)   <span class="selector-tag">70</span></span><br><span class="line"><span class="comment">// css宣布支持三角函数 less中也有一些三角函数的数学函数方法</span></span><br><span class="line"><span class="comment">/*正弦*/</span></span><br><span class="line"><span class="selector-tag">sin</span>(<span class="number">2</span>)  <span class="selector-tag">0</span><span class="selector-class">.90929742682</span></span><br><span class="line"><span class="comment">/*反正弦*/</span></span><br><span class="line"><span class="selector-tag">asin</span>(<span class="number">1</span>)  <span class="selector-tag">1</span><span class="selector-class">.5707963267948966</span></span><br><span class="line"><span class="comment">/*余弦*/</span></span><br><span class="line"><span class="selector-tag">cos</span>(<span class="number">2</span>)   <span class="selector-tag">-0</span><span class="selector-class">.4161468365471424</span></span><br><span class="line"><span class="comment">/*正切整*/</span></span><br><span class="line"><span class="selector-tag">tan</span>(<span class="number">60</span>)   <span class="selector-tag">0</span><span class="selector-class">.320040389379563</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">pi</span>()   <span class="selector-tag">3</span><span class="selector-class">.14159265</span></span><br><span class="line"><span class="selector-tag">pow</span>(<span class="number">2</span>, <span class="number">2</span>) <span class="selector-tag">4</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*返回图片尺寸*/</span></span><br><span class="line"><span class="selector-tag">image-size</span>(<span class="string">'./x.png'</span>);   <span class="selector-tag">64px</span> <span class="selector-tag">64px</span></span><br><span class="line"><span class="comment">/*返回图片宽度或高度*/</span></span><br><span class="line"><span class="selector-tag">image-width</span>(<span class="string">'./x.png'</span>);   <span class="selector-tag">64px</span></span><br><span class="line"><span class="selector-tag">image-height</span>(<span class="string">'./x.png'</span>);   <span class="selector-tag">64px</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">data-uri</span>(<span class="string">'./x.png'</span>);  <span class="selector-tag">url</span>(<span class="string">"data:image/png;base64,iVBORw0KGgo..."</span>)</span><br><span class="line"></span><br><span class="line">@<span class="selector-tag">list</span>: <span class="selector-tag">red</span>, <span class="selector-tag">green</span> <span class="selector-tag">30%</span>, <span class="selector-tag">blue</span>;</span><br><span class="line"><span class="selector-tag">svg-gradient</span>(to right, <span class="variable">@list</span>); <span class="selector-tag">url</span>('<span class="attribute">data</span>:image/svg+xml,%<span class="number">3</span>Csvg%<span class="number">20</span>xm...")</span><br></pre></td></tr></table></figure>
+
+<h3><span id="if">if</span></h3><blockquote>
+<p>Released: v3.0.0 Updated: v3.6.0</p>
+</blockquote>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@bg:</span> black;</span><br><span class="line"><span class="variable">@bg-light:</span> boolean(luma(<span class="variable">@bg</span>) &gt; <span class="number">50%</span>);</span><br><span class="line"><span class="variable">@some:</span> foo;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: if((<span class="number">2</span> &gt; <span class="number">1</span>), <span class="number">0</span>, <span class="number">3px</span>);</span><br><span class="line">  <span class="attribute">color</span>: if((iscolor(<span class="variable">@some</span>)), <span class="variable">@some</span>, black);</span><br><span class="line">  <span class="attribute">color</span>: if(<span class="variable">@bg-light</span>, black, white);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">color</span>: black;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">if</span>(not (true), foo, bar);</span><br><span class="line"><span class="selector-tag">if</span>((true) and (<span class="number">2</span> &gt; <span class="number">1</span>), foo, bar);</span><br><span class="line"><span class="selector-tag">if</span>((false) or (isstring(<span class="string">"boo!"</span>)), foo, bar);</span><br></pre></td></tr></table></figure>
+
+<h3><span id="default"></span></h3><p>Available only inside guard conditions and returns true only if no other mixin matches, false otherwise.<br>仅当没有其他 mixin 匹配时才返回 true，否则返回 false</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.mixin</span>(<span class="number">1</span>) &#123;</span><br><span class="line">  <span class="attribute">x</span>: <span class="number">11</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.mixin</span>(<span class="number">2</span>) &#123;</span><br><span class="line">  <span class="attribute">y</span>: <span class="number">22</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.mixin</span>(<span class="variable">@x</span>) <span class="keyword">when</span> (default()) &#123;</span><br><span class="line">  <span class="attribute">z</span>: <span class="variable">@x</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="selector-class">.mixin</span>(<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-class">.special</span> &#123;</span><br><span class="line">  <span class="selector-class">.mixin</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">z</span>: <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-class">.special</span> &#123;</span><br><span class="line">  <span class="attribute">x</span>: <span class="number">11</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.mixin1</span>(<span class="variable">@value</span>) <span class="keyword">when</span> (ispixel(<span class="variable">@value</span>)) &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">@value</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.mixin1</span>(<span class="variable">@value</span>) <span class="keyword">when</span> <span class="keyword">not</span>(default()) &#123;</span><br><span class="line">  <span class="attribute">padding</span>: (<span class="variable">@value</span> / <span class="number">5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div-1</span> &#123;</span><br><span class="line">  <span class="selector-class">.mixin1</span>(<span class="number">100px</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div-2</span> &#123;</span><br><span class="line">  <span class="comment">/* ... */</span></span><br><span class="line">  <span class="selector-class">.mixin1</span>(<span class="number">100%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div-1</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div-2</span> &#123;</span><br><span class="line">  <span class="comment">/* ... */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.x</span> &#123;</span><br><span class="line">  <span class="selector-class">.m</span>(red) &#123;</span><br><span class="line">    <span class="attribute">case-1</span>: darkred;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.m</span>(blue) &#123;</span><br><span class="line">    <span class="attribute">case-2</span>: darkblue;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.m</span>(<span class="variable">@x</span>) <span class="keyword">when</span> (iscolor(<span class="variable">@x</span>)) <span class="keyword">and</span> (default()) &#123;</span><br><span class="line">    <span class="attribute">default-color</span>: <span class="variable">@x</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.m</span>(<span class="string">'foo'</span>) &#123;</span><br><span class="line">    <span class="attribute">case-1</span>: I am <span class="string">'foo'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.m</span>(<span class="string">'bar'</span>) &#123;</span><br><span class="line">    <span class="attribute">case-2</span>: I am <span class="string">'bar'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.m</span>(<span class="variable">@x</span>) <span class="keyword">when</span> (isstring(<span class="variable">@x</span>)) <span class="keyword">and</span> (default()) &#123;</span><br><span class="line">    <span class="attribute">default-string</span>: and I am the default;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-tag">-blue</span> &#123;</span><br><span class="line">    <span class="selector-class">.m</span>(blue);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-tag">-green</span> &#123;</span><br><span class="line">    <span class="selector-class">.m</span>(green);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-tag">-foo</span> &#123;</span><br><span class="line">    <span class="selector-class">.m</span>(<span class="string">'foo'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-tag">-baz</span> &#123;</span><br><span class="line">    <span class="selector-class">.m</span>(<span class="string">'baz'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.x-blue</span> &#123;</span><br><span class="line">  case-2: darkblue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.x-green</span> &#123;</span><br><span class="line">  <span class="attribute">default-color</span>: <span class="number">#008000</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.x-foo</span> &#123;</span><br><span class="line">  case-1: I am 'foo';</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.x-baz</span> &#123;</span><br><span class="line">  <span class="attribute">default-string</span>: and I am the default;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3><span id="list-functions"></span></h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">l</span> &#123;</span><br><span class="line">  <span class="variable">@list:</span> <span class="string">'banana'</span>, <span class="string">'tomato'</span>, <span class="string">'potato'</span>, <span class="string">'peach'</span>;</span><br><span class="line">  <span class="attribute">len</span>: length(<span class="variable">@list</span>);</span><br><span class="line">  <span class="attribute">e</span>: extract(<span class="variable">@list</span>, <span class="number">3</span>);</span><br><span class="line">  <span class="comment">/*Released v3.9.0*/</span></span><br><span class="line">  <span class="attribute">r</span>: range(<span class="number">10px</span>, <span class="number">40px</span>, <span class="number">10</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">l</span> &#123;</span><br><span class="line">  <span class="attribute">len</span>: <span class="number">4</span>;</span><br><span class="line">  <span class="attribute">e</span>: <span class="string">'potato'</span>;</span><br><span class="line">  <span class="attribute">r</span>: <span class="number">10px</span> <span class="number">20px</span> <span class="number">30px</span> <span class="number">40px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>Released v3.7.0</p>
+</blockquote>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@selectors:</span> blue, green, red;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">each</span>(<span class="variable">@selectors</span>, &#123;</span><br><span class="line">    <span class="selector-class">.sel-</span><span class="variable">@&#123;value&#125;</span> &#123;</span><br><span class="line">      <span class="attribute">a</span>: b;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.sel-blue</span> &#123;</span><br><span class="line">  <span class="attribute">a</span>: b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.sel-green</span> &#123;</span><br><span class="line">  <span class="attribute">a</span>: b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.sel-red</span> &#123;</span><br><span class="line">  <span class="attribute">a</span>: b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@set:</span> &#123;</span><br><span class="line">  <span class="attribute">one</span>: blue;</span><br><span class="line">  <span class="attribute">two</span>: green;</span><br><span class="line">  <span class="attribute">three</span>: red;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="selector-class">.set</span> &#123;</span><br><span class="line">  <span class="selector-tag">each</span>(<span class="variable">@set</span>, &#123;</span><br><span class="line">      <span class="variable">@&#123;key&#125;</span><span class="selector-tag">-</span><span class="variable">@&#123;index&#125;</span>: @<span class="selector-tag">value</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.set</span> &#123;</span><br><span class="line">  one-1: blue;</span><br><span class="line">  <span class="selector-tag">two-2</span>: <span class="selector-tag">green</span>;</span><br><span class="line">  <span class="selector-tag">three-3</span>: <span class="selector-tag">red</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.set-2</span>() &#123;</span><br><span class="line">  <span class="attribute">one</span>: blue;</span><br><span class="line">  <span class="attribute">two</span>: green;</span><br><span class="line">  <span class="attribute">three</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.set-2</span> &#123;</span><br><span class="line">  <span class="selector-tag">each</span>(.set-<span class="number">2</span>(), .(<span class="variable">@v</span>, <span class="variable">@k</span>, <span class="variable">@i</span>) &#123;</span><br><span class="line">    <span class="variable">@&#123;k&#125;</span><span class="selector-tag">-</span><span class="variable">@&#123;i&#125;</span>: @<span class="selector-tag">v</span>;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.set-2</span> &#123;</span><br><span class="line">  one-1: blue;</span><br><span class="line">  <span class="selector-tag">two-2</span>: <span class="selector-tag">green</span>;</span><br><span class="line">  <span class="selector-tag">three-3</span>: <span class="selector-tag">red</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>Creating a for loop using range and each<br>Requires Less v3.9.0</p>
+</blockquote>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">each</span>(range(<span class="number">4</span>), &#123;</span><br><span class="line">  <span class="selector-class">.col-</span><span class="variable">@&#123;value&#125;</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: (<span class="variable">@value</span> * <span class="number">50px</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.col-1</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.col-2</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.col-3</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.col-4</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="other">other</span></h2><h3><span id="variable-variables">Variable Variables</span></h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@primary:</span>  green;</span><br><span class="line"><span class="variable">@secondary:</span> blue;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.section</span> &#123;</span><br><span class="line">  <span class="variable">@color:</span> primary;</span><br><span class="line"></span><br><span class="line">  <span class="selector-class">.element</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">@@color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.section</span> <span class="selector-class">.element</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: green;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.foods</span>() &#123;</span><br><span class="line">  <span class="variable">@dessert:</span> ice cream;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">@key-to-lookup:</span> dessert;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.lunch</span> &#123;</span><br><span class="line">  <span class="attribute">treat</span>: .foods[<span class="variable">@@key-to-lookup</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.lunch</span> &#123;</span><br><span class="line">  <span class="attribute">treat</span>: ice cream;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3><span id="properties-as-variables-new">Properties as Variables (NEW!)</span></h3><blockquote>
+<p>v3.0.0</p>
+</blockquote>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.widget</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#efefef</span>;</span><br><span class="line">  background-color: $color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.widget</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#efefef</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#efefef</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">nav</span> <span class="selector-tag">ul</span> &#123;</span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-pseudo">:extend(.inline)</span>;</span><br><span class="line">  <span class="attribute">background</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.inline</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">nav</span> <span class="selector-tag">ul</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.inline</span>,</span><br><span class="line"><span class="selector-tag">nav</span> <span class="selector-tag">ul</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"7cff2fe5351a4771a8ca","clientSecret":"44cbb554920d2d11a7882f71536207a73e848cf4","repo":"Blog","owner":"jarze","admin":["jarze"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jarze.github.io/Blog/less/" data-id="cldws9a8d0018bgokdpg1h75f" data-title="less" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Blog/font/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          font
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Blog/Picture/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Picture</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/">Front</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/js/">js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/js/react/">react</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/tool/">tool</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Fun/">Fun</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/%E5%B7%A5%E5%85%B7%E6%9F%A5%E8%AF%A2/">工具查询</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Accessibility/" rel="tag">Accessibility</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Node/" rel="tag">Node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/WCAG/" rel="tag">WCAG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/commander/" rel="tag">commander</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/eslint/" rel="tag">eslint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/link/" rel="tag">link</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/make/" rel="tag">make</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/mobx/" rel="tag">mobx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/puml/" rel="tag">puml</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/tool/" rel="tag">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/webpack/" rel="tag">webpack</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/Accessibility/" style="font-size: 10px;">Accessibility</a> <a href="/Blog/tags/Node/" style="font-size: 10px;">Node</a> <a href="/Blog/tags/WCAG/" style="font-size: 10px;">WCAG</a> <a href="/Blog/tags/commander/" style="font-size: 10px;">commander</a> <a href="/Blog/tags/css/" style="font-size: 16.67px;">css</a> <a href="/Blog/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/Blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/Blog/tags/eslint/" style="font-size: 10px;">eslint</a> <a href="/Blog/tags/git/" style="font-size: 10px;">git</a> <a href="/Blog/tags/js/" style="font-size: 20px;">js</a> <a href="/Blog/tags/link/" style="font-size: 10px;">link</a> <a href="/Blog/tags/make/" style="font-size: 10px;">make</a> <a href="/Blog/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/Blog/tags/mobx/" style="font-size: 16.67px;">mobx</a> <a href="/Blog/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/Blog/tags/npm/" style="font-size: 16.67px;">npm</a> <a href="/Blog/tags/puml/" style="font-size: 10px;">puml</a> <a href="/Blog/tags/react/" style="font-size: 13.33px;">react</a> <a href="/Blog/tags/shell/" style="font-size: 10px;">shell</a> <a href="/Blog/tags/tool/" style="font-size: 16.67px;">tool</a> <a href="/Blog/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/Blog/tags/webpack/" style="font-size: 10px;">webpack</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2023/01/">一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/05/">五月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/09/">九月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/reactContext/">React Context 的运用</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/js%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%A8%E5%B1%8F/">js实现浏览器全屏</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/font/">font</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/less/">less</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 jarze blog ~~~<br />
+      <!-- Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/Blog/about" class="mobile-nav-link">About</a>
+  
+    <a href="/Blog/links" class="mobile-nav-link">Links</a>
+  
+</nav>
+    
+
+
+<script src="/Blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/Blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+
+
+
+  <script>window.CONFIG={path:"/Blog/search.json"};</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
+  
+<script src="/Blog/js/search.js"></script>
+
+
+  </div>
+</body>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script data-ad-client="ca-pub-2547143607556885" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</html>
