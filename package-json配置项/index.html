@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109981608-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109981608-1');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>package.json配置项 | Jarze</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="_npmjs _">
+<meta property="og:type" content="article">
+<meta property="og:title" content="package.json配置项">
+<meta property="og:url" content="https://jarze.github.io/Blog/package-json%E9%85%8D%E7%BD%AE%E9%A1%B9/index.html">
+<meta property="og:site_name" content="Jarze">
+<meta property="og:description" content="_npmjs _">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jarze.github.io/Blog/package-json%E9%85%8D%E7%BD%AE%E9%A1%B9/pkg.png">
+<meta property="article:published_time" content="2022-03-16T14:24:04.000Z">
+<meta property="article:modified_time" content="2023-02-09T08:44:18.414Z">
+<meta property="article:author" content="jarze blog ~~~">
+<meta property="article:tag" content="npm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jarze.github.io/Blog/package-json%E9%85%8D%E7%BD%AE%E9%A1%B9/pkg.png">
+  
+  
+    <link rel="icon" href="/Blog/css/images/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/Blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.min.css">
+
+  
+  <meta name="google-site-verification" content="BEvcfET7cgXFsJH40NIqTskqOHR7z8uvgu5JPD1LRZU" />
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Jarze</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/Blog/" id="subtitle">🇨🇳🇨🇳🇨🇳</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/Blog/about">About</a>
+        
+          <a class="main-nav-link" href="/Blog/links">Links</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jarze.github.io/Blog"></form>
+      </div>
+      
+      <div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-icon">
+				🔍
+			</span>
+			<div class="search-input-container"></div>
+			<input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="..." spellcheck="false"
+           type="search" class="search-input">
+			<span class="popup-btn-close" role="button">
+				✖️
+			</span>
+		</div>
+		<div class="search-result-container">
+		</div>
+	</div>
+</div>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-package-json配置项" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Blog/package-json%E9%85%8D%E7%BD%AE%E9%A1%B9/" class="article-date">
+  <time class="dt-published" datetime="2022-03-16T14:24:04.000Z" itemprop="datePublished">2022-03-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/Blog/categories/Front/">Front</a>►<a class="article-category-link" href="/Blog/categories/Front/tool/">tool</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      package.json配置项
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><a href="https://docs.npmjs.com/cli/v8/configuring-npm/package-json" target="_blank" rel="noopener"> _<code>npmjs</code> _</a></p>
+</blockquote>
+<img src="/Blog/package-json%E9%85%8D%E7%BD%AE%E9%A1%B9/pkg.png" class>
+
+<a id="more"></a>
+
+<details><summary><b>👋 PlantUML</b></summary>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@startmindmap</span><br><span class="line">* package.json</span><br><span class="line"></span><br><span class="line">left side</span><br><span class="line"></span><br><span class="line"> * 必须属性</span><br><span class="line">  * name</span><br><span class="line">   *_ 名称</span><br><span class="line">  * version</span><br><span class="line">   *_ 版本号</span><br><span class="line"></span><br><span class="line"> * 描述属性</span><br><span class="line">  * description</span><br><span class="line">   *_ 描述信息</span><br><span class="line">  * keywords</span><br><span class="line">   *_ 关键词</span><br><span class="line">  * author</span><br><span class="line">   *_ 作者</span><br><span class="line">  * contributors</span><br><span class="line">   *_ 贡献者</span><br><span class="line">  * homepage</span><br><span class="line">   *_ 主页</span><br><span class="line">  * repository</span><br><span class="line">   *_ 仓库</span><br><span class="line">  * bugs</span><br><span class="line">   *_ Bug反馈地址</span><br><span class="line"></span><br><span class="line"> * 依赖配置</span><br><span class="line">  * dependencies</span><br><span class="line">   *_ 生产环境依赖</span><br><span class="line">  * devDependencies</span><br><span class="line">   *_ 开发环境依赖</span><br><span class="line">  * peerDependencies</span><br><span class="line">   *_ 兼容依赖</span><br><span class="line">  * optionalDependencies</span><br><span class="line">   *_ 不阻断安装依赖</span><br><span class="line">  * bundledDependencies</span><br><span class="line">   *_ 打包依赖</span><br><span class="line">  * engines</span><br><span class="line">   *_ 版本要求</span><br><span class="line"></span><br><span class="line"> * 脚本配置</span><br><span class="line">  * scripts</span><br><span class="line">  * config</span><br><span class="line"></span><br><span class="line">right side</span><br><span class="line"></span><br><span class="line"> * 文件&amp;目录</span><br><span class="line">  * main</span><br><span class="line">   *_ 程序入口</span><br><span class="line">  * browser</span><br><span class="line">   *_ 程序入口</span><br><span class="line">  * module</span><br><span class="line">   *_ 程序入口</span><br><span class="line">  * bin</span><br><span class="line">   *_ 命令行工具入口</span><br><span class="line">  * files</span><br><span class="line">   *_ 发布文件配置</span><br><span class="line">  * man</span><br><span class="line">   *_ man文档</span><br><span class="line">  * directories</span><br><span class="line">   *_ 项目目录</span><br><span class="line"></span><br><span class="line"> * 发布配置</span><br><span class="line">  * private</span><br><span class="line">   *_ 限制发布</span><br><span class="line">  * preferGlobal</span><br><span class="line">   *_ 警告本地安装</span><br><span class="line">  * publishConfig</span><br><span class="line">   *_ 限制发布仓库</span><br><span class="line">   *_ 限制发布版本</span><br><span class="line">  * os</span><br><span class="line">   *_ 限制用户安装系统</span><br><span class="line">  * cpu</span><br><span class="line">   *_ 限制用户安装cpu</span><br><span class="line">  * license</span><br><span class="line">   *_ 开发协议</span><br><span class="line"></span><br><span class="line"> * 第三方配置</span><br><span class="line">  * typings</span><br><span class="line">  * eslintConfig</span><br><span class="line">  * babel</span><br><span class="line">  * unpkg</span><br><span class="line">  * lint-staged</span><br><span class="line">  * gitHooks</span><br><span class="line">  * browserslist</span><br><span class="line">  * sideEffects</span><br><span class="line">   *_ webpack tree shaking</span><br><span class="line"></span><br><span class="line">@endmindmap</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"> //如果 private 为 <span class="literal">true</span>，npm 会拒绝发布。</span><br><span class="line"> <span class="string">"private"</span>: <span class="literal">true</span>,</span><br><span class="line"> //分别指定生产环境依赖和开发依赖</span><br><span class="line">  <span class="string">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"antd"</span>: <span class="string">"^2.11.1"</span>,</span><br><span class="line">    <span class="string">"classnames"</span>: <span class="string">"^2.2.5"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"axios"</span>: <span class="string">"^0.15.3"</span>,</span><br><span class="line">    <span class="string">"babel-eslint"</span>: <span class="string">"^6.1.2"</span></span><br><span class="line">  &#125;,</span><br><span class="line">//bin制作命令行工具</span><br><span class="line">  <span class="string">"bin"</span>: &#123;</span><br><span class="line">    <span class="string">"dk-cli"</span>: <span class="string">"./bin/dk-cli.js"</span></span><br><span class="line">  &#125;,</span><br><span class="line">//script用于配置一些脚本，如npm run start</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"start"</span>: <span class="string">"node index.js"</span></span><br><span class="line">  &#125;,</span><br><span class="line">//engines记录当前项目依赖 node 和 npm 的版本号</span><br><span class="line">  <span class="string">"engines"</span>: &#123;</span><br><span class="line">    <span class="string">"node"</span>: <span class="string">"&gt;=6.9.0"</span>,</span><br><span class="line">    <span class="string">"npm"</span>: <span class="string">"&gt;=3.10.10"</span></span><br><span class="line">  &#125;</span><br><span class="line">//publishConfig决定了我们发布包发布到哪里去，此时发布包就不是往 www.npmjs.com/ 了</span><br><span class="line">  <span class="string">"publishConfig"</span>: &#123;</span><br><span class="line">    <span class="string">"registry"</span>: <span class="string">"http://gong/"</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"7cff2fe5351a4771a8ca","clientSecret":"44cbb554920d2d11a7882f71536207a73e848cf4","repo":"Blog","owner":"jarze","admin":["jarze"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jarze.github.io/Blog/package-json%E9%85%8D%E7%BD%AE%E9%A1%B9/" data-id="cldwusuyk0023guncfv7sfm6q" data-title="package.json配置项" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/npm/" rel="tag">npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Blog/Accessibility/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          无障碍与可访问-Accessibility
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Blog/commitizen%E8%A7%84%E8%8C%83/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">commitizen规范</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/">Front</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/js/">js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/js/react/">react</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/tool/">tool</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Fun/">Fun</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/%E5%B7%A5%E5%85%B7%E6%9F%A5%E8%AF%A2/">工具查询</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Accessibility/" rel="tag">Accessibility</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Node/" rel="tag">Node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/WCAG/" rel="tag">WCAG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/commander/" rel="tag">commander</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/eslint/" rel="tag">eslint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/link/" rel="tag">link</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/make/" rel="tag">make</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/mobx/" rel="tag">mobx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/puml/" rel="tag">puml</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/tool/" rel="tag">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/webpack/" rel="tag">webpack</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/Accessibility/" style="font-size: 10px;">Accessibility</a> <a href="/Blog/tags/Node/" style="font-size: 10px;">Node</a> <a href="/Blog/tags/WCAG/" style="font-size: 10px;">WCAG</a> <a href="/Blog/tags/commander/" style="font-size: 10px;">commander</a> <a href="/Blog/tags/css/" style="font-size: 16.67px;">css</a> <a href="/Blog/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/Blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/Blog/tags/eslint/" style="font-size: 10px;">eslint</a> <a href="/Blog/tags/git/" style="font-size: 10px;">git</a> <a href="/Blog/tags/js/" style="font-size: 20px;">js</a> <a href="/Blog/tags/link/" style="font-size: 10px;">link</a> <a href="/Blog/tags/make/" style="font-size: 10px;">make</a> <a href="/Blog/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/Blog/tags/mobx/" style="font-size: 16.67px;">mobx</a> <a href="/Blog/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/Blog/tags/npm/" style="font-size: 16.67px;">npm</a> <a href="/Blog/tags/puml/" style="font-size: 10px;">puml</a> <a href="/Blog/tags/react/" style="font-size: 13.33px;">react</a> <a href="/Blog/tags/shell/" style="font-size: 10px;">shell</a> <a href="/Blog/tags/tool/" style="font-size: 16.67px;">tool</a> <a href="/Blog/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/Blog/tags/webpack/" style="font-size: 10px;">webpack</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2023/01/">一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/05/">五月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/09/">九月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/reactContext/">React Context 的运用</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/js%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%A8%E5%B1%8F/">js实现浏览器全屏</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/font/">font</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/less/">less</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 jarze blog ~~~<br />
+      <!-- Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/Blog/about" class="mobile-nav-link">About</a>
+  
+    <a href="/Blog/links" class="mobile-nav-link">Links</a>
+  
+</nav>
+    
+
+
+<script src="/Blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/Blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+
+
+
+  <script>window.CONFIG={path:"/Blog/search.json"};</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
+  
+<script src="/Blog/js/search.js"></script>
+
+
+  </div>
+</body>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script data-ad-client="ca-pub-2547143607556885" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</html>

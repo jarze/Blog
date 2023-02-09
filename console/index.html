@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109981608-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109981608-1');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>chrome 开发者工具之 Console | Jarze</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="123java system.out.println(&#39;hello world&#39;)python print(&#39;hello world&#39;)js console.log(&#39;hello world&#39;)   F12 或者 Control+Shift+i（PC 平台）&#x2F; Alt+Command+i（Mac 平台）打开我们的控制台">
+<meta property="og:type" content="article">
+<meta property="og:title" content="chrome 开发者工具之 Console">
+<meta property="og:url" content="https://jarze.github.io/Blog/console/index.html">
+<meta property="og:site_name" content="Jarze">
+<meta property="og:description" content="123java system.out.println(&#39;hello world&#39;)python print(&#39;hello world&#39;)js console.log(&#39;hello world&#39;)   F12 或者 Control+Shift+i（PC 平台）&#x2F; Alt+Command+i（Mac 平台）打开我们的控制台">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-09T11:12:54.000Z">
+<meta property="article:modified_time" content="2023-02-09T08:44:18.406Z">
+<meta property="article:author" content="jarze blog ~~~">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/Blog/css/images/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/Blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.min.css">
+
+  
+  <meta name="google-site-verification" content="BEvcfET7cgXFsJH40NIqTskqOHR7z8uvgu5JPD1LRZU" />
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Jarze</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/Blog/" id="subtitle">🇨🇳🇨🇳🇨🇳</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/Blog/about">About</a>
+        
+          <a class="main-nav-link" href="/Blog/links">Links</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jarze.github.io/Blog"></form>
+      </div>
+      
+      <div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-icon">
+				🔍
+			</span>
+			<div class="search-input-container"></div>
+			<input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="..." spellcheck="false"
+           type="search" class="search-input">
+			<span class="popup-btn-close" role="button">
+				✖️
+			</span>
+		</div>
+		<div class="search-result-container">
+		</div>
+	</div>
+</div>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-console" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Blog/console/" class="article-date">
+  <time class="dt-published" datetime="2020-12-09T11:12:54.000Z" itemprop="datePublished">2020-12-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/Blog/categories/Front/">Front</a>►<a class="article-category-link" href="/Blog/categories/Front/tool/">tool</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      chrome 开发者工具之 Console
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java system.out.println(&#39;hello world&#39;)</span><br><span class="line">python print(&#39;hello world&#39;)</span><br><span class="line">js console.log(&#39;hello world&#39;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong><code>F12 或者 Control+Shift+i（PC 平台）/ Alt+Command+i（Mac 平台）打开我们的控制台</code></strong></p>
+</blockquote>
+<a id="more"></a>
+
+<h2><span id="console-api-介绍">console <code>API</code> 介绍</span></h2><p><code>JavaScript</code> 原生中默认是没有 <code>Console</code> 对象。是宿主对象提供的，也就是说 <strong><code>console</code> 是浏览器提供的内置对象。</strong><br>用于访问调试控制台, 在不同的浏览器里效果可能不同。<br>IE 低版本没有（当然你装了高版本，然后打开控制台他又能用 <code>console</code> 了）。</p>
+<h3><span id="日志级别-api">日志级别 <code>API</code></span></h3><p>提供了日志级别 <code>api</code>。可以方便我们根据类型，更快的定位需要关注的问题。</p>
+<ul>
+<li><p><code>console.log(&#39;普通-文本&#39;)</code>与 <code>console.dir(&#39;普通-对象&#39;)</code><br>不同之处在于输出 <code>dom</code> 节点对象类型是会有一些差别。</p>
+</li>
+<li><p><code>console.info(&#39;信息&#39;)</code> <code>console.log</code> 的别名，输出信息，部分浏览器会增加一个蓝色标志。</p>
+</li>
+<li><p><code>console.warn(&#39;警告&#39;)</code> 黄色警告标识，也有堆栈信息。</p>
+</li>
+<li><p><code>console.error(&#39;错误&#39;)</code> 输出信息时，在最前面加一个红色的叉，表示出错，同时会显示错误发生的堆栈。</p>
+</li>
+<li><p><code>console.debug(&#39;调试&#39;)</code> 从 <code>Chromium 58</code> 开始，<code>Chromium</code> 浏览器只有勾选了控制台中的 <code>“Verbose”</code> 日志级别才可见。</p>
+</li>
+</ul>
+<p>支持多种写法</p>
+<ul>
+<li><p>多参数</p>
+<ul>
+<li><code>console.log(&#39;auther:&#39;, &#39;lilnong.top&#39;)</code></li>
+</ul>
+</li>
+<li><p><mark><code>占位符格式，支持的占位符有：字符（%s）、整数（%d 或%i）、浮点数（%f）、可展开的 DOM（%o）、列出 DOM 的属性（%O）、根据提供的 css 样式格式化字符串（%c）</code></mark></p>
+<ul>
+<li><p>%s：字符串</p>
+</li>
+<li><p>%d：整数</p>
+</li>
+<li><p>%i：整数</p>
+</li>
+<li><p>%f：浮点数</p>
+</li>
+<li><p>%o：obj 对象（DOM）</p>
+</li>
+<li><p>%O：obj 对象</p>
+</li>
+<li><p>%c：CSS 样式</p>
+<ul>
+<li><p><code>console.log(&#39;auther:%s&#39;, &#39;lilnong.top&#39;)</code></p>
+</li>
+<li><p><code>console.log(&#39;%cauther:%s&#39;, &quot;color: red; font-size: 20px&quot;,&#39;lilnong.top&#39;)</code>;</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><em>更适合封装起来使用。</em></p>
+</li>
+</ul>
+<h3><span id="功能性的-api">功能性的 <code>API</code></span></h3><ul>
+<li><p><code>console.assert(location.protocol==&#39;https:&#39;, &quot;https 防止劫持哦~&quot;)</code> 接受两个参数，第一个参数是表达式，第二个参数是字符串。只有当第一个参数为 <code>false</code>，才会输出第二个参数，否则不会有任何结果。</p>
+</li>
+<li><p><code>console.clear()</code> 清除当前控制台的所有输出。</p>
+</li>
+<li><p><code>console.count(&#39;count&#39;)</code> 提供计数功能。比如说有个排序算法，我们想统计时间复杂度。</p>
+</li>
+<li><p><code>Console.countReset()</code> 我们也可以重置指定标签的计数器值。</p>
+</li>
+<li><p><code>console.group(&#39;第一层&#39;)</code>;<code>console.groupEnd()</code>; 提供将显示的信息分组功能，可以把信息进行折叠和展开。</p>
+</li>
+<li><p><code>console.groupCollapsed(&#39;第一层&#39;)</code>;<code>console.groupEnd()</code>; 同上，不同点是默认是折叠状态</p>
+</li>
+<li><p><code>console.table(arr)</code>; 提供将复合类型的数据转为表格显示。还可以进行排序等操作。</p>
+</li>
+<li><p><code>console.time(&#39;task&#39;);console.timeEnd(&#39;task&#39;)</code>; 提供了统计代码执行用时的功能。不准，波动会比较奇怪，多统计，然后求平均值吧</p>
+</li>
+<li><p><code>console.trace()</code>; 追踪函数的调用过程，也可以理解为把打印堆栈。</p>
+</li>
+</ul>
+<h2><span id="console-面板介绍"><code>Console</code> 面板介绍</span></h2><p>上面介绍了 <code>API</code>。接下来我们介绍一下面板的使用。</p>
+<p>控制的是，级别筛选栏的隐藏与显示。</p>
+<p><code>messages</code> 是所有消息类型<br><code>user messages</code> 是指所有用户日志，浏览器产生的不算。如下，产生的错误就不算</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">document.body.addEventListener(&#39;touchmove&#39;, (e)&#x3D;&gt;e.preventDefault())</span><br><span class="line">&#x2F;&#x2F; VM275:1 [Intervention] Unable to preventDefault inside passive event listener due to target being treated as passive. See https:&#x2F;&#x2F;www.chromestatus.com&#x2F;features&#x2F;5093566007214080</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>errors</code> 是指错误级别的日志</p>
+</li>
+<li><p><code>warning</code> 是指警告级别的日志</p>
+</li>
+<li><p><code>info</code> 是指信息级别的日志</p>
+</li>
+<li><p><code>verbose</code> 是指调试级别的日志</p>
+</li>
+</ul>
+<p>清空当前面板内容。</p>
+<ul>
+<li><blockquote>
+<p>快捷键 <code>ctrl+l</code> 对应的命令是 <code>console.clear()</code>;</p>
+</blockquote>
+</li>
+</ul>
+<p>是指当前的作用域。如果有 iframe 的话，可以切换作用域为对应的 iframe。然后就可以快乐的在控制台调用 iframe 里面的变量了。</p>
+<p>通过关键词过滤日志<br>描述有多少条记录被隐藏<br>设置功能，里面是一些控制开关。</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"7cff2fe5351a4771a8ca","clientSecret":"44cbb554920d2d11a7882f71536207a73e848cf4","repo":"Blog","owner":"jarze","admin":["jarze"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jarze.github.io/Blog/console/" data-id="cldwusuxl000fgunchwpzg8ra" data-title="chrome 开发者工具之 Console" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Blog/tts/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          TTS（Text To Speah）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Blog/Makefile/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Make 命令</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/">Front</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/js/">js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/js/react/">react</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Front/tool/">tool</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Fun/">Fun</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/%E5%B7%A5%E5%85%B7%E6%9F%A5%E8%AF%A2/">工具查询</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Accessibility/" rel="tag">Accessibility</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Node/" rel="tag">Node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/WCAG/" rel="tag">WCAG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/commander/" rel="tag">commander</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/eslint/" rel="tag">eslint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/link/" rel="tag">link</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/make/" rel="tag">make</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/mobx/" rel="tag">mobx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/puml/" rel="tag">puml</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/tool/" rel="tag">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/webpack/" rel="tag">webpack</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/Accessibility/" style="font-size: 10px;">Accessibility</a> <a href="/Blog/tags/Node/" style="font-size: 10px;">Node</a> <a href="/Blog/tags/WCAG/" style="font-size: 10px;">WCAG</a> <a href="/Blog/tags/commander/" style="font-size: 10px;">commander</a> <a href="/Blog/tags/css/" style="font-size: 16.67px;">css</a> <a href="/Blog/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/Blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/Blog/tags/eslint/" style="font-size: 10px;">eslint</a> <a href="/Blog/tags/git/" style="font-size: 10px;">git</a> <a href="/Blog/tags/js/" style="font-size: 20px;">js</a> <a href="/Blog/tags/link/" style="font-size: 10px;">link</a> <a href="/Blog/tags/make/" style="font-size: 10px;">make</a> <a href="/Blog/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/Blog/tags/mobx/" style="font-size: 16.67px;">mobx</a> <a href="/Blog/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/Blog/tags/npm/" style="font-size: 16.67px;">npm</a> <a href="/Blog/tags/puml/" style="font-size: 10px;">puml</a> <a href="/Blog/tags/react/" style="font-size: 13.33px;">react</a> <a href="/Blog/tags/shell/" style="font-size: 10px;">shell</a> <a href="/Blog/tags/tool/" style="font-size: 16.67px;">tool</a> <a href="/Blog/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/Blog/tags/webpack/" style="font-size: 10px;">webpack</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2023/01/">一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/05/">五月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2019/09/">九月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/reactContext/">React Context 的运用</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/js%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%A8%E5%B1%8F/">js实现浏览器全屏</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/font/">font</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/less/">less</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 jarze blog ~~~<br />
+      <!-- Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/Blog/about" class="mobile-nav-link">About</a>
+  
+    <a href="/Blog/links" class="mobile-nav-link">Links</a>
+  
+</nav>
+    
+
+
+<script src="/Blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/Blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+
+
+
+  <script>window.CONFIG={path:"/Blog/search.json"};</script>
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
+  
+<script src="/Blog/js/search.js"></script>
+
+
+  </div>
+</body>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script data-ad-client="ca-pub-2547143607556885" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</html>
