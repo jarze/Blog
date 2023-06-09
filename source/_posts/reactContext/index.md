@@ -133,3 +133,56 @@ class ClassC extends Component {
 export default ClassC;
 
 ```
+
+---
+
+## 已废弃 ~~`getChildContext`~~
+
+```js
+
+import React from 'react';
+import PropTypes from 'prop-types';
+
+class ParentComponent extends React.Component {
+  static childContextTypes = {
+    theme: PropTypes.string,
+  };
+
+  getChildContext() {
+    return { theme: 'dark' };
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <ChildComponent />
+        <ChildComponent1 />
+      </div>
+    );
+  }
+}
+
+// 函数组件
+function ChildComponent(props, context) {
+  return <div>ChildComponent Theme: {context.theme}</div>;
+}
+
+ChildComponent.contextTypes = {
+  theme: PropTypes.string,
+};
+
+// Class组件
+class ChildComponent1 extends React.Component {
+  static contextTypes = {
+    theme: PropTypes.string,
+  };
+
+  render() {
+    return <div>ChildComponent1 Theme: {this.context.theme}</div>;
+  }
+}
+
+export default ParentComponent;
+
+```
