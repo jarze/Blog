@@ -3,7 +3,9 @@ title: v2ray-Mac升级后导致导致代理失效
 date: 2023-06-16 10:03:39
 tags:
  - issues
-categories: Software
+categories:
+ - Software
+ - issues
 ---
 
 V2Ray之前运行好好的，升级后突然代理失效，日志也不打印了，重启也不行，重装也不行。
