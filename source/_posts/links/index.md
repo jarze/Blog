@@ -52,6 +52,7 @@ summary+* { padding-left: 2em; }
 - [**dumi**](https://d.umijs.org/) _(为组件研发而生的静态站点框架.)_
 - [**Rspress**](https://rspress.dev/zh/) _(快如闪电的静态站点生成器.)_
 - [**Storybook**](https://storybook.js.org/) _(Storybook is a frontend workshop for building UI components and pages in isolation.)_
+- [**Slidev**](https://sli.dev/) _(Presentation Slides for Developers. PPT)_
 </details>
 
 <details open="open"><summary><h1>🤡 Editor</h1></summary>
